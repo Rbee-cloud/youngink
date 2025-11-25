@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YoungInk - A platform for young adult poetry and prose.">
+    <title>YoungInk | Voices of the Future</title>
+    
+    <!-- Google Fonts: Lora (Serif) for headings, Inter (Sans) for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #faf9f6; /* Off-white, paper-like */
+            --text-color: #2c2c2c;
+            --text-light: #666666;
+            --accent-color: #7d8c86; /* Sage Green */
+            --accent-hover: #5a6661;
+            --border-color: #e5e5e5;
+            --white: #ffffff;
+            --font-heading: 'Lora', serif;
+            --font-body: 'Inter', sans-serif;
+            --container-width: 1100px;
+            --spacing-section: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text-color);
+            letter-spacing: -0.5px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: 1px solid var(--text-color);
+            border-radius: 2px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: var(--text-color);
+        }
+
+        .btn:hover {
+            background: var(--text-color);
+            color: var(--white);
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 30px 0;
+            background-color: var(--bg-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        header.scrolled {
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(250, 249, 246, 0.95);
+            backdrop-filter: blur(5px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-color);
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            padding: 100px 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        /* --- FEATURED SECTION --- */
+        #featured {
+            padding: var(--spacing-section) 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .card-meta {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card-excerpt {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* --- ALL SUBMISSIONS (EXPANDABLE) --- */
+        #submissions {
+            padding: var(--spacing-section) 0;
+            background-color: var(--white);
+        }
+
+        .submission-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .submission-item {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 30px;
+        }
+
+        .sub-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .sub-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+        }
+
+        .sub-author {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .sub-content {
+            font-size: 1rem;
+            color: var(--text-color);
+            max-height: 80px; /* Collapsed height */
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.5s ease-in-out;
+            white-space: pre-wrap; /* Preserves poetic formatting */
+        }
+
+        .sub-content.expanded {
+            max-height: 2000px; /* Arbitrary large number */
+        }
+
+        /* Gradient fade for collapsed text */
+        .sub-content::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, var(--white));
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .sub-content.expanded::after {
+            opacity: 0;
+        }
+
+        .read-toggle {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .read-toggle:hover {
+            color: var(--accent-hover);
+        }
+
+        /* --- GALLERY SECTION --- */
+        #gallery {
+            padding: var(--spacing-section) 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            background-color: #eee;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: grayscale(20%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.9);
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        /* --- ABOUT SECTION --- */
+        #about {
+            padding: var(--spacing-section) 0;
+            text-align: center;
+            background-color: #f4f2ef; /* Slightly darker than bg */
+        }
+
+        .about-text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--text-color);
+            color: #aaa;
+            padding: 60px 0 30px;
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-family: var(--font-heading);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .legal-row {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--text-color);
+            color: var(--white);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.85rem;
+            z-index: 2000;
+        }
+        
+        #cookie-banner button {
+            background: var(--white);
+            color: var(--text-color);
+            border: none;
+            padding: 5px 15px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .hero-tagline { font-size: 2.5rem; }
+            .nav-links {
+                display: none; /* Simple hide for mobile MVP, JS toggle below */
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container">
+            <nav>
+                <div class="logo">YoungInk.</div>
+                <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#featured">Featured</a></li>
+                    <li><a href="#submissions">Read</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <h1 class="hero-tagline">Where young voices<br>shape the future.</h1>
+            <p class="hero-sub">A curated collection of poetry and prose from the next generation of writers.</p>
+            <a href="#submissions" class="btn">Start Reading</a>
+        </div>
+    </section>
+
+    <!-- Featured Submissions -->
+    <section id="featured">
+        <div class="container">
+            <h2 class="section-title">Editor's Picks</h2>
+            <div class="grid-3">
+                <!-- Featured Item 1 -->
+                <article class="card">
+                    <span class="card-meta">Poetry</span>
+                    <h3 class="card-title">The Silence of Snow</h3>
+                    <p class="card-excerpt">"The world held its breath as the white blanket fell, covering the noise of the city in a soft, cold embrace..."</p>
+                    <p style="font-size:0.9rem; margin-top:10px;">— Elena R., Age 17</p>
+                </article>
+
+                <!-- Featured Item 2 -->
+                <article class="card">
+                    <span class="card-meta">Short Story</span>
+                    <h3 class="card-title">Clockwork Heart</h3>
+                    <p class="card-excerpt">"It tick-tocked not with a rhythm of biology, but with the precision of gears crafted by a forgotten watchmaker..."</p>
+                    <p style="font-size:0.9rem; margin-top:10px;">— Marcus T., Age 19</p>
+                </article>
+
+                <!-- Featured Item 3 -->
+                <article class="card">
+                    <span class="card-meta">Essay</span>
+                    <h3 class="card-title">Digital Solitude</h3>
+                    <p class="card-excerpt">"We are connected by wires and waves, yet never have we been so profoundly alone in a room full of people..."</p>
+                    <p style="font-size:0.9rem; margin-top:10px;">— Sarah J., Age 18</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Submissions (Expandable) -->
+    <section id="submissions">
+        <div class="container">
+            <h2 class="section-title">Latest Submissions</h2>
+            <div class="submission-list">
+
+                <!-- Submission 1 (Edit content here) -->
+                <article class="submission-item">
+                    <div class="sub-header">
+                        <h3 class="sub-title">Paper Planes</h3>
+                        <span class="sub-author">by Liam K.</span>
+                    </div>
+                    <div class="sub-content">I folded my dreams into paper planes,
+Creased with hope and little pains.
+Threw them out the window high,
+To watch them dance against the sky.
+
+Some crashed down in the muddy rain,
+Dissolving ink, dissolving pain.
+But one caught wind and flew so far,
+Past the moon and to a star.
+It carries words I dare not speak,
+To finds the future that I seek.</div>
+                    <button class="read-toggle" onclick="toggleText(this)">Read More</button>
+                </article>
+
+                <!-- Submission 2 -->
+                <article class="submission-item">
+                    <div class="sub-header">
+                        <h3 class="sub-title">The Old Library</h3>
+                        <span class="sub-author">by Chloe W.</span>
+                    </div>
+                    <div class="sub-content">The dust motes danced in the shafts of afternoon light that pierced the gloom of the stacks. It smelled of vanilla and decaying paper—the best smell in the world. I ran my fingers along the spines, feeling the leather and cloth, the embossed titles of stories waiting to be woken up.
+
+I wasn't looking for anything specific, just an escape. My exams were looming, my parents were arguing, and the world outside felt too loud and too fast. But in here, time moved differently. It moved at the pace of a turning page. I pulled a blue volume from the shelf, 'The Starless Sea', and sat on the floor. For the next three hours, I wasn't Chloe the student. I was a traveler in a world beneath the surface of the earth.</div>
+                    <button class="read-toggle" onclick="toggleText(this)">Read More</button>
+                </article>
+
+                <!-- Submission 3 -->
+                <article class="submission-item">
+                    <div class="sub-header">
+                        <h3 class="sub-title">Coffee Shop sketches</h3>
+                        <span class="sub-author">by Alex M.</span>
+                    </div>
+                    <div class="sub-content">She sits in the corner, charcoal in hand. 
+The barista shouts names—coffee orders, demand.
+She draws the steam rising, the clink of a spoon,
+A snapshot of life in the dull afternoon.
+Nobody notices the art being made,
+How moments are captured before they can fade.</div>
+                    <button class="read-toggle" onclick="toggleText(this)">Read More</button>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Visual Arts</h2>
+            <div class="gallery-grid">
+                <!-- Image 1 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Writing Journal">
+                    <div class="caption">"Morning Thoughts" - Photo</div>
+                </div>
+                <!-- Image 2 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mountain Landscape">
+                    <div class="caption">"Solitude" - Oil on Canvas</div>
+                </div>
+                <!-- Image 3 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1515462277126-2dd0c162007a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Typewriter">
+                    <div class="caption">"Retrofit" - Photography</div>
+                </div>
+                <!-- Image 4 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1471347324794-2841b81848c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pencils">
+                    <div class="caption">"Tools of Trade" - Sketch</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About YoungInk</h2>
+            <p class="about-text">
+                YoungInk is a digital sanctuary for the creative minds of tomorrow. We believe that young adulthood is a time of intense emotion, profound realization, and rapid growth. Our mission is to provide a minimalist, distraction-free canvas where the words and art of young creators can shine without the noise of social media. We value authenticity over virality.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>YoungInk.</h4>
+                    <p>Amplifying young voices since 2023.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#submissions">Submissions</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:editor@youngink.com">editor@youngink.com</a></li>
+                        <li><a href="#">Submission Guidelines</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="legal-row">
+                <p>&copy; 2023 YoungInk. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner (GDPR Placeholder) -->
+    <div id="cookie-banner">
+        <span>We use cookies to ensure you get the best experience on our website.</span>
+        <button onclick="document.getElementById('cookie-banner').style.display='none'">Accept</button>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const nav = document.getElementById('nav-links');
+            nav.classList.toggle('active');
+        }
+
+        // Toggle Read More / Read Less
+        function toggleText(btn) {
+            // Find the content div immediately preceding the button
+            const content = btn.previousElementSibling;
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                btn.textContent = "Read More";
+            } else {
+                content.classList.add('expanded');
+                btn.textContent = "Read Less";
+            }
+        }
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
