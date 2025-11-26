@@ -200,9 +200,9 @@
         },
         {
           id: 't3',
-          name: "Clara O'Connor",
-          role: "Community Lead",
-          bio: "Clara ensures every submission is read with empathy. She manages our feedback loop, ensuring every young writer feels heard and validated.",
+          name: "Aditya Banerjee",
+          role: "Consulting Editor",
+          bio: "Aditya ensures every submission is read with empathy. He manages our feedback loop, ensuring every young writer feels heard and validated.",
           imageUrl: "https://picsum.photos/seed/clara/200/200"
         }
       ];
@@ -710,7 +710,7 @@
                               <UploadIcon size={16} /> Attach Visual Art or Photography
                           </label>
                           <input type="file" name="attachment" accept="image/*,.pdf" className="w-full p-2 bg-white border border-gray-200 rounded-lg text-sm" />
-                          <p className="text-xs text-charcoal/50">If submitting art, please attach high-quality files here. (JPG, PNG, PDF)</p>
+                          <p className="text-xs text-charcoal/50">If submitting art, please attach high-quality files here (JPG, PNG, PDF). Max file size: 10MB. Please ensure images are clear and unpixelated.</p>
                       </div>
 
                       <div className="space-y-2">
@@ -761,8 +761,7 @@
                               )}
                           </button>
                           <p className="mt-4 text-xs text-charcoal/40">
-                              Submissions are sent to {CONTACT_EMAIL}. <br/>
-                              File attachments are supported via confirmation email configuration.
+                              Submissions are sent to {CONTACT_EMAIL}.
                           </p>
                       </div>
                   </form>
@@ -775,7 +774,7 @@
       // CTA
       const CTA = () => {
         return (
-          <Section id="cta" className="bg-charcoal text-white my-12 rounded-3xl mx-4 md:mx-12 overflow-hidden relative">
+          <Section id="cta" className="bg-charcoal text-white my-12 rounded-3xl overflow-hidden relative shadow-2xl">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-tuscan/10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
             
