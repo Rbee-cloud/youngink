@@ -1,473 +1,985 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>YoungInk — Young Voices</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YoungInk | Curated Youth Creativity</title>
+    <meta name="description" content="YoungInk is a safe, curated space for young adult writers to showcase poetry and prose." />
+    
+    <!-- Google Fonts: Lora (Serif) and Roboto (Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              charcoal: '#264653',
+              verdigris: '#2a9d8f',
+              tuscan: '#e9c46a',
+              sandy: '#f4a261',
+              burnt: '#e76f51',
+              offwhite: '#f9f9f9',
+            },
+            fontFamily: {
+              serif: ['Lora', 'serif'],
+              sans: ['Roboto', 'sans-serif'],
+            },
+            animation: {
+              'fade-in': 'fadeIn 1s ease-out',
+              'fade-in-up': 'fadeInUp 1s ease-out',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- React & Babel for In-Browser Rendering -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --charcoal-blue: #264653ff;
-  --verdigris: #2a9d8fff;
-  --tuscan-sun: #e9c46aff;
-  --sandy-brown: #f4a261ff;
-  --burnt-peach: #e76f51ff;
-  --muted: #6f7a7d;
-  --radius: 14px;
-  --maxw: 1000px;
-}
-
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
-  color:var(--charcoal-blue);
-  background:linear-gradient(180deg,#fbfbfb,#f8f9fa);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  user-select:none; /* deterrent */
-}
-
-/* container */
-.container{
-  max-width:var(--maxw);
-  margin:36px auto;
-  padding:28px;
-  background:#fff;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(38,70,83,0.06);
-}
-
-/* header */
-.header{
-  display:flex;justify-content:space-between;align-items:center;gap:16px;
-}
-.brand{display:flex;align-items:center;gap:12px}
-.logo{
-  width:64px;height:64px;border-radius:12px;
-  background:linear-gradient(135deg,var(--verdigris),var(--tuscan-sun));
-  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:Lora;
-  box-shadow:0 8px 22px rgba(42,157,143,0.12);
-}
-.brand h1{margin:0;font-family:Lora;font-size:20px}
-.nav{display:flex;gap:12px}
-.nav a{color:var(--charcoal-blue);text-decoration:none;padding:8px 10px;border-radius:10px;font-weight:600}
-.nav a:hover{background:rgba(38,70,83,0.04)}
-
-/* hero */
-.hero{
-  display:grid;grid-template-columns:1fr 340px;gap:22px;margin-top:18px;align-items:start;
-}
-.hero-left{padding:20px;border-radius:14px;background:linear-gradient(180deg,#fff,#fcfcfd);box-shadow:0 8px 20px rgba(38,70,83,0.04)}
-.hero-left .tag{font-family:Lora;font-size:24px;color:var(--charcoal-blue);margin-bottom:6px}
-.hero-left .lead{color:var(--muted);margin-bottom:12px}
-.cta{
-  display:inline-block;background:linear-gradient(90deg,var(--burnt-peach),var(--sandy-brown));
-  color:white;padding:12px 18px;border-radius:12px;font-weight:800;text-decoration:none;box-shadow:0 10px 26px rgba(231,111,81,0.12)
-}
-
-/* featured cards */
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0}
-.card{background:#fff;padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(38,70,83,0.04);position:relative;overflow:hidden}
-.card .thumb{width:92px;height:92px;object-fit:cover;border-radius:14px;float:right;margin-left:12px;box-shadow:0 8px 18px rgba(38,70,83,0.06)}
-.card h3{margin:0;font-family:Lora;color:var(--charcoal-blue)}
-.card p{margin:8px 0;color:var(--muted)}
-
-/* submissions list */
-.submissions{margin:18px 0}
-.submission{padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfbfb);border:1px solid rgba(38,70,83,0.03);margin-bottom:12px;position:relative}
-.submission img{width:100px;height:100px;border-radius:14px;object-fit:cover;float:left;margin-right:12px}
-.submission h4{margin:0;font-family:Lora}
-.submission .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
-.expand{display:inline-block;margin-top:10px;color:var(--verdigris);font-weight:700;cursor:pointer}
-
-/* gallery */
-.gallery{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
-.gallery img{width:calc(33% - 8px);border-radius:16px;object-fit:cover;float:left;box-shadow:0 8px 20px rgba(38,70,83,0.06)}
-
-/* about / team / form */
-.section{padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fcfcfd);margin:18px 0}
-.team-member{display:flex;gap:12px;align-items:center;margin-bottom:12px}
-.team-member img{width:80px;height:80px;border-radius:14px;object-fit:cover}
-.team-member .info small{color:var(--muted);display:block}
-
-/* form placeholder area (Google Form embed) */
-.form-embed{
-  border-radius:12px;overflow:hidden;border:1px solid rgba(38,70,83,0.04);
-  min-height:420px;background:linear-gradient(180deg,#fff,#fbfbfb);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;
-}
-.form-embed .hint{color:var(--muted);max-width:720px;text-align:center}
-
-/* legal footer */
-footer{margin-top:18px;padding:18px;text-align:center;color:var(--muted);font-size:13px}
-
-/* responsive */
-@media (max-width:980px){
-  .hero{grid-template-columns:1fr;gap:12px}
-  .grid-3{grid-template-columns:repeat(2,1fr)}
-  .gallery img{width:calc(50% - 8px)}
-}
-@media (max-width:560px){
-  .grid-3{grid-template-columns:1fr}
-  .gallery img{width:100%}
-  .submission img{display:none}
-}
-</style>
-</head>
-
-<body>
-
-<div class="container" id="site">
-  <header class="header">
-    <div class="brand">
-      <div class="logo">YI</div>
-      <div>
-        <h1 id="site-title">YoungInk</h1>
-        <div style="font-size:12px;color:var(--muted)">youngink.com — a home for young poetry & prose</div>
-      </div>
-    </div>
-
-    <nav class="nav" aria-label="Main navigation">
-      <a href="#home" onclick="scrollTo('home')">Home</a>
-      <a href="#featured" onclick="scrollTo('featured')">Featured</a>
-      <a href="#submissions" onclick="scrollTo('submissions')">Submissions</a>
-      <a href="#gallery" onclick="scrollTo('gallery')">Gallery</a>
-      <a href="#team" onclick="scrollTo('team')">Team</a>
-      <a href="#submit" onclick="scrollTo('submit')">Submit</a>
-      <a href="#legal" onclick="scrollTo('legal')">Legal</a>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section id="home" class="hero" aria-labelledby="hero-heading">
-    <div class="hero-left">
-      <div class="tag" id="hero-title">A place where young voices breathe</div>
-      <div class="lead" id="hero-sub">We present poetry and prose from young adults in a calm, considered layout — built to read and to feel.</div>
-      <a class="cta" id="cta-main" href="#submit" onclick="scrollTo('submit')">Share your words — Submit now</a>
-    </div>
-
-    <aside style="padding:8px;border-radius:12px;">
-      <div style="padding:12px;border-radius:12px;background:linear-gradient(180deg,var(--tuscan-sun),#fff);box-shadow:0 8px 20px rgba(38,70,83,0.04)">
-        <strong style="display:block;margin-bottom:6px">Featured</strong>
-        <div id="mini-feature-list"></div>
-      </div>
-    </aside>
-  </section>
-
-  <!-- FEATURED -->
-  <section id="featured" class="grid-3" aria-label="Featured">
-    <!-- populated by JS -->
-  </section>
-
-  <!-- SUBMISSIONS -->
-  <section id="submissions" class="submissions section" aria-label="All submissions">
-    <h2 style="margin-top:0;font-family:Lora">All Submissions</h2>
-    <div id="all-submissions"></div>
-  </section>
-
-  <!-- GALLERY -->
-  <section id="gallery" class="section">
-    <h2 style="margin-top:0;font-family:Lora">Gallery</h2>
-    <div class="gallery" id="gallery-grid"></div>
-    <div style="clear:both"></div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <h2 style="margin-top:0;font-family:Lora">About YoungInk</h2>
-    <p id="about-text" style="color:var(--muted)"></p>
-  </section>
-
-  <!-- TEAM -->
-  <section id="team" class="section">
-    <h2 style="margin-top:0;font-family:Lora">Editorial Committee</h2>
-    <div id="team-members"></div>
-    <p style="color:var(--muted);margin-top:8px">
-      Our editorial committee focuses on nurturing promising young writers through positive, sustained feedback and mentoring.
-    </p>
-  </section>
-
-  <!-- SUBMIT (Google Form placeholder / embed) -->
-  <section id="submit" class="section">
-    <h2 style="margin-top:0;font-family:Lora">Submit Your Work</h2>
-
-    <div class="form-embed" id="form-area" role="region" aria-label="submission form">
-      <!-- By default this is a placeholder. Replace the embed URL in the JSON below with your Google Form embed URL to show the live form -->
-      <div class="hint" id="form-hint">
-        <strong>Google Form Placeholder</strong>
-        <p style="color:var(--muted)">Replace the embed URL in the editable content section at the bottom with your Google Form embed `src` to display the form here. (Google Forms: open form → Send → &lt;&gt; Embed → copy the iframe src.)</p>
-        <p style="margin-top:8px"><em>Example placeholder embed is shown below for preview purposes.</em></p>
-      </div>
-
-      <!-- Placeholder iframe (will be replaced by real Google Form src from JSON) -->
-      <iframe id="google-form-iframe" title="Submission form placeholder"
-        src="about:blank"
-        style="width:100%;height:380px;border:none;border-radius:8px;margin-top:12px;max-width:100%;"></iframe>
-    </div>
-
-    <p style="color:var(--muted);font-size:13px;margin-top:10px">
-      Note: Google Forms supports file uploads only if the responder signs in to Google. If you need anonymous uploads or a custom email flow, consider a serverless backend (Basin/EmailJS) later.
-    </p>
-  </section>
-
-  <!-- LEGAL / GDPR -->
-  <section id="legal" class="section" aria-labelledby="legal-heading">
-    <h2 style="margin-top:0;font-family:Lora">Privacy & Legal</h2>
-    <div id="privacy-text" style="color:var(--muted)"></div>
-    <hr style="margin:12px 0" />
-    <div id="disclaimer-text" style="color:var(--muted)"></div>
-    <p style="color:var(--muted);font-size:13px;margin-top:10px">Contact: <a id="contact-link" href="mailto:editor@youngink.eu">editor@youngink.eu</a></p>
-  </section>
-
-  <footer>
-    <div style="font-weight:700">YoungInk</div>
-    <small style="color:var(--muted)">© <span id="year"></span> YoungInk — a safe, creative space for young adult writers.</small>
-  </footer>
-</div>
-
-<script>
-/* Small helpers */
-function scrollTo(id){
-  const el = document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-}
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* Disable copy/select/right-click (deterrent, not foolproof) */
-document.addEventListener('copy', e => e.preventDefault());
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('keydown', function(e){
-  if((e.ctrlKey||e.metaKey) && (e.key==='c' || e.key==='a' || e.key==='s')) e.preventDefault();
-});
-
-/* Toggle long content */
-function toggleExpand(i){
-  const el = document.getElementById('full-'+i);
-  if(!el) return;
-  el.style.display = el.style.display === 'block' ? 'none' : 'block';
-}
-
-/* Escape helper */
-function esc(s){ return String(s||''); }
-
-/* SITE_DATA loaded from JSON below */
-let SITE_DATA = {};
-function initFromJSON(){
-  try{
-    const raw = document.getElementById('site-json').textContent.trim();
-    SITE_DATA = JSON.parse(raw);
-  }catch(e){
-    console.warn('Failed to parse site data', e);
-    SITE_DATA = {};
-  }
-
-  // Basic
-  document.getElementById('site-title').textContent = SITE_DATA.siteTitle || 'YoungInk';
-  document.getElementById('hero-title').textContent = SITE_DATA.tagline || 'A place where young voices breathe';
-  document.getElementById('hero-sub').textContent = SITE_DATA.subtag || 'We present poetry and prose from young adults...';
-  document.getElementById('cta-main').textContent = SITE_DATA.ctaText || 'Share your words — Submit now';
-
-  // Featured
-  const feat = document.getElementById('featured');
-  feat.innerHTML = '';
-  (SITE_DATA.featured || []).forEach((f, idx) => {
-    const div = document.createElement('article');
-    div.className='card';
-    div.innerHTML = `
-      ${f.image ? `<img src="${esc(f.image)}" class="thumb" alt="${esc(f.title)}">` : ''}
-      <h3>${esc(f.title)}</h3>
-      <p>${esc(f.snippet)}</p>
-      <small style="color:var(--muted)">${esc(f.author)}</small>
-    `;
-    feat.appendChild(div);
-  });
-
-  // mini-feature list in hero
-  const mini = document.getElementById('mini-feature-list'); mini.innerHTML='';
-  (SITE_DATA.featured || []).slice(0,4).forEach(it=>{
-    const el = document.createElement('div');
-    el.style.marginBottom='8px';
-    el.innerHTML = `<strong>${esc(it.title)}</strong><br><small style="color:var(--muted)">${esc(it.author)}</small>`;
-    mini.appendChild(el);
-  });
-
-  // All submissions
-  const all = document.getElementById('all-submissions'); all.innerHTML='';
-  (SITE_DATA.submissions || []).forEach((s,i)=>{
-    const wrapper = document.createElement('div'); wrapper.className='submission';
-    wrapper.innerHTML = `
-      ${s.image?`<img src="${esc(s.image)}" alt="thumb">`:''}
-      <h4>${esc(s.title)}</h4>
-      <div class="meta">${esc(s.author)} • ${esc(s.age?('age '+s.age):'')}</div>
-      <div id="excerpt-${i}">${esc(String(s.text).slice(0,600))}${(s.text && s.text.length>600)?'...':''}</div>
-      ${ (s.text && s.text.length>600) ? `<div style="margin-top:8px"><a class="expand" onclick="toggleExpand(${i})">Read more</a></div><div id="full-${i}" style="display:none;margin-top:8px">${esc(s.text)}</div>` : '' }
-    `;
-    all.appendChild(wrapper);
-  });
-
-  // gallery
-  const gal = document.getElementById('gallery-grid'); gal.innerHTML='';
-  (SITE_DATA.gallery || []).forEach(g=>{
-    const img = document.createElement('img');
-    img.src = esc(g.src);
-    img.alt = esc(g.caption||'');
-    gal.appendChild(img);
-  });
-
-  // about
-  document.getElementById('about-text').textContent = SITE_DATA.about || '';
-
-  // team
-  const team = document.getElementById('team-members'); team.innerHTML='';
-  (SITE_DATA.team || []).forEach(m=>{
-    const tm = document.createElement('div'); tm.className='team-member';
-    tm.innerHTML = `<img src="${esc(m.photo)}" alt="${esc(m.name)}"><div><strong>${esc(m.name)}</strong><div style="color:var(--muted)">${esc(m.bio)}</div></div>`;
-    team.appendChild(tm);
-  });
-
-  // privacy & disclaimer
-  document.getElementById('privacy-text').textContent = SITE_DATA.privacy || '';
-  document.getElementById('disclaimer-text').textContent = SITE_DATA.disclaimer || '';
-
-  // contact link
-  const contact = SITE_DATA.contact_email || 'editor@youngink.eu';
-  document.getElementById('contact-link').href = 'mailto:'+contact;
-  // Google Form embed
-  const formSrc = SITE_DATA.google_form_embed_src || '';
-  const iframe = document.getElementById('google-form-iframe');
-  if(formSrc && formSrc !== 'GOOGLE_FORM_EMBED_URL_HERE'){
-    iframe.src = formSrc;
-  } else {
-    // show a minimal preview embed so editors can preview layout (this is not a real form)
-    iframe.srcdoc = `<div style="font-family:Inter,Arial,sans-serif;padding:20px;color:#333"><h3 style="font-family:Lora">[Google Form placeholder]</h3><p style="color:#666">Replace the JSON value <strong>google_form_embed_src</strong> with your Google Form embed URL to show the real form here.</p><ol style="color:#444"><li>Open your Google Form → Send → &lt;&gt; Embed</li><li>Copy the src value</li><li>Paste it into the JSON at the bottom of this file</li></ol></div>`;
-  }
-}
-
-document.addEventListener('DOMContentLoaded', initFromJSON, false);
-</script>
-
-<!-- ============================
-     EDITABLE SITE DATA (edit only this JSON)
-     All text, image URLs, gallery items and the Google Form embed src are here.
-     Non-technical editors: open the file in a text editor, change the text or image URLs, save & upload.
-     ============================ -->
-<script type="application/json" id="site-json">
+    <style>
+      html { scroll-behavior: smooth; }
+      body {
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      input, textarea {
+        -webkit-user-select: text;
+        user-select: text;
+      }
+    </style>
+  <script type="importmap">
 {
-  "siteTitle": "YoungInk",
-  "tagline": "A place where young voices breathe",
-  "subtag": "We present poetry and prose from young adults in a calm, considered layout — built to read and to feel.",
-  "ctaText": "Share your words — Submit now",
-  "contact_email": "editor@youngink.eu",
-
-  "featured": [
-    {
-      "title": "The Blue Hour",
-      "author": "A. Rivera (18)",
-      "snippet": "When the sky forgets the sun, we remember how to speak...",
-      "image": "https://placekitten.com/400/300"
-    },
-    {
-      "title": "Paper Wings",
-      "author": "J. Singh (17)",
-      "snippet": "We folded hope into corners of notebooks and cities...",
-      "image": "https://placekitten.com/401/301"
-    },
-    {
-      "title": "Notes to Later-Me",
-      "author": "L. Ahmed (20)",
-      "snippet": "If silence had a voice, it would sound like this page...",
-      "image": "https://placekitten.com/402/302"
-    }
-  ],
-
-  "submissions": [
-    {
-      "title": "The Blue Hour",
-      "author": "A. Rivera",
-      "age": 18,
-      "image": "https://placekitten.com/420/320",
-      "text": "When the sky forgets the sun, I write the margins of my life in blue ink..."
-    },
-    {
-      "title": "Short Breath",
-      "author": "M. Okoye",
-      "age": 16,
-      "image": "https://placekitten.com/421/321",
-      "text": "You taught me a new way to hold my breath and call it patience..."
-    },
-    {
-      "title": "Notes to Later-Me",
-      "author": "L. Ahmed",
-      "age": 20,
-      "image": "https://placekitten.com/422/322",
-      "text": "If silence had a voice, it would sound like this page. This is a longer sample piece to demonstrate expansion. Add the full submission text here."
-    }
-  ],
-
-  "gallery": [
-    {"src":"https://placekitten.com/600/400","caption":"Artwork by A. Student"},
-    {"src":"https://placekitten.com/601/400","caption":"Illustration – community exhibit"},
-    {"src":"https://placekitten.com/602/400","caption":"Photography – dusk"}
-  ],
-
-  "about": "YoungInk is a curated platform showcasing poetry and prose by young adults. We celebrate fresh perspective and careful craft. Our pages highlight the words first, with supportive artwork to frame the human stories behind each submission.",
-
-  "team": [
-    {
-      "name":"Rina Haldar — Editor-in-Chief",
-      "photo":"https://placekitten.com/120/120",
-      "bio":"Rina mentors young writers with sustained, encouraging editorial feedback and publication support."
-    },
-    {
-      "name":"Noah Pereira — Senior Editor",
-      "photo":"https://placekitten.com/121/121",
-      "bio":"Noah brings experience running youth literary programs and thoughtful developmental edits."
-    },
-    {
-      "name":"Maya Lin — Associate Editor",
-      "photo":"https://placekitten.com/122/122",
-      "bio":"Maya focuses on nurturing early-career poets through constructive, kind critique."
-    }
-  ],
-
-  "privacy": "Privacy: We collect only the details you submit in the form (name, contact, school, and your work). Submissions are sent to editor@youngink.eu and stored for editorial review. We will not sell or share your personal data for commercial purposes. Parents or guardians of under-18 contributors may request deletion by contacting editor@youngink.eu. Cookies are minimal and used only for preferences; no third-party analytics are active by default.",
-
-  "disclaimer": "Disclaimer: YoungInk is a hosting platform for user-submitted creative work. Contributors retain copyright of their submissions. By submitting, you confirm your work is original. YoungInk is not liable for plagiarism by third parties. If you believe your material has been plagiarised, contact editor@youngink.eu and we will help pursue takedown or attribution where possible.",
-
-  "google_form_embed_src": "GOOGLE_FORM_EMBED_URL_HERE"
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+  }
 }
 </script>
+</head>
+  <body class="bg-offwhite text-charcoal font-sans antialiased selection:bg-tuscan selection:text-charcoal">
+    <div id="root"></div>
 
-<!-- QUICK PREVIEW & HOSTING INSTRUCTIONS -->
-<!--
-How to preview:
-1. Save this file as index.html
-2. Double-click to open in your browser OR right-click -> Open With -> your browser.
-3. To show your real Google Form here:
-   - Open your Google Form -> Send -> <> Embed -> copy the <iframe> src (a URL beginning with https://docs.google.com/forms/d/e/...)
-   - Replace the value of "google_form_embed_src" in the JSON above with that URL (keep quotes)
-   - Save & refresh the page.
+    <!-- MAIN APPLICATION SCRIPT -->
+    <script type="text/babel">
 
-Google Forms notes:
-- File upload fields require the submitter to sign in to Google.
-- To send responders an email receipt, enable "Collect email addresses" and "Response receipts" in Google Forms settings.
+      /**
+       * ICONS (Replaces Lucide-React for single-file portability)
+       */
+      const Icon = ({ path, size = 24, className = "" }) => (
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width={size} 
+          height={size} 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="2" 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          className={className}
+        >
+          {path}
+        </svg>
+      );
 
-How to publish on GitHub Pages:
-1. Create a GitHub account (if you don't have one).
-2. Make a new repository (e.g., "youngink").
-3. Upload this index.html to the repo (Add file → Upload files → Commit).
-4. Go to Settings → Pages (or Settings → Code and automation → Pages).
-   - Source: choose branch "main" and folder "/" (root).
-   - Save. GitHub will give a URL like: https://yourusername.github.io/youngink/
-5. Wait a minute and open that URL — your site is live.
+      const MenuIcon = (props) => <Icon {...props} path={<><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></>} />;
+      const XIcon = (props) => <Icon {...props} path={<><path d="M18 6 6 18"/><path d="m6 6 12 12"/></>} />;
+      const FeatherIcon = (props) => <Icon {...props} path={<><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></>} />;
+      const ChevronDownIcon = (props) => <Icon {...props} path={<path d="m6 9 6 6 6-6"/>} />;
+      const ChevronUpIcon = (props) => <Icon {...props} path={<path d="m18 15-6-6-6 6"/>} />;
+      const SendIcon = (props) => <Icon {...props} path={<><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></>} />;
+      const AlertCircleIcon = (props) => <Icon {...props} path={<><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></>} />;
+      const CheckCircleIcon = (props) => <Icon {...props} path={<><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></>} />;
+      const UploadIcon = (props) => <Icon {...props} path={<><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></>} />;
+      const InstagramIcon = (props) => <Icon {...props} path={<><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></>} />;
+      const MailIcon = (props) => <Icon {...props} path={<><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>} />;
+      const MapPinIcon = (props) => <Icon {...props} path={<><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></>} />;
 
-If you want me to:
-- Replace the placeholder with a sample Google Form embed (I can generate a public sample embed URL you can test with), OR
-- Produce a version that includes a simple “hosted-on-Netlify” form instead,
-tell me which and I’ll generate it.
--->
-</body>
+      /**
+       * DATA & CONFIGURATION
+       * 
+       * EDIT THIS SECTION TO UPDATE WEBSITE CONTENT
+       */
+      
+      const SITE_NAME = "YoungInk";
+      const CONTACT_EMAIL = "editor@youngink.eu";
+
+      const HERO_TAGLINE = "Where young voices resonate.";
+      const HERO_SUBTEXT = "A curated, safe sanctuary for the poetry, prose, and visual art of the next generation. We amplify the quiet thoughts and bold dreams of young creators.";
+
+      const FEATURED_SUBMISSIONS = [
+        {
+          id: 'f1',
+          title: "The Silent Echo",
+          author: "Elara V., 17",
+          snippet: "The mountains don't speak, they only listen. In the valleys of my mind, I hear the reverb of yesterday's whispers...",
+          fullText: "The mountains don't speak, they only listen. In the valleys of my mind, I hear the reverb of yesterday's whispers. It wasn't loud, just a hum beneath the floorboards of the sky. We walked until the soles of our shoes wore thin, tracing the lifelines of the earth. \n\nI asked the wind why it carries leaves away from home. It didn't answer, just brushed my cheek like a forgetful ghost. Perhaps leaving isn't abandonment, but a form of spreading out, of becoming more than just a single point on a map. We are all just echoes waiting to hit a canyon wall.",
+          imageUrl: "https://picsum.photos/seed/echo/400/400",
+          featured: true
+        },
+        {
+          id: 'f2',
+          title: "Paper Cranes",
+          author: "Jonas M., 19",
+          snippet: "Folding fragile wishes into wings. One thousand prayers suspended on fishing line, waiting for a breath of air.",
+          fullText: "Folding fragile wishes into wings. One thousand prayers suspended on fishing line, waiting for a breath of air. My fingers ache with the repetition, the sharp creases of potential energy. \n\nRed paper for love, gold for wealth, blue for peace. But I ran out of colors, so I started using newspaper. Headlines of war folded into peace birds. The irony isn't lost on me, but the crane doesn't care what it's made of, only that it can fly. If only for a moment, in the draft of an open window.",
+          featured: true
+        },
+        {
+          id: 'f3',
+          title: "Urban Moss",
+          author: "Sarah K., 16",
+          snippet: "Green velvet reclaiming the concrete. Nature's slow, soft conquest over the hard edges of our city.",
+          fullText: "Green velvet reclaiming the concrete. Nature's slow, soft conquest over the hard edges of our city. It starts in the cracks, the forgotten corners where rain gathers. It doesn't ask for permission. \n\nThey scrub it away, power wash the history, but it always comes back. Softer, quieter, persistent. I want to be like the moss. Not the skyscraper that scrapes the clouds and demands attention, but the quiet green that outlasts the stone.",
+          imageUrl: "https://picsum.photos/seed/moss/400/400",
+          featured: true
+        }
+      ];
+
+      const ALL_SUBMISSIONS = [
+        ...FEATURED_SUBMISSIONS,
+        {
+          id: 'a1',
+          title: "Midnight Train",
+          author: "Leo P., 18",
+          snippet: "Rhythm on the rails, cutting through the dark like a needle through velvet.",
+          fullText: "Rhythm on the rails, cutting through the dark like a needle through velvet. The conductor checks tickets with eyes that have seen too many goodbyes. I am going nowhere in particular, just away. The lights of passing towns blur into streaks of amber and white, like stars stretching into hyperspace. \n\nWho are the people in those houses? Do they look at the train and wonder who is leaving? I am not running away, I tell myself. I am simply moving at the speed of thought.",
+        },
+        {
+          id: 'a2',
+          title: "Coffee Stain",
+          author: "Mia T., 15",
+          snippet: "A brown ring on the table, a memory of a conversation that went cold.",
+          fullText: "A brown ring on the table, a memory of a conversation that went cold. We sat there for hours, dissecting the universe until the waiter turned the chairs upside down. You said the universe is expanding. I said my patience is shrinking. \n\nThe coffee stain looks like a moon. A perfect circle of imperfection. I haven't wiped it away yet. It proves you were here. It proves we spoke. It proves that something, however small, was left behind.",
+        }
+      ];
+
+      const GALLERY_ITEMS = [
+        { id: 'g1', imageUrl: "https://picsum.photos/seed/art1/600/400", caption: "Structure in Chaos", credit: "Photo by A. Larsen" },
+        { id: 'g2', imageUrl: "https://picsum.photos/seed/art2/600/600", caption: "Morning Fog", credit: "Art by K. Jensen" },
+        { id: 'g3', imageUrl: "https://picsum.photos/seed/art3/400/600", caption: "Solitude", credit: "Photo by M. Nielsen" },
+        { id: 'g4', imageUrl: "https://picsum.photos/seed/art4/600/400", caption: "Vibrant Youth", credit: "Illustration by S. Berg" },
+      ];
+
+      const TEAM_MEMBERS = [
+        {
+          id: 't1',
+          name: "Astrid Lindholm",
+          role: "Editor-in-Chief",
+          bio: "With 15 years in publishing, Astrid believes in the raw power of unpolished voices. She guides writers to find their core truth without over-editing their spirit.",
+          imageUrl: "https://picsum.photos/seed/astrid/200/200"
+        },
+        {
+          id: 't2',
+          name: "Bjorn Iversen",
+          role: "Senior Mentor",
+          bio: "A poet and educator who specializes in unlocking writer's block. Bjorn creates a safe harbor where mistakes are viewed as essential steps in the creative journey.",
+          imageUrl: "https://picsum.photos/seed/bjorn/200/200"
+        },
+        {
+          id: 't3',
+          name: "Clara O'Connor",
+          role: "Community Lead",
+          bio: "Clara ensures every submission is read with empathy. She manages our feedback loop, ensuring every young writer feels heard and validated.",
+          imageUrl: "https://picsum.photos/seed/clara/200/200"
+        }
+      ];
+
+      const ABOUT_TEXT = `YoungInk is a mission-driven platform dedicated to amplifying the voices of young adults. We believe that creativity is a vital outlet for processing the complexities of growing up. Our editorial ethos is built on empathy, humanism, and the belief that every story deserves a safe space to be told. We don't just host content; we nurture confidence.`;
+
+      const PRIVACY_POLICY = "We value your privacy. Any personal data submitted (names, emails) is used strictly for the purpose of managing submissions and communicating with authors. We do not sell or share data with third parties.";
+      const GDPR_NOTICE = "In compliance with GDPR, you have the right to access, rectify, or erase your personal data held by YoungInk at any time. Contact our editor to exercise these rights.";
+      const COOKIE_NOTICE = "This site uses minimal cookies for functionality. Non-essential cookies (such as analytics) are disabled by default until we implement a full consent framework. You are in control.";
+      const COPYRIGHT_NOTICE = "YoungInk does NOT hold copyright over submissions. Authors retain all rights to their work.";
+      const DISCLAIMER_TEXT = "Users are responsible for ensuring originality of submissions. YoungInk is not liable for plagiarism or for any re-posting or reuse of copyrighted content by third parties.";
+
+      /**
+       * COMPONENTS
+       */
+
+      // Section Wrapper
+      const Section = ({ id, className = "", children }) => {
+        return (
+          <section id={id} className={`py-16 md:py-24 px-4 sm:px-8 md:px-12 lg:px-24 max-w-7xl mx-auto ${className}`}>
+            {children}
+          </section>
+        );
+      };
+
+      // ScrollReveal Animation Component
+      const ScrollReveal = ({ children, className = "" }) => {
+        const [isVisible, setIsVisible] = React.useState(false);
+        const ref = React.useRef(null);
+
+        React.useEffect(() => {
+          const observer = new IntersectionObserver(
+            ([entry]) => {
+              if (entry.isIntersecting) {
+                setIsVisible(true);
+                observer.unobserve(entry.target);
+              }
+            },
+            {
+              threshold: 0.1,
+              rootMargin: "0px 0px -50px 0px",
+            }
+          );
+
+          if (ref.current) {
+            observer.observe(ref.current);
+          }
+
+          return () => {
+            if (ref.current) {
+              observer.unobserve(ref.current);
+            }
+          };
+        }, []);
+
+        return (
+          <div
+            ref={ref}
+            className={`transition-all duration-1000 ease-out transform ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
+            } ${className}`}
+          >
+            {children}
+          </div>
+        );
+      };
+
+      // Navbar
+      const Navbar = () => {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const [scrolled, setScrolled] = React.useState(false);
+
+        React.useEffect(() => {
+          const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+          };
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
+
+        const navLinks = [
+          { name: 'Home', href: '#home' },
+          { name: 'Submissions', href: '#submissions' },
+          { name: 'Gallery', href: '#gallery' },
+          { name: 'Team', href: '#team' },
+          { name: 'Submit', href: '#submit' },
+          { name: 'About', href: '#about' },
+          { name: 'Legal', href: '#legal' },
+        ];
+
+        return (
+          <header 
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+              scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm py-3' : 'bg-transparent py-5'
+            }`}
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-8 flex justify-between items-center">
+              <a href="#home" className="flex items-center gap-2 group">
+                <FeatherIcon className="text-verdigris w-6 h-6 group-hover:rotate-12 transition-transform" />
+                <span className="font-serif font-bold text-2xl tracking-tight text-charcoal">{SITE_NAME}</span>
+              </a>
+
+              <nav className="hidden md:flex gap-8">
+                {navLinks.map((link) => (
+                  <a 
+                    key={link.name} 
+                    href={link.href}
+                    className="text-sm font-medium text-charcoal/80 hover:text-verdigris hover:underline decoration-2 underline-offset-4 transition-all"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </nav>
+
+              <button 
+                className="md:hidden text-charcoal focus:outline-none"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle menu"
+              >
+                {isOpen ? <XIcon size={24} /> : <MenuIcon size={24} />}
+              </button>
+            </div>
+
+            {isOpen && (
+              <nav className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+                <div className="flex flex-col py-4 px-6 gap-4">
+                  {navLinks.map((link) => (
+                    <a 
+                      key={link.name} 
+                      href={link.href}
+                      className="text-base font-medium text-charcoal hover:text-verdigris py-2 border-b border-gray-50 last:border-0"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
+              </nav>
+            )}
+          </header>
+        );
+      };
+
+      // Hero
+      const Hero = () => {
+        return (
+          <Section id="home" className="min-h-[80vh] flex flex-col md:flex-row items-center justify-center pt-32 pb-16">
+            <div className="md:w-1/2 space-y-6 animate-fade-in-up">
+              <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-charcoal leading-tight">
+                {HERO_TAGLINE}
+              </h1>
+              <p className="text-lg md:text-xl text-charcoal/70 leading-relaxed max-w-lg">
+                {HERO_SUBTEXT}
+              </p>
+              <div className="pt-4">
+                  <a 
+                      href="#submit"
+                      className="inline-block px-8 py-3 bg-charcoal text-white font-medium rounded-full hover:bg-verdigris transition-colors duration-300 shadow-md hover:shadow-lg"
+                  >
+                      Submit Poetry, Prose & Art
+                  </a>
+              </div>
+            </div>
+            
+            <div className="md:w-1/2 mt-12 md:mt-0 relative flex justify-center md:justify-end">
+              <div className="relative w-72 h-72 md:w-96 md:h-96">
+                  <div className="absolute top-0 right-0 w-full h-full bg-tuscan/20 rounded-full blur-3xl transform translate-x-4 -translate-y-4"></div>
+                  <div className="absolute bottom-0 left-0 w-3/4 h-3/4 bg-verdigris/20 rounded-full blur-3xl transform -translate-x-4 translate-y-4"></div>
+                  <img 
+                      src="https://picsum.photos/seed/nordic/600/600" 
+                      alt="Abstract creativity" 
+                      className="relative z-10 w-full h-full object-cover rounded-2xl shadow-xl rotate-3 hover:rotate-0 transition-all duration-700 ease-out"
+                  />
+              </div>
+            </div>
+          </Section>
+        );
+      };
+
+      // FeaturedSubmissions
+      const FeaturedSubmissions = () => {
+        const [expandedId, setExpandedId] = React.useState(null);
+
+        const toggleExpand = (id) => {
+          setExpandedId(expandedId === id ? null : id);
+        };
+
+        return (
+          <Section id="submissions" className="bg-white">
+            <div className="mb-12">
+              <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-4">Featured Submissions</h2>
+              <div className="h-1 w-20 bg-sandy rounded-full"></div>
+            </div>
+
+            <div className="space-y-12">
+              {FEATURED_SUBMISSIONS.map((sub, index) => (
+                  <article 
+                      key={sub.id} 
+                      className={`flex flex-col md:flex-row gap-8 items-start group p-6 rounded-2xl transition-all duration-300 hover:bg-offwhite ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+                  >
+                      {sub.imageUrl && (
+                          <div className="w-full md:w-1/3 shrink-0">
+                              <img 
+                                  src={sub.imageUrl} 
+                                  alt={`Illustration for ${sub.title}`} 
+                                  className="w-full h-64 object-cover rounded-xl shadow-sm group-hover:shadow-md transition-shadow" 
+                              />
+                          </div>
+                      )}
+                      <div className="w-full md:w-2/3 space-y-4">
+                          <h3 className="font-serif text-2xl font-semibold text-charcoal group-hover:text-verdigris transition-colors">
+                              {sub.title}
+                          </h3>
+                          <p className="text-sm font-bold text-sandy uppercase tracking-wide">{sub.author}</p>
+                          
+                          <div className="prose prose-charcoal max-w-none">
+                              {expandedId === sub.id ? (
+                                  <div className="whitespace-pre-line text-charcoal/80 leading-relaxed animate-fade-in border-l-4 border-tuscan pl-4">
+                                      {sub.fullText || sub.snippet}
+                                  </div>
+                              ) : (
+                                  <p className="text-charcoal/80 leading-relaxed italic border-l-4 border-tuscan pl-4">
+                                      "{sub.snippet}"
+                                  </p>
+                              )}
+                          </div>
+
+                          <button 
+                              onClick={() => toggleExpand(sub.id)}
+                              className="flex items-center gap-1 text-sm font-semibold text-verdigris hover:text-charcoal transition-colors mt-2"
+                          >
+                              {expandedId === sub.id ? (
+                                  <>Read Less <ChevronUpIcon size={16} /></>
+                              ) : (
+                                  <>Read More <ChevronDownIcon size={16} /></>
+                              )}
+                          </button>
+                      </div>
+                  </article>
+              ))}
+            </div>
+          </Section>
+        );
+      };
+
+      // FullSubmissions
+      const FullSubmissions = () => {
+        const [expandedId, setExpandedId] = React.useState(null);
+
+        const toggleExpand = (id) => {
+          setExpandedId(expandedId === id ? null : id);
+        };
+
+        return (
+          <Section id="all-submissions" className="">
+            <div className="mb-10">
+              <h3 className="font-serif text-2xl md:text-3xl text-charcoal mb-2">All Submissions</h3>
+              <p className="text-charcoal/60">A collection of voices from our community.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {ALL_SUBMISSIONS.map((sub) => (
+                <article 
+                  key={sub.id} 
+                  className={`bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-verdigris/30 transition-all duration-300 ${expandedId === sub.id ? 'row-span-2' : ''}`}
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h4 className="font-serif text-xl font-medium text-charcoal">{sub.title}</h4>
+                      <p className="text-sm text-sandy font-medium mt-1">{sub.author}</p>
+                    </div>
+                  </div>
+
+                  <div className="text-charcoal/80 leading-relaxed mb-4">
+                      {expandedId === sub.id ? (
+                          <div className="whitespace-pre-line animate-fade-in">
+                              {sub.fullText || sub.snippet}
+                          </div>
+                      ) : (
+                          <p className="line-clamp-3 opacity-80">{sub.snippet}</p>
+                      )}
+                  </div>
+
+                  <button 
+                      onClick={() => toggleExpand(sub.id)}
+                      className="flex items-center gap-1 text-sm font-semibold text-verdigris hover:text-charcoal transition-colors"
+                  >
+                      {expandedId === sub.id ? (
+                          <>Read Less <ChevronUpIcon size={16} /></>
+                      ) : (
+                          <>Read More <ChevronDownIcon size={16} /></>
+                      )}
+                  </button>
+                </article>
+              ))}
+            </div>
+          </Section>
+        );
+      };
+
+      // Gallery
+      const Gallery = () => {
+        return (
+          <Section id="gallery" className="bg-white">
+            <div className="mb-12 text-center md:text-left">
+              <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-4">Visual Voices</h2>
+              <div className="h-1 w-20 bg-burnt rounded-full mx-auto md:mx-0"></div>
+            </div>
+
+            <div className="columns-1 md:columns-2 gap-6 space-y-6">
+              {GALLERY_ITEMS.map((item) => (
+                <div key={item.id} className="break-inside-avoid group relative overflow-hidden rounded-2xl">
+                  <img 
+                    src={item.imageUrl} 
+                    alt={item.caption} 
+                    className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <p className="text-white font-serif text-lg">{item.caption}</p>
+                    {item.credit && <p className="text-white/80 text-xs mt-1 uppercase tracking-wider">{item.credit}</p>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Section>
+        );
+      };
+
+      // Team
+      const Team = () => {
+        return (
+          <Section id="team">
+            <div className="mb-12 text-center">
+              <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-4">Our Curators</h2>
+              <p className="max-w-2xl mx-auto text-charcoal/70">
+                Dedicated to nurturing the next generation of storytellers.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {TEAM_MEMBERS.map((member) => (
+                <article key={member.id} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:-translate-y-1 transition-transform duration-300">
+                  <div className="w-32 h-32 mx-auto mb-6 relative">
+                      <div className="absolute inset-0 bg-sandy rounded-full transform rotate-6 opacity-20"></div>
+                      <img 
+                          src={member.imageUrl} 
+                          alt={member.name} 
+                          className="w-full h-full object-cover rounded-full relative z-10"
+                      />
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-charcoal mb-1">{member.name}</h3>
+                  <p className="text-verdigris font-medium text-sm uppercase tracking-wide mb-4">{member.role}</p>
+                  <p className="text-charcoal/70 text-sm leading-relaxed">{member.bio}</p>
+                </article>
+              ))}
+            </div>
+          </Section>
+        );
+      };
+
+      // Submission Form
+      const MAX_WORDS = 2000;
+      const SubmissionForm = () => {
+        const [formData, setFormData] = React.useState({
+          name: '',
+          address: '',
+          school: '',
+          age: '',
+          gender: 'prefer-not-to-say',
+          parentName: '',
+          email: '',
+          phone: '',
+          textSubmission: '',
+          confirmed: false
+        });
+
+        const [wordCount, setWordCount] = React.useState(0);
+        const [charCount, setCharCount] = React.useState(0);
+        const [isSubmitting, setIsSubmitting] = React.useState(false);
+        const [submitStatus, setSubmitStatus] = React.useState('idle');
+
+        const handleTextChange = (e) => {
+          const text = e.target.value;
+          const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+          
+          setWordCount(words);
+          setCharCount(text.length);
+          setFormData(prev => ({ ...prev, textSubmission: text }));
+        };
+
+        const handleChange = (e) => {
+          const { name, value } = e.target;
+          setFormData(prev => ({ ...prev, [name]: value }));
+        };
+
+        const handleCheckbox = (e) => {
+          setFormData(prev => ({ ...prev, confirmed: e.target.checked }));
+        };
+
+        const handleSubmit = async (e) => {
+          e.preventDefault();
+          if (wordCount > MAX_WORDS) return;
+
+          setIsSubmitting(true);
+          
+          // Note: In a real hosted static site, we'd use Formspree or similar here.
+          // Since we are simulating, we just show success.
+          setTimeout(() => {
+              setIsSubmitting(false);
+              setSubmitStatus('success');
+              setFormData({
+                  name: '', address: '', school: '', age: '', gender: 'prefer-not-to-say',
+                  parentName: '', email: '', phone: '', textSubmission: '', confirmed: false
+              });
+              setWordCount(0);
+              setCharCount(0);
+          }, 1500);
+        };
+
+        return (
+          <Section id="submit" className="bg-white">
+            <div className="max-w-3xl mx-auto">
+              <div className="mb-10 text-center">
+                  <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-4">Submit Prose, Poetry & Visual Art</h2>
+                  <p className="text-charcoal/70">
+                      Share your story or vision with the world. We welcome authentic voices and hand-crafted art. 
+                      Please note that we do not accept AI-generated content.
+                  </p>
+              </div>
+
+              {submitStatus === 'success' ? (
+                  <div className="bg-verdigris/10 border border-verdigris text-charcoal p-8 rounded-2xl text-center space-y-4 animate-fade-in">
+                      <CheckCircleIcon className="w-16 h-16 text-verdigris mx-auto" />
+                      <h3 className="font-serif text-2xl font-bold">Thank You!</h3>
+                      <p>Your submission has been received. A confirmation email has been sent to your inbox.</p>
+                      <button 
+                          onClick={() => setSubmitStatus('idle')}
+                          className="mt-4 text-sm font-bold text-verdigris hover:underline"
+                      >
+                          Submit another work
+                      </button>
+                  </div>
+              ) : (
+                  <form 
+                      onSubmit={handleSubmit}
+                      className="space-y-6"
+                      name="youngink-submit" 
+                      data-netlify="true" 
+                      method="POST"
+                      encType="multipart/form-data"
+                  >
+                      <input type="hidden" name="form-name" value="youngink-submit" />
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-2">
+                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Full Name</label>
+                              <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="Jane Doe" />
+                          </div>
+                          <div className="space-y-2">
+                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Age</label>
+                              <input required type="number" min="0" name="age" value={formData.age} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="17" />
+                          </div>
+                      </div>
+
+                      <div className="space-y-2">
+                          <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Address</label>
+                          <textarea name="address" rows={2} value={formData.address} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="Street, City, Postal Code" />
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-2">
+                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">School</label>
+                              <input type="text" name="school" value={formData.school} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="High School Name" />
+                          </div>
+                           <div className="space-y-2">
+                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Gender</label>
+                              <select name="gender" value={formData.gender} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all">
+                                  <option value="female">Female</option>
+                                  <option value="male">Male</option>
+                                  <option value="other">Other</option>
+                                  <option value="prefer-not-to-say">Prefer not to say</option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div className="space-y-2">
+                          <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Parent/Guardian Name</label>
+                          <input type="text" name="parentName" value={formData.parentName} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="If under 18" />
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-2">
+                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Email</label>
+                              <input required type="email" name="email" value={formData.email} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="you@example.com" />
+                              <p className="text-xs text-charcoal/50">We will send a confirmation to this email.</p>
+                          </div>
+                          <div className="space-y-2">
+                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Phone</label>
+                              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="+1 234 567 890" />
+                          </div>
+                      </div>
+
+                      <div className="space-y-2 bg-gray-50 p-4 rounded-lg border border-dashed border-gray-300">
+                          <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide flex items-center gap-2">
+                              <UploadIcon size={16} /> Attach Visual Art or Photography
+                          </label>
+                          <input type="file" name="attachment" accept="image/*,.pdf" className="w-full p-2 bg-white border border-gray-200 rounded-lg text-sm" />
+                          <p className="text-xs text-charcoal/50">If submitting art, please attach high-quality files here. (JPG, PNG, PDF)</p>
+                      </div>
+
+                      <div className="space-y-2">
+                          <div className="flex justify-between items-baseline">
+                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Your Text Submission (Prose/Poetry)</label>
+                              <span className={`text-xs font-bold ${wordCount > MAX_WORDS ? 'text-red-500' : 'text-charcoal/50'}`}>
+                                  {wordCount} / {MAX_WORDS} words | {charCount} chars
+                              </span>
+                          </div>
+                          <textarea 
+                              name="textSubmission" 
+                              rows={12} 
+                              value={formData.textSubmission} 
+                              onChange={handleTextChange} 
+                              className={`w-full p-4 bg-offwhite border rounded-lg focus:ring-1 outline-none transition-all resize-y ${wordCount > MAX_WORDS ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-verdigris focus:ring-verdigris'}`}
+                              placeholder="Paste your poetry or prose here..." 
+                          />
+                          {wordCount > MAX_WORDS && (
+                              <p className="text-sm text-red-500 flex items-center gap-1">
+                                  <AlertCircleIcon size={16} /> Content exceeds the 2000 word limit. Please shorten your text.
+                              </p>
+                          )}
+                      </div>
+
+                      <div className="pt-4 bg-offwhite/50 p-4 rounded-lg border border-gray-100">
+                          <label className="flex items-start gap-3 cursor-pointer group">
+                              <input 
+                                  type="checkbox" 
+                                  required 
+                                  checked={formData.confirmed} 
+                                  onChange={handleCheckbox}
+                                  className="mt-1 w-5 h-5 shrink-0 accent-verdigris cursor-pointer" 
+                              />
+                              <span className="text-sm text-charcoal/80 group-hover:text-charcoal transition-colors">
+                                  I confirm this work is original and <strong>has not been created using AI</strong>. I understand that the decision to add the submitted content depends solely on the editorial committee and is final and binding.
+                              </span>
+                          </label>
+                      </div>
+
+                      <div className="pt-4 text-center">
+                          <button 
+                              type="submit" 
+                              disabled={!formData.confirmed || wordCount > MAX_WORDS || isSubmitting}
+                              className="inline-flex items-center gap-2 px-8 py-4 bg-charcoal text-white font-bold rounded-full hover:bg-verdigris disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                          >
+                              {isSubmitting ? 'Sending...' : (
+                                  <>Submit Work <SendIcon size={18} /></>
+                              )}
+                          </button>
+                          <p className="mt-4 text-xs text-charcoal/40">
+                              Submissions are sent to {CONTACT_EMAIL}. <br/>
+                              File attachments are supported via confirmation email configuration.
+                          </p>
+                      </div>
+                  </form>
+              )}
+            </div>
+          </Section>
+        );
+      };
+
+      // CTA
+      const CTA = () => {
+        return (
+          <Section id="cta" className="bg-charcoal text-white my-12 rounded-3xl mx-4 md:mx-12 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-tuscan/10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+            
+            <div className="relative z-10 text-center py-12 px-4 max-w-2xl mx-auto space-y-6">
+              <h2 className="font-serif text-3xl md:text-5xl font-bold">Your Voice Matters.</h2>
+              <p className="text-white/80 text-lg leading-relaxed">
+                  Join a community of young creators. Whether it's a whisper or a shout, your story deserves to be heard in a safe, supportive space.
+              </p>
+              <div className="pt-6">
+                  <a 
+                      href="#submit"
+                      className="inline-block px-10 py-4 bg-tuscan text-charcoal font-bold rounded-full hover:bg-white hover:text-charcoal transition-all duration-300 shadow-lg"
+                  >
+                      Submit Now
+                  </a>
+              </div>
+            </div>
+          </Section>
+        );
+      };
+
+      // About
+      const About = () => {
+        return (
+          <Section id="about" className="max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-4">About YoungInk</h2>
+              <div className="h-px w-32 bg-gray-200 mx-auto"></div>
+            </div>
+            
+            <div className="prose prose-lg prose-charcoal mx-auto text-charcoal/80 leading-loose text-center md:text-left">
+              <p>{ABOUT_TEXT}</p>
+            </div>
+          </Section>
+        );
+      };
+
+      // Legal
+      const Legal = () => {
+        return (
+          <Section id="legal" className="bg-gray-50 border-t border-gray-100">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div>
+                  <h3 className="font-serif text-xl font-bold text-charcoal mb-4">Privacy & GDPR</h3>
+                  <div className="space-y-4 text-sm text-charcoal/70">
+                      <div>
+                          <strong className="block text-charcoal mb-1">Privacy Policy</strong>
+                          <p>{PRIVACY_POLICY}</p>
+                      </div>
+                      <div>
+                          <strong className="block text-charcoal mb-1">GDPR Compliance</strong>
+                          <p>{GDPR_NOTICE}</p>
+                      </div>
+                      <div>
+                          <strong className="block text-charcoal mb-1">Cookie Notice</strong>
+                          <p>{COOKIE_NOTICE}</p>
+                      </div>
+                  </div>
+              </div>
+
+              <div>
+                  <h3 className="font-serif text-xl font-bold text-charcoal mb-4">Rights & Disclaimers</h3>
+                  <div className="space-y-4 text-sm text-charcoal/70">
+                       <div>
+                          <strong className="block text-charcoal mb-1">Copyright</strong>
+                          <p>{COPYRIGHT_NOTICE}</p>
+                      </div>
+                      
+                      <div className="p-4 border border-burnt/30 bg-burnt/5 rounded-lg">
+                          <strong className="block text-burnt mb-1">Important Disclaimer</strong>
+                          <p className="italic">{DISCLAIMER_TEXT}</p>
+                      </div>
+
+                      <div className="pt-4 border-t border-gray-200 mt-4">
+                          <p className="text-xs">
+                              <strong>Note on Content Protection:</strong> We use technical deterrents (blocking right-click, copy-paste) to discourage unauthorized copying. However, please be aware that it is technically impossible to fully prevent copying or screenshots on the open web.
+                          </p>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </Section>
+        );
+      };
+
+      // Footer
+      const Footer = () => {
+        return (
+          <footer className="bg-charcoal text-white pt-16 pb-8 border-t border-white/10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-8">
+              <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+                
+                <div className="text-center md:text-left md:w-1/2">
+                    <h4 className="font-serif text-3xl font-bold mb-4">{SITE_NAME}</h4>
+                    <p className="text-white/70 leading-relaxed max-w-sm mx-auto md:mx-0">
+                        We stand firm in the belief that youth creativity is not just a hobby, but a vital cultural force. Every word written and every line drawn is an act of courage that shapes our collective future.
+                    </p>
+                </div>
+
+                <div className="flex flex-col items-center md:items-end gap-6 md:w-1/2">
+                   <div className="text-center md:text-right space-y-1">
+                      <div className="flex items-center justify-center md:justify-end gap-2 text-tuscan/90 font-medium">
+                          <MapPinIcon size={16} />
+                          <span>Operating Hubs</span>
+                      </div>
+                      <p className="text-white/60 text-sm">Bergen, Norway • Obidos, Portugal • Thessaloniki, Greece</p>
+                   </div>
+
+                    <div className="flex gap-4">
+                        <span className="text-white/40 hover:text-white transition-colors cursor-pointer" title="Coming Soon">
+                            <InstagramIcon size={24} />
+                        </span>
+                        <a href={`mailto:${CONTACT_EMAIL}`} className="text-white/40 hover:text-white transition-colors">
+                            <MailIcon size={24} />
+                        </a>
+                    </div>
+                </div>
+              </div>
+
+              <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                  <p className="text-white/40 text-xs">© {new Date().getFullYear()} YoungInk. All rights reserved.</p>
+                  <p className="text-white/40 text-xs">
+                      Contact: <a href={`mailto:${CONTACT_EMAIL}`} className="underline hover:text-white">{CONTACT_EMAIL}</a>
+                  </p>
+              </div>
+            </div>
+          </footer>
+        );
+      };
+
+      // Main App
+      const App = () => {
+        // Non-copyable deterrents
+        React.useEffect(() => {
+          const handleContextMenu = (e) => e.preventDefault();
+          const handleKeyDown = (e) => {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'x' || e.key === 'u' || e.key === 's')) {
+              e.preventDefault();
+            }
+          };
+          const handleDragStart = (e) => e.preventDefault();
+
+          document.addEventListener('contextmenu', handleContextMenu);
+          document.addEventListener('keydown', handleKeyDown);
+          document.addEventListener('dragstart', handleDragStart);
+
+          return () => {
+            document.removeEventListener('contextmenu', handleContextMenu);
+            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('dragstart', handleDragStart);
+          };
+        }, []);
+
+        return (
+          <div className="min-h-screen flex flex-col font-sans text-charcoal bg-offwhite">
+            <Navbar />
+            
+            <main className="flex-grow">
+              <Hero />
+              
+              <ScrollReveal>
+                <FeaturedSubmissions />
+              </ScrollReveal>
+              
+              <ScrollReveal>
+                <FullSubmissions />
+              </ScrollReveal>
+              
+              <ScrollReveal>
+                <Gallery />
+              </ScrollReveal>
+              
+              <ScrollReveal>
+                <Team />
+              </ScrollReveal>
+              
+              <ScrollReveal>
+                <SubmissionForm />
+              </ScrollReveal>
+              
+              <ScrollReveal>
+                <CTA />
+              </ScrollReveal>
+              
+              <ScrollReveal>
+                <About />
+              </ScrollReveal>
+              
+              <ScrollReveal>
+                <Legal />
+              </ScrollReveal>
+            </main>
+
+            <Footer />
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      );
+    </script>
+  </body>
 </html>
