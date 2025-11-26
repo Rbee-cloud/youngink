@@ -148,7 +148,7 @@
           author: "Jonas M., 19",
           snippet: "Folding fragile wishes into wings. One thousand prayers suspended on fishing line, waiting for a breath of air.",
           fullText: "Folding fragile wishes into wings. One thousand prayers suspended on fishing line, waiting for a breath of air. My fingers ache with the repetition, the sharp creases of potential energy. \n\nRed paper for love, gold for wealth, blue for peace. But I ran out of colors, so I started using newspaper. Headlines of war folded into peace birds. The irony isn't lost on me, but the crane doesn't care what it's made of, only that it can fly. If only for a moment, in the draft of an open window.",
-          imageUrl: "https://picsum.photos/seed/cranes/400/400", // Added image
+          imageUrl: "https://picsum.photos/seed/papercranes/400/400", 
           featured: true
         },
         {
@@ -158,6 +158,24 @@
           snippet: "Green velvet reclaiming the concrete. Nature's slow, soft conquest over the hard edges of our city.",
           fullText: "Green velvet reclaiming the concrete. Nature's slow, soft conquest over the hard edges of our city. It starts in the cracks, the forgotten corners where rain gathers. It doesn't ask for permission. \n\nThey scrub it away, power wash the history, but it always comes back. Softer, quieter, persistent. I want to be like the moss. Not the skyscraper that scrapes the clouds and demands attention, but the quiet green that outlasts the stone.",
           imageUrl: "https://picsum.photos/seed/moss/400/400",
+          featured: true
+        },
+        {
+          id: 'f4',
+          title: "The Glass House",
+          author: "Tariq S., 18",
+          snippet: "Transparent walls, but nobody looks inside. We live in clear view, yet unseen.",
+          fullText: "Transparent walls, but nobody looks inside. We live in clear view, yet unseen. I press my hand against the glass, leaving a ghost of a print. The world outside is distorted by the thickness of the barrier. They say honesty is transparency, but I feel like I'm just on display in a museum where the visitors are blind.",
+          imageUrl: "https://picsum.photos/seed/glass/400/400",
+          featured: true
+        },
+        {
+          id: 'f5',
+          title: "Roots in Concrete",
+          author: "Elena R., 16",
+          snippet: "How do we grow where nothing is meant to thrive? A study in stubborn survival.",
+          fullText: "How do we grow where nothing is meant to thrive? A study in stubborn survival. My city is gray, but my dreams are a violent shade of green. I found a dandelion cracking the sidewalk today. It didn't ask for water. It didn't ask for permission. It just pushed. That's what I'm doing. Just pushing against the weight of it all until I break through.",
+          imageUrl: "https://picsum.photos/seed/roots/400/400",
           featured: true
         }
       ];
@@ -439,12 +457,21 @@
         );
       };
 
-      // FeaturedSubmissions
+      // FeaturedSubmissions with Load More
       const FeaturedSubmissions = () => {
         const [expandedId, setExpandedId] = React.useState(null);
+        const [visibleCount, setVisibleCount] = React.useState(3);
 
         const toggleExpand = (id) => {
           setExpandedId(expandedId === id ? null : id);
+        };
+
+        const handleLoadMore = () => {
+          if (visibleCount >= FEATURED_SUBMISSIONS.length) {
+            setVisibleCount(3);
+          } else {
+            setVisibleCount(prev => prev + 3);
+          }
         };
 
         return (
@@ -455,7 +482,7 @@
             </div>
 
             <div className="space-y-12">
-              {FEATURED_SUBMISSIONS.map((sub, index) => (
+              {FEATURED_SUBMISSIONS.slice(0, visibleCount).map((sub, index) => (
                   <article 
                       key={sub.id} 
                       className={`flex flex-col md:flex-row gap-8 items-start group p-6 rounded-2xl transition-all duration-300 hover:bg-offwhite ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
@@ -501,11 +528,22 @@
                   </article>
               ))}
             </div>
+
+            {FEATURED_SUBMISSIONS.length > 3 && (
+              <div className="text-center mt-12">
+                <button 
+                  onClick={handleLoadMore}
+                  className="px-6 py-3 border-2 border-charcoal text-charcoal font-bold rounded-full hover:bg-charcoal hover:text-white transition-all duration-300"
+                >
+                  {visibleCount >= FEATURED_SUBMISSIONS.length ? 'Show Less' : 'Load More'}
+                </button>
+              </div>
+            )}
           </Section>
         );
       };
 
-      // Creative Spark (Writing Prompts)
+      // Creative Spark (Writing Prompts) - Label Update
       const CreativeSpark = () => {
         return (
           <Section id="spark" className="max-w-5xl mx-auto">
@@ -518,7 +556,7 @@
                   <div className="md:w-1/3 space-y-4">
                       <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-tuscan text-charcoal text-xs font-bold uppercase tracking-widest rounded-full">
                           <SparklesIcon size={14} />
-                          <span>Creative Spark</span>
+                          <span>The Spark</span>
                       </div>
                       <h2 className="font-serif text-3xl font-bold text-charcoal">
                           {CURRENT_PROMPT.season}
@@ -997,25 +1035,29 @@
         );
       };
 
-      // CTA
+      // CTA - Redesigned for cleaner aesthetic
       const CTA = () => {
         return (
-          <Section id="cta" className="bg-charcoal text-white my-12 rounded-3xl overflow-hidden relative shadow-2xl">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-tuscan/10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
-            
-            <div className="relative z-10 text-center py-12 px-4 max-w-2xl mx-auto space-y-6">
-              <h2 className="font-serif text-3xl md:text-5xl font-bold">Your Voice Matters.</h2>
-              <p className="text-white/80 text-lg leading-relaxed">
-                  Join a community of young creators. Whether it's a whisper or a shout, your story deserves to be heard in a safe, supportive space.
-              </p>
-              <div className="pt-6">
-                  <a 
-                      href="#submit"
-                      className="inline-block px-10 py-4 bg-tuscan text-charcoal font-bold rounded-full hover:bg-white hover:text-charcoal transition-all duration-300 shadow-lg"
-                  >
-                      Submit Now
-                  </a>
+          <Section id="cta" className="my-12">
+            <div className="bg-tuscan/10 rounded-3xl overflow-hidden relative border border-tuscan/20 px-6 py-16 md:px-12 md:py-20 text-center">
+              {/* Subtle decorative circles */}
+              <div className="absolute top-0 left-0 w-64 h-64 bg-white/40 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+              <div className="absolute bottom-0 right-0 w-64 h-64 bg-tuscan/20 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+              
+              <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+                <h2 className="font-serif text-3xl md:text-5xl font-bold text-charcoal">Your Voice Matters.</h2>
+                <div className="h-1 w-16 bg-tuscan mx-auto rounded-full"></div>
+                <p className="text-charcoal/80 text-lg leading-relaxed">
+                    Join a community of young creators. Whether it's a whisper or a shout, your story deserves to be heard in a safe, supportive space.
+                </p>
+                <div className="pt-8">
+                    <a 
+                        href="#submit"
+                        className="inline-block px-10 py-4 bg-charcoal text-white font-bold rounded-full hover:bg-verdigris transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                    >
+                        Submit Now
+                    </a>
+                </div>
               </div>
             </div>
           </Section>
