@@ -118,45 +118,19 @@
       const InstagramIcon = (props) => <Icon {...props} path={<><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></>} />;
       const MailIcon = (props) => <Icon {...props} path={<><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>} />;
       const MapPinIcon = (props) => <Icon {...props} path={<><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></>} />;
+      const SparklesIcon = (props) => <Icon {...props} path={<><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M9 3v4"/><path d="M3 9h4"/></>} />;
+      const PenToolIcon = (props) => <Icon {...props} path={<><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></>} />;
 
       /**
        * DATA & CONFIGURATION
-       * 
-       * =============================================================================
-       * INSTRUCTIONS FOR NON-TECHNICAL TEAM (HOW TO UPDATE CONTENT)
-       * =============================================================================
-       * 
-       * 1. GENERAL TEXT:
-       *    Scroll down to the variable you want to change (e.g., HERO_TAGLINE).
-       *    Edit the text inside the quotation marks "".
-       * 
-       * 2. ADDING A NEW SUBMISSION:
-       *    Find the 'ALL_SUBMISSIONS' or 'FEATURED_SUBMISSIONS' list below.
-       *    To add a new one, copy the section between { and }, (including the comma!) and paste it at the end of the list.
-       *    - "id": give it a unique name like 'sub4', 'sub5', etc.
-       *    - "title": Title of the work.
-       *    - "author": Name and age.
-       *    - "snippet": A short preview.
-       *    - "fullText": The complete text.
-       * 
-       * 3. CAROUSEL QUOTES:
-       *    To add a quote to the carousel, add it to 'CAROUSEL_QUOTES'. 
-       *    Make sure the 'id' matches the 'id' of the submission in ALL_SUBMISSIONS.
-       * 
-       * 4. ADDING IMAGES TO 'Visual Voices':
-       *    Find 'GALLERY_ITEMS'. Copy an existing item block { ... }, paste it, and update:
-       *    - "imageUrl": The link to the image.
-       *    - "caption": Title of the art.
-       *    - "credit": Artist name.
-       * 
-       * =============================================================================
        */
       
       const SITE_NAME = "YoungInk";
       const CONTACT_EMAIL = "editor@youngink.eu";
 
-      const HERO_TAGLINE = "Where young voices resonate.";
-      const HERO_SUBTEXT = "A curated, safe sanctuary for the poetry, prose, and visual art of the next generation. We amplify the quiet thoughts and bold dreams of young creators.";
+      // Updated to sound more human
+      const HERO_TAGLINE = "The world is loud. Your story doesn't have to be.";
+      const HERO_SUBTEXT = "A quiet corner of the internet for the next generation of writers and artists. We don't just host content; we give your thoughts a place to land softly.";
 
       const FEATURED_SUBMISSIONS = [
         {
@@ -174,6 +148,7 @@
           author: "Jonas M., 19",
           snippet: "Folding fragile wishes into wings. One thousand prayers suspended on fishing line, waiting for a breath of air.",
           fullText: "Folding fragile wishes into wings. One thousand prayers suspended on fishing line, waiting for a breath of air. My fingers ache with the repetition, the sharp creases of potential energy. \n\nRed paper for love, gold for wealth, blue for peace. But I ran out of colors, so I started using newspaper. Headlines of war folded into peace birds. The irony isn't lost on me, but the crane doesn't care what it's made of, only that it can fly. If only for a moment, in the draft of an open window.",
+          imageUrl: "https://picsum.photos/seed/cranes/400/400", // Added image
           featured: true
         },
         {
@@ -248,32 +223,43 @@
           id: 't1',
           name: "Astrid Lindholm",
           role: "Editor-in-Chief",
-          bio: "With 15 years in publishing, Astrid believes in the raw power of unpolished voices. She guides writers to find their core truth without over-editing their spirit.",
+          bio: "Astrid spent 15 years in publishing before realizing the most honest writing wasn't coming from established authors. She helps you find the story you're actually trying to tell, not the one you think you should write.",
           imageUrl: "https://picsum.photos/seed/astrid/200/200"
         },
         {
           id: 't2',
           name: "Bjorn Iversen",
           role: "Senior Mentor",
-          bio: "A poet and educator who specializes in unlocking writer's block. Bjorn creates a safe harbor where mistakes are viewed as essential steps in the creative journey.",
+          bio: "Bjorn is an educator who treats writer's block like a puzzle, not a failure. He believes every mistake is just a draft waiting for a second chance.",
           imageUrl: "https://picsum.photos/seed/bjorn/200/200"
         },
         {
           id: 't3',
           name: "Aditya Banerjee",
           role: "Consulting Editor",
-          bio: "Aditya ensures every submission is read with empathy. He manages our feedback loop, ensuring every young writer feels heard and validated.",
+          bio: "Aditya reads everything with an open heart. He manages our feedback loop, ensuring every young writer feels heard and validated.",
           imageUrl: "https://picsum.photos/seed/clara/200/200"
         }
       ];
 
-      const ABOUT_TEXT = `YoungInk is a mission-driven platform dedicated to amplifying the voices of young adults. We believe that creativity is a vital outlet for processing the complexities of growing up. Our editorial ethos is built on empathy, humanism, and the belief that every story deserves a safe space to be told. We don't just host content; we nurture confidence.`;
+      // New Creative Prompts Data
+      const CURRENT_PROMPT = {
+        season: "Spring Semester 2024",
+        theme: "The Space Between",
+        description: "We often write about beginnings and endings. The first hello, the last goodbye. But life mostly happens in the middle. The waiting room. The silence after a question. The train ride between two cities.",
+        challenge: "Write a piece (under 500 words) or create art that explores a moment of transition. What happens in the gap?",
+        note: "Selected responses will be featured in our next 'Featured Submissions' rotation."
+      };
 
-      const PRIVACY_POLICY = "We value your privacy. Any personal data submitted (names, emails) is used strictly for the purpose of managing submissions and communicating with authors. We do not sell or share data with third parties.";
-      const GDPR_NOTICE = "In compliance with GDPR, you have the right to access, rectify, or erase your personal data held by YoungInk at any time. Contact our editor to exercise these rights.";
-      const COOKIE_NOTICE = "This site uses minimal cookies for functionality. Non-essential cookies (such as analytics) are disabled by default until we implement a full consent framework. You are in control.";
-      const COPYRIGHT_NOTICE = "YoungInk does NOT hold copyright over submissions. Authors retain all rights to their work.";
-      const DISCLAIMER_TEXT = "Users are responsible for ensuring originality of submissions. YoungInk is not liable for plagiarism or for any re-posting or reuse of copyrighted content by third parties.";
+      // Updated human tone
+      const ABOUT_TEXT = `YoungInk exists because we remember what it's like to have a lot to say and nowhere to put it. We aren't looking for perfection; we're looking for honesty. Our goal is to create a digital museum of growing up—curated with kindness, read with empathy, and treated with respect.`;
+
+      // Updated Privacy & Safety Text
+      const PRIVACY_POLICY = "We treat your data like we treat our own. Names and emails are used only to talk to you about your work. We don't sell data, and we don't share it.";
+      const GDPR_NOTICE = "You own your data. Under GDPR, you can ask to see what we have, fix it, or delete it whenever you want. Just email us.";
+      const COOKIE_NOTICE = "We use a few small cookies to make sure the site doesn't crash. We don't use creepy tracking cookies without asking you first.";
+      const COPYRIGHT_NOTICE = "It's your work. Period. YoungInk claims zero ownership over your submissions. You retain all rights.";
+      const DISCLAIMER_TEXT = "By submitting, you promise the work is yours. We can't catch every copycat, so we rely on your integrity. YoungInk isn't liable if someone else misuses content found here, though we do our best to stop it.";
 
       /**
        * COMPONENTS
@@ -348,9 +334,10 @@
           { name: 'Submissions', href: '#submissions' },
           { name: 'Gallery', href: '#gallery' },
           { name: 'Team', href: '#team' },
+          { name: 'The Spark', href: '#spark' },
           { name: 'Submit', href: '#submit' },
           { name: 'About', href: '#about' },
-          { name: 'Legal', href: '#legal' },
+          { name: 'Privacy & Safety', href: '#legal' },
         ];
 
         return (
@@ -508,6 +495,58 @@
         );
       };
 
+      // Creative Spark (Writing Prompts)
+      const CreativeSpark = () => {
+        return (
+          <Section id="spark" className="max-w-5xl mx-auto">
+            <div className="bg-offwhite border-2 border-tuscan/30 rounded-3xl p-8 md:p-12 relative overflow-hidden">
+              {/* Decorative background elements */}
+              <div className="absolute top-0 right-0 w-40 h-40 bg-tuscan/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-verdigris/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+              <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start">
+                  <div className="md:w-1/3 space-y-4">
+                      <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-tuscan text-charcoal text-xs font-bold uppercase tracking-widest rounded-full">
+                          <SparklesIcon size={14} />
+                          <span>Creative Spark</span>
+                      </div>
+                      <h2 className="font-serif text-3xl font-bold text-charcoal">
+                          {CURRENT_PROMPT.season}
+                      </h2>
+                      <div className="w-12 h-1 bg-charcoal rounded-full"></div>
+                  </div>
+
+                  <div className="md:w-2/3 space-y-6">
+                      <div>
+                          <h3 className="text-xl font-bold text-charcoal mb-2">Theme: "{CURRENT_PROMPT.theme}"</h3>
+                          <p className="text-charcoal/80 leading-relaxed italic">
+                              {CURRENT_PROMPT.description}
+                          </p>
+                      </div>
+
+                      <div className="bg-white p-6 rounded-xl border border-dashed border-charcoal/20 shadow-sm">
+                          <h4 className="flex items-center gap-2 font-bold text-verdigris mb-2">
+                              <PenToolIcon size={18} />
+                              The Challenge
+                          </h4>
+                          <p className="text-charcoal leading-relaxed">
+                              {CURRENT_PROMPT.challenge}
+                          </p>
+                          <p className="text-xs text-charcoal/50 mt-4">
+                              * {CURRENT_PROMPT.note}
+                          </p>
+                      </div>
+                      
+                      <a href="#submit" className="inline-block text-sm font-bold text-charcoal border-b-2 border-tuscan hover:bg-tuscan/20 transition-colors pt-2">
+                          Accept Challenge & Submit &rarr;
+                      </a>
+                  </div>
+              </div>
+            </div>
+          </Section>
+        );
+      };
+
       // FullSubmissions - Includes Carousel and Grid with Load More
       const TextCarousel = ({ onQuoteClick }) => {
         const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -585,7 +624,7 @@
           // 2. Ensure it's visible by finding its index and updating visibleCount if needed
           const index = ALL_SUBMISSIONS.findIndex(s => s.id === id);
           if (index !== -1 && index >= visibleCount) {
-              // Ensure we show enough items to include this one (round up to next multiple of 3 if preferred, or just set strictly)
+              // Ensure we show enough items to include this one
               setVisibleCount(Math.ceil((index + 1) / 3) * 3);
           }
 
@@ -989,13 +1028,13 @@
         );
       };
 
-      // Legal
+      // Updated Legal Section (Privacy & Safety)
       const Legal = () => {
         return (
           <Section id="legal" className="bg-gray-50 border-t border-gray-100">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
-                  <h3 className="font-serif text-xl font-bold text-charcoal mb-4">Privacy & GDPR</h3>
+                  <h3 className="font-serif text-xl font-bold text-charcoal mb-4">Privacy & Safety</h3>
                   <div className="space-y-4 text-sm text-charcoal/70">
                       <div>
                           <strong className="block text-charcoal mb-1">Privacy Policy</strong>
@@ -1034,6 +1073,58 @@
               </div>
             </div>
           </Section>
+        );
+      };
+
+      // Cookie Consent Component
+      const CookieConsent = () => {
+        const [show, setShow] = React.useState(false);
+
+        React.useEffect(() => {
+          const consent = localStorage.getItem('youngink-cookie-consent');
+          if (!consent) {
+            setTimeout(() => setShow(true), 1000); // Small delay for fade-in effect
+          }
+        }, []);
+
+        const handleAccept = () => {
+          localStorage.setItem('youngink-cookie-consent', 'true');
+          setShow(false);
+        };
+
+        const handleDecline = () => {
+          localStorage.setItem('youngink-cookie-consent', 'false');
+          setShow(false);
+        };
+
+        if (!show) return null;
+
+        return (
+          <div className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6 animate-fade-in-up">
+            <div className="max-w-4xl mx-auto bg-charcoal text-white rounded-2xl p-6 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10">
+              <div className="space-y-2 text-center md:text-left">
+                  <h4 className="font-serif text-lg font-bold text-tuscan">We respect your digital space.</h4>
+                  <p className="text-sm text-white/80 max-w-xl leading-relaxed">
+                      We use cookies to ensure the site functions correctly and to understand how our community grows. 
+                      We don't sell your data or use intrusive tracking.
+                  </p>
+              </div>
+              <div className="flex gap-4 shrink-0">
+                  <button 
+                      onClick={handleDecline}
+                      className="px-5 py-2 text-sm font-medium text-white border border-white/30 rounded-full hover:bg-white/10 transition-colors"
+                  >
+                      Decline
+                  </button>
+                  <button 
+                      onClick={handleAccept}
+                      className="px-6 py-2 text-sm font-bold text-charcoal bg-tuscan rounded-full hover:bg-white transition-colors shadow-md"
+                  >
+                      Accept Cookies
+                  </button>
+              </div>
+            </div>
+          </div>
         );
       };
 
@@ -1129,6 +1220,10 @@
               </ScrollReveal>
               
               <ScrollReveal>
+                <CreativeSpark />
+              </ScrollReveal>
+
+              <ScrollReveal>
                 <SubmissionForm />
               </ScrollReveal>
               
@@ -1146,6 +1241,7 @@
             </main>
 
             <Footer />
+            <CookieConsent />
           </div>
         );
       };
