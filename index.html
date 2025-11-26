@@ -109,6 +109,8 @@
       const FeatherIcon = (props) => <Icon {...props} path={<><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></>} />;
       const ChevronDownIcon = (props) => <Icon {...props} path={<path d="m6 9 6 6 6-6"/>} />;
       const ChevronUpIcon = (props) => <Icon {...props} path={<path d="m18 15-6-6-6 6"/>} />;
+      const ChevronLeftIcon = (props) => <Icon {...props} path={<path d="m15 18-6-6 6-6"/>} />;
+      const ChevronRightIcon = (props) => <Icon {...props} path={<path d="m9 18 6-6-6-6"/>} />;
       const SendIcon = (props) => <Icon {...props} path={<><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></>} />;
       const AlertCircleIcon = (props) => <Icon {...props} path={<><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></>} />;
       const CheckCircleIcon = (props) => <Icon {...props} path={<><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></>} />;
@@ -120,7 +122,34 @@
       /**
        * DATA & CONFIGURATION
        * 
-       * EDIT THIS SECTION TO UPDATE WEBSITE CONTENT
+       * =============================================================================
+       * INSTRUCTIONS FOR NON-TECHNICAL TEAM (HOW TO UPDATE CONTENT)
+       * =============================================================================
+       * 
+       * 1. GENERAL TEXT:
+       *    Scroll down to the variable you want to change (e.g., HERO_TAGLINE).
+       *    Edit the text inside the quotation marks "".
+       * 
+       * 2. ADDING A NEW SUBMISSION:
+       *    Find the 'ALL_SUBMISSIONS' or 'FEATURED_SUBMISSIONS' list below.
+       *    To add a new one, copy the section between { and }, (including the comma!) and paste it at the end of the list.
+       *    - "id": give it a unique name like 'sub4', 'sub5', etc.
+       *    - "title": Title of the work.
+       *    - "author": Name and age.
+       *    - "snippet": A short preview.
+       *    - "fullText": The complete text.
+       * 
+       * 3. CAROUSEL QUOTES:
+       *    To add a quote to the carousel, add it to 'CAROUSEL_QUOTES'. 
+       *    Make sure the 'id' matches the 'id' of the submission in ALL_SUBMISSIONS.
+       * 
+       * 4. ADDING IMAGES TO 'Visual Voices':
+       *    Find 'GALLERY_ITEMS'. Copy an existing item block { ... }, paste it, and update:
+       *    - "imageUrl": The link to the image.
+       *    - "caption": Title of the art.
+       *    - "credit": Artist name.
+       * 
+       * =============================================================================
        */
       
       const SITE_NAME = "YoungInk";
@@ -173,7 +202,36 @@
           author: "Mia T., 15",
           snippet: "A brown ring on the table, a memory of a conversation that went cold.",
           fullText: "A brown ring on the table, a memory of a conversation that went cold. We sat there for hours, dissecting the universe until the waiter turned the chairs upside down. You said the universe is expanding. I said my patience is shrinking. \n\nThe coffee stain looks like a moon. A perfect circle of imperfection. I haven't wiped it away yet. It proves you were here. It proves we spoke. It proves that something, however small, was left behind.",
+        },
+        {
+          id: 'a3',
+          title: "The Old Library",
+          author: "Sam R., 17",
+          snippet: "Dust motes dancing in shafts of golden light, smelling of vanilla and decay.",
+          fullText: "Dust motes dancing in shafts of golden light, smelling of vanilla and decay. Every spine is a doorway to a place I haven't been. I run my fingers along the leather, feeling the texture of stories waiting to be exhaled. Silence here isn't empty; it's full of potential noise, held back by a collective breath.",
+        },
+        {
+          id: 'a4',
+          title: "Static Noise",
+          author: "Priya M., 16",
+          snippet: "The television turned to snow, a black and white war of ants fighting for dominance.",
+          fullText: "The television turned to snow, a black and white war of ants fighting for dominance. In the background noise, I hear patterns. My thoughts feel like that sometimes—uncalibrated, searching for a signal. I twist the dial, hoping for clarity, but finding only the hiss of the universe expanding.",
+        },
+        {
+          id: 'a5',
+          title: "Winter's Breath",
+          author: "Kaelen D., 18",
+          snippet: "Frost patterning the window pane in fractals of infinite complexity.",
+          fullText: "Frost patterning the window pane in fractals of infinite complexity. I breathe on the glass, melting a small circle of clarity into the cold art. Through the hole, the world is gray and sharp. The cold isn't malicious; it's just honest. It strips away the pretense of warmth and shows the skeleton of the trees.",
         }
+      ];
+
+      const CAROUSEL_QUOTES = [
+        { text: "The mountains don't speak, they only listen.", author: "Elara V., 17", id: "f1" },
+        { text: "Folding fragile wishes into wings.", author: "Jonas M., 19", id: "f2" },
+        { text: "Nature's slow, soft conquest over the hard edges.", author: "Sarah K., 16", id: "f3" },
+        { text: "Rhythm on the rails, cutting through the dark.", author: "Leo P., 18", id: "a1" },
+        { text: "A perfect circle of imperfection.", author: "Mia T., 15", id: "a2" }
       ];
 
       const GALLERY_ITEMS = [
@@ -181,6 +239,8 @@
         { id: 'g2', imageUrl: "https://picsum.photos/seed/art2/600/600", caption: "Morning Fog", credit: "Art by K. Jensen" },
         { id: 'g3', imageUrl: "https://picsum.photos/seed/art3/400/600", caption: "Solitude", credit: "Photo by M. Nielsen" },
         { id: 'g4', imageUrl: "https://picsum.photos/seed/art4/600/400", caption: "Vibrant Youth", credit: "Illustration by S. Berg" },
+        { id: 'g5', imageUrl: "https://picsum.photos/seed/art5/600/400", caption: "Urban Canvas", credit: "Photo by J. Doe" },
+        { id: 'g6', imageUrl: "https://picsum.photos/seed/art6/400/600", caption: "Reflections", credit: "Art by L. Smith" },
       ];
 
       const TEAM_MEMBERS = [
@@ -448,26 +508,111 @@
         );
       };
 
-      // FullSubmissions
+      // FullSubmissions - Includes Carousel and Grid with Load More
+      const TextCarousel = ({ onQuoteClick }) => {
+        const [currentIndex, setCurrentIndex] = React.useState(0);
+        const [isPaused, setIsPaused] = React.useState(false);
+
+        React.useEffect(() => {
+          if (isPaused) return;
+          const interval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % CAROUSEL_QUOTES.length);
+          }, 5000);
+          return () => clearInterval(interval);
+        }, [isPaused]);
+
+        const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % CAROUSEL_QUOTES.length);
+        const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + CAROUSEL_QUOTES.length) % CAROUSEL_QUOTES.length);
+        const currentQuote = CAROUSEL_QUOTES[currentIndex];
+
+        return (
+          <div 
+            className="bg-charcoal text-white rounded-2xl p-8 md:p-12 mb-16 relative overflow-hidden shadow-lg"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+             <div className="absolute top-0 right-0 w-64 h-64 bg-tuscan/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+             
+             <div 
+               className="relative z-10 text-center max-w-3xl mx-auto min-h-[150px] flex flex-col justify-center cursor-pointer group"
+               onClick={() => onQuoteClick(currentQuote.id)}
+               title="Click to read full piece"
+             >
+                <p className="font-serif text-xl md:text-3xl italic leading-relaxed transition-opacity duration-500 group-hover:text-tuscan">
+                  "{currentQuote.text}"
+                </p>
+                <p className="mt-4 text-sm md:text-base font-bold uppercase tracking-widest text-white/70 group-hover:text-white transition-colors">
+                  — {currentQuote.author}
+                </p>
+             </div>
+
+             <div className="flex justify-center gap-2 mt-8 z-10 relative">
+               <button onClick={prevSlide} className="p-2 hover:text-tuscan transition-colors" aria-label="Previous quote"><ChevronLeftIcon /></button>
+               {CAROUSEL_QUOTES.map((_, idx) => (
+                 <button 
+                   key={idx}
+                   onClick={() => setCurrentIndex(idx)}
+                   className={`w-2 h-2 rounded-full transition-all ${idx === currentIndex ? 'bg-tuscan w-6' : 'bg-white/30'}`}
+                   aria-label={`Go to quote ${idx + 1}`}
+                 />
+               ))}
+               <button onClick={nextSlide} className="p-2 hover:text-tuscan transition-colors" aria-label="Next quote"><ChevronRightIcon /></button>
+             </div>
+          </div>
+        );
+      }
+
       const FullSubmissions = () => {
         const [expandedId, setExpandedId] = React.useState(null);
+        const [visibleCount, setVisibleCount] = React.useState(3);
 
         const toggleExpand = (id) => {
           setExpandedId(expandedId === id ? null : id);
+        };
+
+        const handleLoadMore = () => {
+          if (visibleCount >= ALL_SUBMISSIONS.length) {
+            setVisibleCount(3); // Collapse back to initial
+          } else {
+            setVisibleCount(prev => prev + 3);
+          }
+        };
+
+        const handleQuoteClick = (id) => {
+          // 1. Expand the item
+          setExpandedId(id);
+          
+          // 2. Ensure it's visible by finding its index and updating visibleCount if needed
+          const index = ALL_SUBMISSIONS.findIndex(s => s.id === id);
+          if (index !== -1 && index >= visibleCount) {
+              // Ensure we show enough items to include this one (round up to next multiple of 3 if preferred, or just set strictly)
+              setVisibleCount(Math.ceil((index + 1) / 3) * 3);
+          }
+
+          // 3. Scroll to the element after a brief delay to allow rendering
+          setTimeout(() => {
+            const element = document.getElementById(`submission-${id}`);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }, 100);
         };
 
         return (
           <Section id="all-submissions" className="">
             <div className="mb-10">
               <h3 className="font-serif text-2xl md:text-3xl text-charcoal mb-2">All Submissions</h3>
-              <p className="text-charcoal/60">A collection of voices from our community.</p>
+              <p className="text-charcoal/60 mb-8">A collection of voices from our community.</p>
+              
+              <TextCarousel onQuoteClick={handleQuoteClick} />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {ALL_SUBMISSIONS.map((sub) => (
+            <div id="all-submissions-grid" className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {ALL_SUBMISSIONS.slice(0, visibleCount).map((sub) => (
                 <article 
-                  key={sub.id} 
-                  className={`bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-verdigris/30 transition-all duration-300 ${expandedId === sub.id ? 'row-span-2' : ''}`}
+                  key={sub.id}
+                  id={`submission-${sub.id}`}
+                  className={`bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-verdigris/30 transition-all duration-300 animate-fade-in ${expandedId === sub.id ? 'row-span-2' : ''}`}
                 >
                   <div className="flex justify-between items-start mb-3">
                     <div>
@@ -499,12 +644,33 @@
                 </article>
               ))}
             </div>
+
+            {ALL_SUBMISSIONS.length > 3 && (
+              <div className="text-center mt-12">
+                <button 
+                  onClick={handleLoadMore}
+                  className="px-6 py-3 border-2 border-charcoal text-charcoal font-bold rounded-full hover:bg-charcoal hover:text-white transition-all duration-300"
+                >
+                  {visibleCount >= ALL_SUBMISSIONS.length ? 'Show Less' : 'Load More'}
+                </button>
+              </div>
+            )}
           </Section>
         );
       };
 
-      // Gallery
+      // Gallery with Load More
       const Gallery = () => {
+        const [visibleCount, setVisibleCount] = React.useState(4);
+
+        const handleLoadMore = () => {
+           if (visibleCount >= GALLERY_ITEMS.length) {
+             setVisibleCount(4);
+           } else {
+             setVisibleCount(prev => prev + 4);
+           }
+        };
+
         return (
           <Section id="gallery" className="bg-white">
             <div className="mb-12 text-center md:text-left">
@@ -513,8 +679,8 @@
             </div>
 
             <div className="columns-1 md:columns-2 gap-6 space-y-6">
-              {GALLERY_ITEMS.map((item) => (
-                <div key={item.id} className="break-inside-avoid group relative overflow-hidden rounded-2xl">
+              {GALLERY_ITEMS.slice(0, visibleCount).map((item) => (
+                <div key={item.id} className="break-inside-avoid group relative overflow-hidden rounded-2xl animate-fade-in">
                   <img 
                     src={item.imageUrl} 
                     alt={item.caption} 
@@ -527,6 +693,17 @@
                 </div>
               ))}
             </div>
+
+            {GALLERY_ITEMS.length > 4 && (
+              <div className="text-center mt-12">
+                <button 
+                  onClick={handleLoadMore}
+                  className="px-6 py-3 border-2 border-charcoal text-charcoal font-bold rounded-full hover:bg-charcoal hover:text-white transition-all duration-300"
+                >
+                  {visibleCount >= GALLERY_ITEMS.length ? 'Show Less' : 'Load More Art'}
+                </button>
+              </div>
+            )}
           </Section>
         );
       };
