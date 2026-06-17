@@ -1,1299 +1,1317 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YoungInk | Curated Youth Creativity</title>
-    <meta name="description" content="YoungInk is a safe, curated space for young adult writers to showcase poetry and prose." />
-    
-    <!-- Google Fonts: Lora (Serif) and Roboto (Sans) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind Config -->
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              charcoal: '#264653',
-              verdigris: '#2a9d8f',
-              tuscan: '#e9c46a',
-              sandy: '#f4a261',
-              burnt: '#e76f51',
-              offwhite: '#f9f9f9',
-            },
-            fontFamily: {
-              serif: ['Lora', 'serif'],
-              sans: ['Roboto', 'sans-serif'],
-            },
-            animation: {
-              'fade-in': 'fadeIn 1s ease-out',
-              'fade-in-up': 'fadeInUp 1s ease-out',
-            },
-            keyframes: {
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              }
-            }
-          }
-        }
-      }
-    </script>
-    
-    <!-- React & Babel for In-Browser Rendering -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<body class="bg-offwhite text-charcoal font-sans antialiased selection:bg-tuscan selection:text-charcoal">
+    <div id="root">
+        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif;">
+            Loading YoungInk...
+        </div>
+    </div>
+    ```
+Once React successfully compiles and mounts, it will automatically overwrite this loading text. If the text stays on the screen forever, you know Babel crashed.
 
-    <style>
-      html { scroll-behavior: smooth; }
-      body {
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-      input, textarea {
-        -webkit-user-select: text;
-        user-select: text;
-      }
-    </style>
+### 4. GitHub Pages File Structure Requirements
+Ensure your repository is structured correctly for GitHub Pages to serve it:
+* The file **must** be named exactly `index.html` (all lowercase). If you named it `App.html` or `youngink.html`, GitHub will return a 404 or a blank directory list.
+* The `index.html` file must be in the root directory of your repository, not tucked inside a `/src` or `/public` folder (unless you specifically configured GitHub Pages to deploy from a specific folder).
+
+### 💡 A Note on Your Form
+I noticed you are using `<form data-netlify="true">`. Keep in mind that **GitHub Pages does not support Netlify forms**. GitHub only hosts static files and has no backend to process that form data. If you are hosting this strictly on GitHub Pages, you will need to change your form's `action` attribute to point to a third-party form handler like Formspree, Web3Forms, or Getform.
+
+### How to debug if it's STILL blank:
+If you make these fixes and push to GitHub, and it's *still* blank, **press F12** (or right-click -> Inspect) on the live GitHub Page and click the **Console** tab. Any red text in that console will tell you exactly which line of code Babel is choking on.<!DOCTYPEhtml>
+<htmllang="en">
+<head>
+<metacharset="UTF-8"/>
+<metaname="viewport"content="width=device-width,initial-scale=1.0"/>
+<title>YoungInk|CuratedYouthCreativity</title>
+<metaname="description"content="YoungInkisasafe,curatedspaceforyoungadultwriterstoshowcasepoetryandprose."/>
+
+<!--GoogleFonts:Lora(Serif)andRoboto(Sans)-->
+<linkrel="preconnect"href="https://fonts.googleapis.com">
+<linkrel="preconnect"href="https://fonts.gstatic.com"crossorigin>
+<linkhref="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap"rel="stylesheet">
+
+<!--TailwindCSS-->
+<scriptsrc="https://cdn.tailwindcss.com"></script>
+
+<!--TailwindConfig-->
+<script>
+tailwind.config={
+theme:{
+extend:{
+colors:{
+charcoal:'#264653',
+verdigris:'#2a9d8f',
+tuscan:'#e9c46a',
+sandy:'#f4a261',
+burnt:'#e76f51',
+offwhite:'#f9f9f9',
+},
+fontFamily:{
+serif:['Lora','serif'],
+sans:['Roboto','sans-serif'],
+},
+animation:{
+'fade-in':'fadeIn1sease-out',
+'fade-in-up':'fadeInUp1sease-out',
+},
+keyframes:{
+fadeIn:{
+'0%':{opacity:'0'},
+'100%':{opacity:'1'},
+},
+fadeInUp:{
+'0%':{opacity:'0',transform:'translateY(20px)'},
+'100%':{opacity:'1',transform:'translateY(0)'},
+}
+}
+}
+}
+}
+</script>
+
+<!--React&BabelforIn-BrowserRendering-->
+<scriptcrossoriginsrc="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<scriptcrossoriginsrc="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<scriptsrc="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+html{scroll-behavior:smooth;}
+body{
+-webkit-user-select:none;
+-ms-user-select:none;
+user-select:none;
+}
+input,textarea{
+-webkit-user-select:text;
+user-select:text;
+}
+</style>
 </head>
-  <body class="bg-offwhite text-charcoal font-sans antialiased selection:bg-tuscan selection:text-charcoal">
-    <div id="root"></div>
-
-    <!-- MAIN APPLICATION SCRIPT -->
-    <script type="text/babel">
-
-      /**
-       * ICONS (Replaces Lucide-React for single-file portability)
-       */
-      const Icon = ({ path, size = 24, className = "" }) => (
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width={size} 
-          height={size} 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="2" 
-          strokeLinecap="round" 
-          strokeLinejoin="round" 
-          className={className}
-        >
-          {path}
-        </svg>
-      );
-
-      const MenuIcon = (props) => <Icon {...props} path={<><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></>} />;
-      const XIcon = (props) => <Icon {...props} path={<><path d="M18 6 6 18"/><path d="m6 6 12 12"/></>} />;
-      const FeatherIcon = (props) => <Icon {...props} path={<><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></>} />;
-      const ChevronDownIcon = (props) => <Icon {...props} path={<path d="m6 9 6 6 6-6"/>} />;
-      const ChevronUpIcon = (props) => <Icon {...props} path={<path d="m18 15-6-6-6 6"/>} />;
-      const ChevronLeftIcon = (props) => <Icon {...props} path={<path d="m15 18-6-6 6-6"/>} />;
-      const ChevronRightIcon = (props) => <Icon {...props} path={<path d="m9 18 6-6-6-6"/>} />;
-      const SendIcon = (props) => <Icon {...props} path={<><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></>} />;
-      const AlertCircleIcon = (props) => <Icon {...props} path={<><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></>} />;
-      const CheckCircleIcon = (props) => <Icon {...props} path={<><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></>} />;
-      const UploadIcon = (props) => <Icon {...props} path={<><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></>} />;
-      const InstagramIcon = (props) => <Icon {...props} path={<><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></>} />;
-      const MailIcon = (props) => <Icon {...props} path={<><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>} />;
-      const MapPinIcon = (props) => <Icon {...props} path={<><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></>} />;
-      const SparklesIcon = (props) => <Icon {...props} path={<><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M9 3v4"/><path d="M3 9h4"/></>} />;
-      const PenToolIcon = (props) => <Icon {...props} path={<><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></>} />;
-
-      /**
-       * DATA & CONFIGURATION
-       */
-      
-      const SITE_NAME = "YoungInk";
-      const CONTACT_EMAIL = "editor@youngink.eu";
-
-      // Updated tagline
-      const HERO_TAGLINE = "The world is loud. Your voice finds its quiet here.";
-      const HERO_SUBTEXT = "A quiet corner of the internet for the next generation of writers and artists. We don't just host content; we give your thoughts a place to land softly.";
-
-      const FEATURED_SUBMISSIONS = [
-        {
-          id: 'f1',
-          title: "The Silent Echo",
-          author: "Elara V., 17",
-          snippet: "The mountains don't speak, they only listen. In the valleys of my mind, I hear the reverb of yesterday's whispers...",
-          fullText: "The mountains don't speak, they only listen. In the valleys of my mind, I hear the reverb of yesterday's whispers. It wasn't loud, just a hum beneath the floorboards of the sky. We walked until the soles of our shoes wore thin, tracing the lifelines of the earth. \n\nI asked the wind why it carries leaves away from home. It didn't answer, just brushed my cheek like a forgetful ghost. Perhaps leaving isn't abandonment, but a form of spreading out, of becoming more than just a single point on a map. We are all just echoes waiting to hit a canyon wall.",
-          imageUrl: "https://picsum.photos/seed/echo/400/400",
-          featured: true
-        },
-        {
-          id: 'f2',
-          title: "Paper Cranes",
-          author: "Jonas M., 19",
-          snippet: "Folding fragile wishes into wings. One thousand prayers suspended on fishing line, waiting for a breath of air.",
-          fullText: "Folding fragile wishes into wings. One thousand prayers suspended on fishing line, waiting for a breath of air. My fingers ache with the repetition, the sharp creases of potential energy. \n\nRed paper for love, gold for wealth, blue for peace. But I ran out of colors, so I started using newspaper. Headlines of war folded into peace birds. The irony isn't lost on me, but the crane doesn't care what it's made of, only that it can fly. If only for a moment, in the draft of an open window.",
-          imageUrl: "https://picsum.photos/seed/papercranes/400/400", 
-          featured: true
-        },
-        {
-          id: 'f3',
-          title: "Urban Moss",
-          author: "Sarah K., 16",
-          snippet: "Green velvet reclaiming the concrete. Nature's slow, soft conquest over the hard edges of our city.",
-          fullText: "Green velvet reclaiming the concrete. Nature's slow, soft conquest over the hard edges of our city. It starts in the cracks, the forgotten corners where rain gathers. It doesn't ask for permission. \n\nThey scrub it away, power wash the history, but it always comes back. Softer, quieter, persistent. I want to be like the moss. Not the skyscraper that scrapes the clouds and demands attention, but the quiet green that outlasts the stone.",
-          imageUrl: "https://picsum.photos/seed/moss/400/400",
-          featured: true
-        },
-        {
-          id: 'f4',
-          title: "The Glass House",
-          author: "Tariq S., 18",
-          snippet: "Transparent walls, but nobody looks inside. We live in clear view, yet unseen.",
-          fullText: "Transparent walls, but nobody looks inside. We live in clear view, yet unseen. I press my hand against the glass, leaving a ghost of a print. The world outside is distorted by the thickness of the barrier. They say honesty is transparency, but I feel like I'm just on display in a museum where the visitors are blind.",
-          imageUrl: "https://picsum.photos/seed/glass/400/400",
-          featured: true
-        },
-        {
-          id: 'f5',
-          title: "Roots in Concrete",
-          author: "Elena R., 16",
-          snippet: "How do we grow where nothing is meant to thrive? A study in stubborn survival.",
-          fullText: "How do we grow where nothing is meant to thrive? A study in stubborn survival. My city is gray, but my dreams are a violent shade of green. I found a dandelion cracking the sidewalk today. It didn't ask for water. It didn't ask for permission. It just pushed. That's what I'm doing. Just pushing against the weight of it all until I break through.",
-          imageUrl: "https://picsum.photos/seed/roots/400/400",
-          featured: true
-        }
-      ];
-
-      const ALL_SUBMISSIONS = [
-        ...FEATURED_SUBMISSIONS,
-        {
-          id: 'a1',
-          title: "Midnight Train",
-          author: "Leo P., 18",
-          snippet: "Rhythm on the rails, cutting through the dark like a needle through velvet.",
-          fullText: "Rhythm on the rails, cutting through the dark like a needle through velvet. The conductor checks tickets with eyes that have seen too many goodbyes. I am going nowhere in particular, just away. The lights of passing towns blur into streaks of amber and white, like stars stretching into hyperspace. \n\nWho are the people in those houses? Do they look at the train and wonder who is leaving? I am not running away, I tell myself. I am simply moving at the speed of thought.",
-        },
-        {
-          id: 'a2',
-          title: "Coffee Stain",
-          author: "Mia T., 15",
-          snippet: "A brown ring on the table, a memory of a conversation that went cold.",
-          fullText: "A brown ring on the table, a memory of a conversation that went cold. We sat there for hours, dissecting the universe until the waiter turned the chairs upside down. You said the universe is expanding. I said my patience is shrinking. \n\nThe coffee stain looks like a moon. A perfect circle of imperfection. I haven't wiped it away yet. It proves you were here. It proves we spoke. It proves that something, however small, was left behind.",
-        },
-        {
-          id: 'a3',
-          title: "The Old Library",
-          author: "Sam R., 17",
-          snippet: "Dust motes dancing in shafts of golden light, smelling of vanilla and decay.",
-          fullText: "Dust motes dancing in shafts of golden light, smelling of vanilla and decay. Every spine is a doorway to a place I haven't been. I run my fingers along the leather, feeling the texture of stories waiting to be exhaled. Silence here isn't empty; it's full of potential noise, held back by a collective breath.",
-        },
-        {
-          id: 'a4',
-          title: "Static Noise",
-          author: "Priya M., 16",
-          snippet: "The television turned to snow, a black and white war of ants fighting for dominance.",
-          fullText: "The television turned to snow, a black and white war of ants fighting for dominance. In the background noise, I hear patterns. My thoughts feel like that sometimes—uncalibrated, searching for a signal. I twist the dial, hoping for clarity, but finding only the hiss of the universe expanding.",
-        },
-        {
-          id: 'a5',
-          title: "Winter's Breath",
-          author: "Kaelen D., 18",
-          snippet: "Frost patterning the window pane in fractals of infinite complexity.",
-          fullText: "Frost patterning the window pane in fractals of infinite complexity. I breathe on the glass, melting a small circle of clarity into the cold art. Through the hole, the world is gray and sharp. The cold isn't malicious; it's just honest. It strips away the pretense of warmth and shows the skeleton of the trees.",
-        }
-      ];
-
-      const CAROUSEL_QUOTES = [
-        { text: "The mountains don't speak, they only listen.", author: "Elara V., 17", id: "f1" },
-        { text: "Folding fragile wishes into wings.", author: "Jonas M., 19", id: "f2" },
-        { text: "Nature's slow, soft conquest over the hard edges.", author: "Sarah K., 16", id: "f3" },
-        { text: "Rhythm on the rails, cutting through the dark.", author: "Leo P., 18", id: "a1" },
-        { text: "A perfect circle of imperfection.", author: "Mia T., 15", id: "a2" }
-      ];
-
-      const GALLERY_ITEMS = [
-        { id: 'g1', imageUrl: "https://picsum.photos/seed/art1/600/400", caption: "Structure in Chaos", credit: "Photo by A. Larsen" },
-        { id: 'g2', imageUrl: "https://picsum.photos/seed/art2/600/600", caption: "Morning Fog", credit: "Art by K. Jensen" },
-        { id: 'g3', imageUrl: "https://picsum.photos/seed/art3/400/600", caption: "Solitude", credit: "Photo by M. Nielsen" },
-        { id: 'g4', imageUrl: "https://picsum.photos/seed/art4/600/400", caption: "Vibrant Youth", credit: "Illustration by S. Berg" },
-        { id: 'g5', imageUrl: "https://picsum.photos/seed/art5/600/400", caption: "Urban Canvas", credit: "Photo by J. Doe" },
-        { id: 'g6', imageUrl: "https://picsum.photos/seed/art6/400/600", caption: "Reflections", credit: "Art by L. Smith" },
-      ];
-
-      const TEAM_MEMBERS = [
-        {
-          id: 't1',
-          name: "Astrid Lindholm",
-          role: "Editor-in-Chief",
-          bio: "Astrid spent 15 years in publishing before realizing the most honest writing wasn't coming from established authors. She helps you find the story you're actually trying to tell, not the one you think you should write.",
-          imageUrl: "https://picsum.photos/seed/astrid/200/200"
-        },
-        {
-          id: 't2',
-          name: "Bjorn Iversen",
-          role: "Senior Mentor",
-          bio: "Bjorn is an educator who treats writer's block like a puzzle, not a failure. He believes every mistake is just a draft waiting for a second chance.",
-          imageUrl: "https://picsum.photos/seed/bjorn/200/200"
-        },
-        {
-          id: 't3',
-          name: "Aditya Banerjee",
-          role: "Consulting Editor",
-          bio: "Aditya reads everything with an open heart. He manages our feedback loop, ensuring every young writer feels heard and validated.",
-          imageUrl: "https://picsum.photos/seed/clara/200/200"
-        }
-      ];
-
-      // New Creative Prompts Data - Updated Season
-      const CURRENT_PROMPT = {
-        season: "Winter Challenge 2025",
-        theme: "The Space Between",
-        description: "We often write about beginnings and endings. The first hello, the last goodbye. But life mostly happens in the middle. The waiting room. The silence after a question. The train ride between two cities.",
-        challenge: "Write a piece (under 500 words) or create art that explores a moment of transition. What happens in the gap?",
-        note: "Selected responses will be featured in our next 'Featured Submissions' rotation."
-      };
-
-      // Updated human tone
-      const ABOUT_TEXT = `YoungInk exists because we remember what it's like to have a lot to say and nowhere to put it. We aren't looking for perfection; we're looking for honesty. Our goal is to create a digital museum of growing up—curated with kindness, read with empathy, and treated with respect.`;
-
-      // Updated Privacy & Safety Text
-      const PRIVACY_POLICY = "We treat your data like we treat our own. Names and emails are used only to talk to you about your work. We don't sell data, and we don't share it.";
-      const GDPR_NOTICE = "You own your data. Under GDPR, you can ask to see what we have, fix it, or delete it whenever you want. Just email us.";
-      const COOKIE_NOTICE = "We use a few small cookies to make sure the site doesn't crash. We don't use creepy tracking cookies without asking you first.";
-      const COPYRIGHT_NOTICE = "It's your work. Period. YoungInk claims zero ownership over your submissions. You retain all rights.";
-      const DISCLAIMER_TEXT = "By submitting, you promise the work is yours. We can't catch every copycat, so we rely on your integrity. YoungInk isn't liable if someone else misuses content found here, though we do our best to stop it.";
-
-      /**
-       * COMPONENTS
-       */
-
-      // Section Wrapper
-      const Section = ({ id, className = "", children }) => {
-        return (
-          <section id={id} className={`py-16 md:py-24 px-4 sm:px-8 md:px-12 lg:px-24 max-w-7xl mx-auto ${className}`}>
-            {children}
-          </section>
-        );
-      };
-
-      // ScrollReveal Animation Component
-      const ScrollReveal = ({ children, className = "" }) => {
-        const [isVisible, setIsVisible] = React.useState(false);
-        const ref = React.useRef(null);
-
-        React.useEffect(() => {
-          const observer = new IntersectionObserver(
-            ([entry]) => {
-              if (entry.isIntersecting) {
-                setIsVisible(true);
-                observer.unobserve(entry.target);
-              }
-            },
-            {
-              threshold: 0.1,
-              rootMargin: "0px 0px -50px 0px",
-            }
-          );
-
-          if (ref.current) {
-            observer.observe(ref.current);
-          }
-
-          return () => {
-            if (ref.current) {
-              observer.unobserve(ref.current);
-            }
-          };
-        }, []);
-
-        return (
-          <div
-            ref={ref}
-            className={`transition-all duration-1000 ease-out transform ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
-            } ${className}`}
-          >
-            {children}
-          </div>
-        );
-      };
-
-      // Navbar
-      const Navbar = () => {
-        const [isOpen, setIsOpen] = React.useState(false);
-        const [scrolled, setScrolled] = React.useState(false);
-
-        React.useEffect(() => {
-          const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-          };
-          window.addEventListener('scroll', handleScroll);
-          return () => window.removeEventListener('scroll', handleScroll);
-        }, []);
-
-        const navLinks = [
-          { name: 'Home', href: '#home' },
-          { name: 'Submissions', href: '#submissions' },
-          { name: 'The Spark', href: '#spark' },
-          { name: 'Gallery', href: '#gallery' },
-          { name: 'Team', href: '#team' },
-          { name: 'Submit', href: '#submit' },
-          { name: 'About', href: '#about' },
-          { name: 'Privacy & Safety', href: '#legal' },
-        ];
-
-        return (
-          <header 
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-              scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm py-3' : 'bg-transparent py-5'
-            }`}
-          >
-            <div className="max-w-7xl mx-auto px-4 sm:px-8 flex justify-between items-center">
-              <a href="#home" className="flex items-center gap-2 group">
-                <FeatherIcon className="text-verdigris w-6 h-6 group-hover:rotate-12 transition-transform" />
-                <span className="font-serif font-bold text-2xl tracking-tight text-charcoal">{SITE_NAME}</span>
-              </a>
-
-              <nav className="hidden md:flex gap-8 items-center">
-                {navLinks.map((link) => {
-                  const isSpark = link.name === 'The Spark';
-                  return (
-                    <a 
-                      key={link.name} 
-                      href={link.href}
-                      className={isSpark 
-                        ? "text-sm px-4 py-2 bg-tuscan text-charcoal font-bold rounded-full hover:bg-tuscan/80 shadow-sm transform hover:-translate-y-0.5 transition-all duration-300"
-                        : "text-sm font-medium text-charcoal/80 hover:text-verdigris hover:underline decoration-2 underline-offset-4 transition-all"
-                      }
-                    >
-                      {link.name}
-                    </a>
-                  );
-                })}
-              </nav>
-
-              <button 
-                className="md:hidden text-charcoal focus:outline-none"
-                onClick={() => setIsOpen(!isOpen)}
-                aria-label="Toggle menu"
-              >
-                {isOpen ? <XIcon size={24} /> : <MenuIcon size={24} />}
-              </button>
-            </div>
-
-            {isOpen && (
-              <nav className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
-                <div className="flex flex-col py-4 px-6 gap-4">
-                  {navLinks.map((link) => (
-                    <a 
-                      key={link.name} 
-                      href={link.href}
-                      className={`text-base font-medium py-2 border-b border-gray-50 last:border-0 ${
-                        link.name === 'The Spark' 
-                          ? 'text-charcoal bg-tuscan/20 pl-2 rounded-r-lg border-l-4 border-tuscan' 
-                          : 'text-charcoal hover:text-verdigris'
-                      }`}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {link.name}
-                    </a>
-                  ))}
-                </div>
-              </nav>
-            )}
-          </header>
-        );
-      };
-
-      // Hero
-      const Hero = () => {
-        return (
-          <Section id="home" className="min-h-[80vh] flex flex-col md:flex-row items-center justify-center pt-32 pb-16">
-            <div className="md:w-1/2 space-y-6 animate-fade-in-up">
-              <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-charcoal leading-tight">
-                {HERO_TAGLINE}
-              </h1>
-              <p className="text-lg md:text-xl text-charcoal/70 leading-relaxed max-w-lg">
-                {HERO_SUBTEXT}
-              </p>
-              <div className="pt-4">
-                  <a 
-                      href="#submit"
-                      className="inline-block px-8 py-3 bg-charcoal text-white font-medium rounded-full hover:bg-verdigris transition-colors duration-300 shadow-md hover:shadow-lg"
-                  >
-                      Submit Poetry, Prose & Art
-                  </a>
-              </div>
-            </div>
-            
-            <div className="md:w-1/2 mt-12 md:mt-0 relative flex justify-center md:justify-end">
-              <div className="relative w-72 h-72 md:w-96 md:h-96">
-                  <div className="absolute top-0 right-0 w-full h-full bg-tuscan/20 rounded-full blur-3xl transform translate-x-4 -translate-y-4"></div>
-                  <div className="absolute bottom-0 left-0 w-3/4 h-3/4 bg-verdigris/20 rounded-full blur-3xl transform -translate-x-4 translate-y-4"></div>
-                  <img 
-                      src="https://picsum.photos/seed/nordic/600/600" 
-                      alt="Abstract creativity" 
-                      className="relative z-10 w-full h-full object-cover rounded-2xl shadow-xl rotate-3 hover:rotate-0 transition-all duration-700 ease-out"
-                  />
-              </div>
-            </div>
-          </Section>
-        );
-      };
-
-      // FeaturedSubmissions with Load More
-      const FeaturedSubmissions = () => {
-        const [expandedId, setExpandedId] = React.useState(null);
-        const [visibleCount, setVisibleCount] = React.useState(3);
-
-        const toggleExpand = (id) => {
-          setExpandedId(expandedId === id ? null : id);
-        };
-
-        const handleLoadMore = () => {
-          if (visibleCount >= FEATURED_SUBMISSIONS.length) {
-            setVisibleCount(3);
-          } else {
-            setVisibleCount(prev => prev + 3);
-          }
-        };
-
-        return (
-          <Section id="submissions" className="bg-white">
-            <div className="mb-12">
-              <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-4">Featured Submissions</h2>
-              <div className="h-1 w-20 bg-sandy rounded-full"></div>
-            </div>
-
-            <div className="space-y-12">
-              {FEATURED_SUBMISSIONS.slice(0, visibleCount).map((sub, index) => (
-                  <article 
-                      key={sub.id} 
-                      className={`flex flex-col md:flex-row gap-8 items-start group p-6 rounded-2xl transition-all duration-300 hover:bg-offwhite ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
-                  >
-                      {sub.imageUrl && (
-                          <div className="w-full md:w-1/3 shrink-0">
-                              <img 
-                                  src={sub.imageUrl} 
-                                  alt={`Illustration for ${sub.title}`} 
-                                  className="w-full h-64 object-cover rounded-xl shadow-sm group-hover:shadow-md transition-shadow" 
-                              />
-                          </div>
-                      )}
-                      <div className="w-full md:w-2/3 space-y-4">
-                          <h3 className="font-serif text-2xl font-semibold text-charcoal group-hover:text-verdigris transition-colors">
-                              {sub.title}
-                          </h3>
-                          <p className="text-sm font-bold text-sandy uppercase tracking-wide">{sub.author}</p>
-                          
-                          <div className="prose prose-charcoal max-w-none">
-                              {expandedId === sub.id ? (
-                                  <div className="whitespace-pre-line text-charcoal/80 leading-relaxed animate-fade-in border-l-4 border-tuscan pl-4">
-                                      {sub.fullText || sub.snippet}
-                                  </div>
-                              ) : (
-                                  <p className="text-charcoal/80 leading-relaxed italic border-l-4 border-tuscan pl-4">
-                                      "{sub.snippet}"
-                                  </p>
-                              )}
-                          </div>
-
-                          <button 
-                              onClick={() => toggleExpand(sub.id)}
-                              className="flex items-center gap-1 text-sm font-semibold text-verdigris hover:text-charcoal transition-colors mt-2"
-                          >
-                              {expandedId === sub.id ? (
-                                  <>Read Less <ChevronUpIcon size={16} /></>
-                              ) : (
-                                  <>Read More <ChevronDownIcon size={16} /></>
-                              )}
-                          </button>
-                      </div>
-                  </article>
-              ))}
-            </div>
-
-            {FEATURED_SUBMISSIONS.length > 3 && (
-              <div className="text-center mt-12">
-                <button 
-                  onClick={handleLoadMore}
-                  className="px-6 py-3 border-2 border-charcoal text-charcoal font-bold rounded-full hover:bg-charcoal hover:text-white transition-all duration-300"
-                >
-                  {visibleCount >= FEATURED_SUBMISSIONS.length ? 'Show Less' : 'Load More'}
-                </button>
-              </div>
-            )}
-          </Section>
-        );
-      };
-
-      // Creative Spark (Writing Prompts) - Label Update
-      const CreativeSpark = () => {
-        return (
-          <Section id="spark" className="max-w-5xl mx-auto">
-            <div className="bg-offwhite border-2 border-tuscan/30 rounded-3xl p-8 md:p-12 relative overflow-hidden">
-              {/* Decorative background elements */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-tuscan/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-              <div className="absolute bottom-0 left-0 w-40 h-40 bg-verdigris/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-
-              <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start">
-                  <div className="md:w-1/3 space-y-4">
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-tuscan text-charcoal text-xs font-bold uppercase tracking-widest rounded-full">
-                          <SparklesIcon size={14} />
-                          <span>The Spark</span>
-                      </div>
-                      <h2 className="font-serif text-3xl font-bold text-charcoal">
-                          {CURRENT_PROMPT.season}
-                      </h2>
-                      <div className="w-12 h-1 bg-charcoal rounded-full"></div>
-                  </div>
-
-                  <div className="md:w-2/3 space-y-6">
-                      <div>
-                          <h3 className="text-xl font-bold text-charcoal mb-2">Theme: "{CURRENT_PROMPT.theme}"</h3>
-                          <p className="text-charcoal/80 leading-relaxed italic">
-                              {CURRENT_PROMPT.description}
-                          </p>
-                      </div>
-
-                      <div className="bg-white p-6 rounded-xl border border-dashed border-charcoal/20 shadow-sm">
-                          <h4 className="flex items-center gap-2 font-bold text-verdigris mb-2">
-                              <PenToolIcon size={18} />
-                              The Challenge
-                          </h4>
-                          <p className="text-charcoal leading-relaxed">
-                              {CURRENT_PROMPT.challenge}
-                          </p>
-                          <p className="text-xs text-charcoal/50 mt-4">
-                              * {CURRENT_PROMPT.note}
-                          </p>
-                      </div>
-                      
-                      <a href="#submit" className="inline-block text-sm font-bold text-charcoal border-b-2 border-tuscan hover:bg-tuscan/20 transition-colors pt-2">
-                          Accept Challenge & Submit &rarr;
-                      </a>
-                  </div>
-              </div>
-            </div>
-          </Section>
-        );
-      };
-
-      // FullSubmissions - Includes Carousel and Grid with Load More
-      const TextCarousel = ({ onQuoteClick }) => {
-        const [currentIndex, setCurrentIndex] = React.useState(0);
-        const [isPaused, setIsPaused] = React.useState(false);
-
-        React.useEffect(() => {
-          if (isPaused) return;
-          const interval = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % CAROUSEL_QUOTES.length);
-          }, 5000);
-          return () => clearInterval(interval);
-        }, [isPaused]);
-
-        const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % CAROUSEL_QUOTES.length);
-        const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + CAROUSEL_QUOTES.length) % CAROUSEL_QUOTES.length);
-        const currentQuote = CAROUSEL_QUOTES[currentIndex];
-
-        return (
-          <div 
-            className="bg-charcoal text-white rounded-2xl p-8 md:p-12 mb-16 relative overflow-hidden shadow-lg"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-             <div className="absolute top-0 right-0 w-64 h-64 bg-tuscan/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-             
-             <div 
-               className="relative z-10 text-center max-w-3xl mx-auto min-h-[150px] flex flex-col justify-center cursor-pointer group"
-               onClick={() => onQuoteClick(currentQuote.id)}
-               title="Click to read full piece"
-             >
-                <p className="font-serif text-xl md:text-3xl italic leading-relaxed transition-opacity duration-500 group-hover:text-tuscan">
-                  "{currentQuote.text}"
-                </p>
-                <p className="mt-4 text-sm md:text-base font-bold uppercase tracking-widest text-white/70 group-hover:text-white transition-colors">
-                  — {currentQuote.author}
-                </p>
-             </div>
-
-             <div className="flex justify-center gap-2 mt-8 z-10 relative">
-               <button onClick={prevSlide} className="p-2 hover:text-tuscan transition-colors" aria-label="Previous quote"><ChevronLeftIcon /></button>
-               {CAROUSEL_QUOTES.map((_, idx) => (
-                 <button 
-                   key={idx}
-                   onClick={() => setCurrentIndex(idx)}
-                   className={`w-2 h-2 rounded-full transition-all ${idx === currentIndex ? 'bg-tuscan w-6' : 'bg-white/30'}`}
-                   aria-label={`Go to quote ${idx + 1}`}
-                 />
-               ))}
-               <button onClick={nextSlide} className="p-2 hover:text-tuscan transition-colors" aria-label="Next quote"><ChevronRightIcon /></button>
-             </div>
-          </div>
-        );
-      }
-
-      const FullSubmissions = () => {
-        const [expandedId, setExpandedId] = React.useState(null);
-        const [visibleCount, setVisibleCount] = React.useState(3);
-
-        const toggleExpand = (id) => {
-          setExpandedId(expandedId === id ? null : id);
-        };
-
-        const handleLoadMore = () => {
-          if (visibleCount >= ALL_SUBMISSIONS.length) {
-            setVisibleCount(3); // Collapse back to initial
-          } else {
-            setVisibleCount(prev => prev + 3);
-          }
-        };
-
-        const handleQuoteClick = (id) => {
-          // 1. Expand the item
-          setExpandedId(id);
-          
-          // 2. Ensure it's visible by finding its index and updating visibleCount if needed
-          const index = ALL_SUBMISSIONS.findIndex(s => s.id === id);
-          if (index !== -1 && index >= visibleCount) {
-              // Ensure we show enough items to include this one
-              setVisibleCount(Math.ceil((index + 1) / 3) * 3);
-          }
-
-          // 3. Scroll to the element after a brief delay to allow rendering
-          setTimeout(() => {
-            const element = document.getElementById(`submission-${id}`);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-          }, 100);
-        };
-
-        return (
-          <Section id="all-submissions" className="">
-            <div className="mb-10">
-              <h3 className="font-serif text-2xl md:text-3xl text-charcoal mb-2">All Submissions</h3>
-              <p className="text-charcoal/60 mb-8">A collection of voices from our community.</p>
-              
-              <TextCarousel onQuoteClick={handleQuoteClick} />
-            </div>
-
-            <div id="all-submissions-grid" className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {ALL_SUBMISSIONS.slice(0, visibleCount).map((sub) => (
-                <article 
-                  key={sub.id}
-                  id={`submission-${sub.id}`}
-                  className={`bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-verdigris/30 transition-all duration-300 animate-fade-in ${expandedId === sub.id ? 'row-span-2' : ''}`}
-                >
-                  <div className="flex justify-between items-start mb-3">
-                    <div>
-                      <h4 className="font-serif text-xl font-medium text-charcoal">{sub.title}</h4>
-                      <p className="text-sm text-sandy font-medium mt-1">{sub.author}</p>
-                    </div>
-                  </div>
-
-                  <div className="text-charcoal/80 leading-relaxed mb-4">
-                      {expandedId === sub.id ? (
-                          <div className="whitespace-pre-line animate-fade-in">
-                              {sub.fullText || sub.snippet}
-                          </div>
-                      ) : (
-                          <p className="line-clamp-3 opacity-80">{sub.snippet}</p>
-                      )}
-                  </div>
-
-                  <button 
-                      onClick={() => toggleExpand(sub.id)}
-                      className="flex items-center gap-1 text-sm font-semibold text-verdigris hover:text-charcoal transition-colors"
-                  >
-                      {expandedId === sub.id ? (
-                          <>Read Less <ChevronUpIcon size={16} /></>
-                      ) : (
-                          <>Read More <ChevronDownIcon size={16} /></>
-                      )}
-                  </button>
-                </article>
-              ))}
-            </div>
-
-            {ALL_SUBMISSIONS.length > 3 && (
-              <div className="text-center mt-12">
-                <button 
-                  onClick={handleLoadMore}
-                  className="px-6 py-3 border-2 border-charcoal text-charcoal font-bold rounded-full hover:bg-charcoal hover:text-white transition-all duration-300"
-                >
-                  {visibleCount >= ALL_SUBMISSIONS.length ? 'Show Less' : 'Load More'}
-                </button>
-              </div>
-            )}
-          </Section>
-        );
-      };
-
-      // Gallery with Load More
-      const Gallery = () => {
-        const [visibleCount, setVisibleCount] = React.useState(4);
-
-        const handleLoadMore = () => {
-           if (visibleCount >= GALLERY_ITEMS.length) {
-             setVisibleCount(4);
-           } else {
-             setVisibleCount(prev => prev + 4);
-           }
-        };
-
-        return (
-          <Section id="gallery" className="bg-white">
-            <div className="mb-12 text-center md:text-left">
-              <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-4">Visual Voices</h2>
-              <div className="h-1 w-20 bg-burnt rounded-full mx-auto md:mx-0"></div>
-            </div>
-
-            <div className="columns-1 md:columns-2 gap-6 space-y-6">
-              {GALLERY_ITEMS.slice(0, visibleCount).map((item) => (
-                <div key={item.id} className="break-inside-avoid group relative overflow-hidden rounded-2xl animate-fade-in">
-                  <img 
-                    src={item.imageUrl} 
-                    alt={item.caption} 
-                    className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <p className="text-white font-serif text-lg">{item.caption}</p>
-                    {item.credit && <p className="text-white/80 text-xs mt-1 uppercase tracking-wider">{item.credit}</p>}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {GALLERY_ITEMS.length > 4 && (
-              <div className="text-center mt-12">
-                <button 
-                  onClick={handleLoadMore}
-                  className="px-6 py-3 border-2 border-charcoal text-charcoal font-bold rounded-full hover:bg-charcoal hover:text-white transition-all duration-300"
-                >
-                  {visibleCount >= GALLERY_ITEMS.length ? 'Show Less' : 'Load More Art'}
-                </button>
-              </div>
-            )}
-          </Section>
-        );
-      };
-
-      // Team
-      const Team = () => {
-        return (
-          <Section id="team">
-            <div className="mb-12 text-center">
-              <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-4">Our Curators</h2>
-              <p className="max-w-2xl mx-auto text-charcoal/70">
-                Dedicated to nurturing the next generation of storytellers.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {TEAM_MEMBERS.map((member) => (
-                <article key={member.id} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:-translate-y-1 transition-transform duration-300">
-                  <div className="w-32 h-32 mx-auto mb-6 relative">
-                      <div className="absolute inset-0 bg-sandy rounded-full transform rotate-6 opacity-20"></div>
-                      <img 
-                          src={member.imageUrl} 
-                          alt={member.name} 
-                          className="w-full h-full object-cover rounded-full relative z-10"
-                      />
-                  </div>
-                  <h3 className="font-serif text-xl font-bold text-charcoal mb-1">{member.name}</h3>
-                  <p className="text-verdigris font-medium text-sm uppercase tracking-wide mb-4">{member.role}</p>
-                  <p className="text-charcoal/70 text-sm leading-relaxed">{member.bio}</p>
-                </article>
-              ))}
-            </div>
-          </Section>
-        );
-      };
-
-      // Submission Form
-      const MAX_WORDS = 2000;
-      const SubmissionForm = () => {
-        const [formData, setFormData] = React.useState({
-          name: '',
-          address: '',
-          school: '',
-          age: '',
-          gender: 'prefer-not-to-say',
-          parentName: '',
-          email: '',
-          phone: '',
-          textSubmission: '',
-          confirmed: false
-        });
-
-        const [wordCount, setWordCount] = React.useState(0);
-        const [charCount, setCharCount] = React.useState(0);
-        const [isSubmitting, setIsSubmitting] = React.useState(false);
-        const [submitStatus, setSubmitStatus] = React.useState('idle');
-
-        const handleTextChange = (e) => {
-          const text = e.target.value;
-          const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
-          
-          setWordCount(words);
-          setCharCount(text.length);
-          setFormData(prev => ({ ...prev, textSubmission: text }));
-        };
-
-        const handleChange = (e) => {
-          const { name, value } = e.target;
-          setFormData(prev => ({ ...prev, [name]: value }));
-        };
-
-        const handleCheckbox = (e) => {
-          setFormData(prev => ({ ...prev, confirmed: e.target.checked }));
-        };
-
-        const handleSubmit = async (e) => {
-          e.preventDefault();
-          if (wordCount > MAX_WORDS) return;
-
-          setIsSubmitting(true);
-          
-          // Note: In a real hosted static site, we'd use Formspree or similar here.
-          // Since we are simulating, we just show success.
-          setTimeout(() => {
-              setIsSubmitting(false);
-              setSubmitStatus('success');
-              setFormData({
-                  name: '', address: '', school: '', age: '', gender: 'prefer-not-to-say',
-                  parentName: '', email: '', phone: '', textSubmission: '', confirmed: false
-              });
-              setWordCount(0);
-              setCharCount(0);
-          }, 1500);
-        };
-
-        return (
-          <Section id="submit" className="bg-white">
-            <div className="max-w-3xl mx-auto">
-              <div className="mb-10 text-center">
-                  <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-4">Submit Prose, Poetry & Visual Art</h2>
-                  <p className="text-charcoal/70">
-                      Share your story or vision with the world. We welcome authentic voices and hand-crafted art. 
-                      Please note that we do not accept AI-generated content.
-                  </p>
-              </div>
-
-              {submitStatus === 'success' ? (
-                  <div className="bg-verdigris/10 border border-verdigris text-charcoal p-8 rounded-2xl text-center space-y-4 animate-fade-in">
-                      <CheckCircleIcon className="w-16 h-16 text-verdigris mx-auto" />
-                      <h3 className="font-serif text-2xl font-bold">Thank You!</h3>
-                      <p>Your submission has been received. A confirmation email has been sent to your inbox.</p>
-                      <button 
-                          onClick={() => setSubmitStatus('idle')}
-                          className="mt-4 text-sm font-bold text-verdigris hover:underline"
-                      >
-                          Submit another work
-                      </button>
-                  </div>
-              ) : (
-                  <form 
-                      onSubmit={handleSubmit}
-                      className="space-y-6"
-                      name="youngink-submit" 
-                      data-netlify="true" 
-                      method="POST"
-                      encType="multipart/form-data"
-                  >
-                      <input type="hidden" name="form-name" value="youngink-submit" />
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="space-y-2">
-                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Full Name</label>
-                              <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="Jane Doe" />
-                          </div>
-                          <div className="space-y-2">
-                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Age</label>
-                              <input required type="number" min="0" name="age" value={formData.age} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="17" />
-                          </div>
-                      </div>
-
-                      <div className="space-y-2">
-                          <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Address</label>
-                          <textarea name="address" rows={2} value={formData.address} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="Street, City, Postal Code" />
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="space-y-2">
-                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">School</label>
-                              <input type="text" name="school" value={formData.school} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="High School Name" />
-                          </div>
-                           <div className="space-y-2">
-                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Gender</label>
-                              <select name="gender" value={formData.gender} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all">
-                                  <option value="female">Female</option>
-                                  <option value="male">Male</option>
-                                  <option value="other">Other</option>
-                                  <option value="prefer-not-to-say">Prefer not to say</option>
-                              </select>
-                          </div>
-                      </div>
-
-                      <div className="space-y-2">
-                          <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Parent/Guardian Name</label>
-                          <input type="text" name="parentName" value={formData.parentName} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="If under 18" />
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="space-y-2">
-                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Email</label>
-                              <input required type="email" name="email" value={formData.email} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="you@example.com" />
-                              <p className="text-xs text-charcoal/50">We will send a confirmation to this email.</p>
-                          </div>
-                          <div className="space-y-2">
-                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Phone</label>
-                              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className="w-full p-3 bg-offwhite border border-gray-200 rounded-lg focus:border-verdigris focus:ring-1 focus:ring-verdigris outline-none transition-all" placeholder="+1 234 567 890" />
-                          </div>
-                      </div>
-
-                      <div className="space-y-2 bg-gray-50 p-4 rounded-lg border border-dashed border-gray-300">
-                          <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide flex items-center gap-2">
-                              <UploadIcon size={16} /> Attach Visual Art or Photography
-                          </label>
-                          <input type="file" name="attachment" accept="image/*,.pdf" className="w-full p-2 bg-white border border-gray-200 rounded-lg text-sm" />
-                          <p className="text-xs text-charcoal/50">If submitting art, please attach high-quality files here (JPG, PNG, PDF). Max file size: 10MB. Please ensure images are clear and unpixelated.</p>
-                      </div>
-
-                      <div className="space-y-2">
-                          <div className="flex justify-between items-baseline">
-                              <label className="text-sm font-bold text-charcoal/80 uppercase tracking-wide">Your Text Submission (Prose/Poetry)</label>
-                              <span className={`text-xs font-bold ${wordCount > MAX_WORDS ? 'text-red-500' : 'text-charcoal/50'}`}>
-                                  {wordCount} / {MAX_WORDS} words | {charCount} chars
-                              </span>
-                          </div>
-                          <textarea 
-                              name="textSubmission" 
-                              rows={12} 
-                              value={formData.textSubmission} 
-                              onChange={handleTextChange} 
-                              className={`w-full p-4 bg-offwhite border rounded-lg focus:ring-1 outline-none transition-all resize-y ${wordCount > MAX_WORDS ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-verdigris focus:ring-verdigris'}`}
-                              placeholder="Paste your poetry or prose here..." 
-                          />
-                          {wordCount > MAX_WORDS && (
-                              <p className="text-sm text-red-500 flex items-center gap-1">
-                                  <AlertCircleIcon size={16} /> Content exceeds the 2000 word limit. Please shorten your text.
-                              </p>
-                          )}
-                      </div>
-
-                      <div className="pt-4 bg-offwhite/50 p-4 rounded-lg border border-gray-100">
-                          <label className="flex items-start gap-3 cursor-pointer group">
-                              <input 
-                                  type="checkbox" 
-                                  required 
-                                  checked={formData.confirmed} 
-                                  onChange={handleCheckbox}
-                                  className="mt-1 w-5 h-5 shrink-0 accent-verdigris cursor-pointer" 
-                              />
-                              <span className="text-sm text-charcoal/80 group-hover:text-charcoal transition-colors">
-                                  I confirm this work is original and <strong>has not been created using AI</strong>. I understand that the decision to add the submitted content depends solely on the editorial committee and is final and binding.
-                              </span>
-                          </label>
-                      </div>
-
-                      <div className="pt-4 text-center">
-                          <button 
-                              type="submit" 
-                              disabled={!formData.confirmed || wordCount > MAX_WORDS || isSubmitting}
-                              className="inline-flex items-center gap-2 px-8 py-4 bg-charcoal text-white font-bold rounded-full hover:bg-verdigris disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                          >
-                              {isSubmitting ? 'Sending...' : (
-                                  <>Submit Work <SendIcon size={18} /></>
-                              )}
-                          </button>
-                          <p className="mt-4 text-xs text-charcoal/40">
-                              Submissions are sent to {CONTACT_EMAIL}.
-                          </p>
-                      </div>
-                  </form>
-              )}
-            </div>
-          </Section>
-        );
-      };
-
-      // CTA - Redesigned for cleaner aesthetic
-      const CTA = () => {
-        return (
-          <Section id="cta" className="my-12">
-            <div className="bg-tuscan/10 rounded-3xl overflow-hidden relative border border-tuscan/20 px-6 py-16 md:px-12 md:py-20 text-center">
-              {/* Subtle decorative circles */}
-              <div className="absolute top-0 left-0 w-64 h-64 bg-white/40 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-              <div className="absolute bottom-0 right-0 w-64 h-64 bg-tuscan/20 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
-              
-              <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-                <h2 className="font-serif text-3xl md:text-5xl font-bold text-charcoal">Your Voice Matters.</h2>
-                <div className="h-1 w-16 bg-tuscan mx-auto rounded-full"></div>
-                <p className="text-charcoal/80 text-lg leading-relaxed">
-                    Join a community of young creators. Whether it's a whisper or a shout, your story deserves to be heard in a safe, supportive space.
-                </p>
-                <div className="pt-8">
-                    <a 
-                        href="#submit"
-                        className="inline-block px-10 py-4 bg-charcoal text-white font-bold rounded-full hover:bg-verdigris transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                    >
-                        Submit Now
-                    </a>
-                </div>
-              </div>
-            </div>
-          </Section>
-        );
-      };
-
-      // About
-      const About = () => {
-        return (
-          <Section id="about" className="max-w-4xl mx-auto">
-            <div className="text-center mb-10">
-              <h2 className="font-serif text-3xl md:text-4xl text-charcoal mb-4">About YoungInk</h2>
-              <div className="h-px w-32 bg-gray-200 mx-auto"></div>
-            </div>
-            
-            <div className="prose prose-lg prose-charcoal mx-auto text-charcoal/80 leading-loose text-center md:text-left">
-              <p>{ABOUT_TEXT}</p>
-            </div>
-          </Section>
-        );
-      };
-
-      // Updated Legal Section (Privacy & Safety)
-      const Legal = () => {
-        return (
-          <Section id="legal" className="bg-gray-50 border-t border-gray-100">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div>
-                  <h3 className="font-serif text-xl font-bold text-charcoal mb-4">Privacy & Safety</h3>
-                  <div className="space-y-4 text-sm text-charcoal/70">
-                      <div>
-                          <strong className="block text-charcoal mb-1">Privacy Policy</strong>
-                          <p>{PRIVACY_POLICY}</p>
-                      </div>
-                      <div>
-                          <strong className="block text-charcoal mb-1">GDPR Compliance</strong>
-                          <p>{GDPR_NOTICE}</p>
-                      </div>
-                      <div>
-                          <strong className="block text-charcoal mb-1">Cookie Notice</strong>
-                          <p>{COOKIE_NOTICE}</p>
-                      </div>
-                  </div>
-              </div>
-
-              <div>
-                  <h3 className="font-serif text-xl font-bold text-charcoal mb-4">Rights & Disclaimers</h3>
-                  <div className="space-y-4 text-sm text-charcoal/70">
-                       <div>
-                          <strong className="block text-charcoal mb-1">Copyright</strong>
-                          <p>{COPYRIGHT_NOTICE}</p>
-                      </div>
-                      
-                      <div className="p-4 border border-burnt/30 bg-burnt/5 rounded-lg">
-                          <strong className="block text-burnt mb-1">Important Disclaimer</strong>
-                          <p className="italic">{DISCLAIMER_TEXT}</p>
-                      </div>
-
-                      <div className="pt-4 border-t border-gray-200 mt-4">
-                          <p className="text-xs">
-                              <strong>Note on Content Protection:</strong> We use technical deterrents (blocking right-click, copy-paste) to discourage unauthorized copying. However, please be aware that it is technically impossible to fully prevent copying or screenshots on the open web.
-                          </p>
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </Section>
-        );
-      };
-
-      // Cookie Consent Component
-      const CookieConsent = () => {
-        const [show, setShow] = React.useState(false);
-
-        React.useEffect(() => {
-          const consent = localStorage.getItem('youngink-cookie-consent');
-          if (!consent) {
-            setTimeout(() => setShow(true), 1000); // Small delay for fade-in effect
-          }
-        }, []);
-
-        const handleAccept = () => {
-          localStorage.setItem('youngink-cookie-consent', 'true');
-          setShow(false);
-        };
-
-        const handleDecline = () => {
-          localStorage.setItem('youngink-cookie-consent', 'false');
-          setShow(false);
-        };
-
-        if (!show) return null;
-
-        return (
-          <div className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6 animate-fade-in-up">
-            <div className="max-w-4xl mx-auto bg-charcoal text-white rounded-2xl p-6 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10">
-              <div className="space-y-2 text-center md:text-left">
-                  <h4 className="font-serif text-lg font-bold text-tuscan">We respect your digital space.</h4>
-                  <p className="text-sm text-white/80 max-w-xl leading-relaxed">
-                      We use cookies to ensure the site functions correctly and to understand how our community grows. 
-                      We don't sell your data or use intrusive tracking.
-                  </p>
-              </div>
-              <div className="flex gap-4 shrink-0">
-                  <button 
-                      onClick={handleDecline}
-                      className="px-5 py-2 text-sm font-medium text-white border border-white/30 rounded-full hover:bg-white/10 transition-colors"
-                  >
-                      Decline
-                  </button>
-                  <button 
-                      onClick={handleAccept}
-                      className="px-6 py-2 text-sm font-bold text-charcoal bg-tuscan rounded-full hover:bg-white transition-colors shadow-md"
-                  >
-                      Accept Cookies
-                  </button>
-              </div>
-            </div>
-          </div>
-        );
-      };
-
-      // Footer
-      const Footer = () => {
-        return (
-          <footer className="bg-charcoal text-white pt-16 pb-8 border-t border-white/10">
-            <div className="max-w-7xl mx-auto px-4 sm:px-8">
-              <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
-                
-                <div className="text-center md:text-left md:w-1/2">
-                    <h4 className="font-serif text-3xl font-bold mb-4">{SITE_NAME}</h4>
-                    <p className="text-white/70 leading-relaxed max-w-sm mx-auto md:mx-0">
-                        We stand firm in the belief that youth creativity is not just a hobby, but a vital cultural force. Every word written and every line drawn is an act of courage that shapes our collective future.
-                    </p>
-                </div>
-
-                <div className="flex flex-col items-center md:items-end gap-6 md:w-1/2">
-                   <div className="text-center md:text-right space-y-1">
-                      <div className="flex items-center justify-center md:justify-end gap-2 text-tuscan/90 font-medium">
-                          <MapPinIcon size={16} />
-                          <span>Operating Hubs</span>
-                      </div>
-                      <p className="text-white/60 text-sm">Bergen, Norway • Obidos, Portugal • Thessaloniki, Greece</p>
-                   </div>
-
-                    <div className="flex gap-4">
-                        <span className="text-white/40 hover:text-white transition-colors cursor-pointer" title="Coming Soon">
-                            <InstagramIcon size={24} />
-                        </span>
-                        <a href={`mailto:${CONTACT_EMAIL}`} className="text-white/40 hover:text-white transition-colors">
-                            <MailIcon size={24} />
-                        </a>
-                    </div>
-                </div>
-              </div>
-
-              <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                  <p className="text-white/40 text-xs">© {new Date().getFullYear()} YoungInk. All rights reserved.</p>
-                  <p className="text-white/40 text-xs">
-                      Contact: <a href={`mailto:${CONTACT_EMAIL}`} className="underline hover:text-white">{CONTACT_EMAIL}</a>
-                  </p>
-              </div>
-            </div>
-          </footer>
-        );
-      };
-
-      // Main App
-      const App = () => {
-        // Non-copyable deterrents
-        React.useEffect(() => {
-          const handleContextMenu = (e) => e.preventDefault();
-          const handleKeyDown = (e) => {
-            if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'x' || e.key === 'u' || e.key === 's')) {
-              e.preventDefault();
-            }
-          };
-          const handleDragStart = (e) => e.preventDefault();
-
-          document.addEventListener('contextmenu', handleContextMenu);
-          document.addEventListener('keydown', handleKeyDown);
-          document.addEventListener('dragstart', handleDragStart);
-
-          return () => {
-            document.removeEventListener('contextmenu', handleContextMenu);
-            document.removeEventListener('keydown', handleKeyDown);
-            document.removeEventListener('dragstart', handleDragStart);
-          };
-        }, []);
-
-        return (
-          <div className="min-h-screen flex flex-col font-sans text-charcoal bg-offwhite">
-            <Navbar />
-            
-            <main className="flex-grow">
-              <Hero />
-              
-              <ScrollReveal>
-                <FeaturedSubmissions />
-              </ScrollReveal>
-              
-              <ScrollReveal>
-                <FullSubmissions />
-              </ScrollReveal>
-              
-              <ScrollReveal>
-                <CreativeSpark />
-              </ScrollReveal>
-
-              <ScrollReveal>
-                <Gallery />
-              </ScrollReveal>
-              
-              <ScrollReveal>
-                <Team />
-              </ScrollReveal>
-              
-              <ScrollReveal>
-                <SubmissionForm />
-              </ScrollReveal>
-              
-              <ScrollReveal>
-                <CTA />
-              </ScrollReveal>
-              
-              <ScrollReveal>
-                <About />
-              </ScrollReveal>
-              
-              <ScrollReveal>
-                <Legal />
-              </ScrollReveal>
-            </main>
-
-            <Footer />
-            <CookieConsent />
-          </div>
-        );
-      };
-
-    ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+<bodyclass="bg-offwhitetext-charcoalfont-sansantialiasedselection:bg-tuscanselection:text-charcoal">
+<divid="root"></div>
+
+<!--MAINAPPLICATIONSCRIPT-->
+<scripttype="text/babel">
+
+/**
+*ICONS(ReplacesLucide-Reactforsingle-fileportability)
+*/
+constIcon=({path,size=24,className=""})=>(
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width={size}
+height={size}
+viewBox="002424"
+fill="none"
+stroke="currentColor"
+strokeWidth="2"
+strokeLinecap="round"
+strokeLinejoin="round"
+className={className}
+>
+{path}
+</svg>
 );
-    </script>
-  </body>
+
+constMenuIcon=(props)=><Icon{...props}path={<><linex1="4"x2="20"y1="12"y2="12"/><linex1="4"x2="20"y1="6"y2="6"/><linex1="4"x2="20"y1="18"y2="18"/></>}/>;
+constXIcon=(props)=><Icon{...props}path={<><pathd="M186618"/><pathd="m661212"/></>}/>;
+constFeatherIcon=(props)=><Icon{...props}path={<><pathd="M20.2412.24a66000-8.49-8.49L510.5V19h8.5z"/><linex1="16"x2="2"y1="8"y2="22"/><linex1="17.5"x2="9"y1="15"y2="15"/></>}/>;
+constChevronDownIcon=(props)=><Icon{...props}path={<pathd="m69666-6"/>}/>;
+constChevronUpIcon=(props)=><Icon{...props}path={<pathd="m1815-6-6-66"/>}/>;
+constChevronLeftIcon=(props)=><Icon{...props}path={<pathd="m1518-6-66-6"/>}/>;
+constChevronRightIcon=(props)=><Icon{...props}path={<pathd="m9186-6-6-6"/>}/>;
+constSendIcon=(props)=><Icon{...props}path={<><pathd="m222-720-4-9-9-4Z"/><pathd="M2221113"/></>}/>;
+constAlertCircleIcon=(props)=><Icon{...props}path={<><circlecx="12"cy="12"r="10"/><linex1="12"x2="12"y1="8"y2="12"/><linex1="12"x2="12.01"y1="16"y2="16"/></>}/>;
+constCheckCircleIcon=(props)=><Icon{...props}path={<><pathd="M2211.08V12a1010011-5.93-9.14"/><polylinepoints="2241214.01911.01"/></>}/>;
+constUploadIcon=(props)=><Icon{...props}path={<><pathd="M2115v4a22001-22H5a22001-2-2v-4"/><polylinepoints="17812378"/><linex1="12"x2="12"y1="3"y2="15"/></>}/>;
+constInstagramIcon=(props)=><Icon{...props}path={<><rectwidth="20"height="20"x="2"y="2"rx="5"ry="5"/><pathd="M1611.37A4401112.638440011611.37z"/><linex1="17.5"x2="17.51"y1="6.5"y2="6.5"/></>}/>;
+constMailIcon=(props)=><Icon{...props}path={<><rectwidth="20"height="16"x="2"y="4"rx="2"/><pathd="m227-8.975.7a1.941.94001-2.060L27"/></>}/>;
+constMapPinIcon=(props)=><Icon{...props}path={<><pathd="M2010c06-812-812s-8-6-8-12a88001160Z"/><circlecx="12"cy="10"r="3"/></>}/>;
+constSparklesIcon=(props)=><Icon{...props}path={<><pathd="m123-1.9125.813a22001-1.2751.275L312l5.8131.912a220011.2751.275L1221l1.912-5.813a220011.275-1.275L2112l-5.813-1.912a22001-1.275-1.275L123Z"/><pathd="M53v4"/><pathd="M93v4"/><pathd="M39h4"/></>}/>;
+constPenToolIcon=(props)=><Icon{...props}path={<><pathd="m12197-733-77-3-3z"/><pathd="m1813-1.5-7.5L22l3.514.5L1318l5-5z"/><pathd="m227.5867.586"/><circlecx="11"cy="11"r="2"/></>}/>;
+
+/**
+*DATA&CONFIGURATION
+*/
+
+constSITE_NAME="YoungInk";
+constCONTACT_EMAIL="editor@youngink.eu";
+
+//Updatedtagline
+constHERO_TAGLINE="Theworldisloud.Yourvoicefindsitsquiethere.";
+constHERO_SUBTEXT="Aquietcorneroftheinternetforthenextgenerationofwritersandartists.Wedon'tjusthostcontent;wegiveyourthoughtsaplacetolandsoftly.";
+
+constFEATURED_SUBMISSIONS=[
+{
+id:'f1',
+title:"TheSilentEcho",
+author:"ElaraV.,17",
+snippet:"Themountainsdon'tspeak,theyonlylisten.Inthevalleysofmymind,Ihearthereverbofyesterday'swhispers...",
+fullText:"Themountainsdon'tspeak,theyonlylisten.Inthevalleysofmymind,Ihearthereverbofyesterday'swhispers.Itwasn'tloud,justahumbeneaththefloorboardsofthesky.Wewalkeduntilthesolesofourshoesworethin,tracingthelifelinesoftheearth.\n\nIaskedthewindwhyitcarriesleavesawayfromhome.Itdidn'tanswer,justbrushedmycheeklikeaforgetfulghost.Perhapsleavingisn'tabandonment,butaformofspreadingout,ofbecomingmorethanjustasinglepointonamap.Wearealljustechoeswaitingtohitacanyonwall.",
+imageUrl:"https://picsum.photos/seed/echo/400/400",
+featured:true
+},
+{
+id:'f2',
+title:"PaperCranes",
+author:"JonasM.,19",
+snippet:"Foldingfragilewishesintowings.Onethousandprayerssuspendedonfishingline,waitingforabreathofair.",
+fullText:"Foldingfragilewishesintowings.Onethousandprayerssuspendedonfishingline,waitingforabreathofair.Myfingersachewiththerepetition,thesharpcreasesofpotentialenergy.\n\nRedpaperforlove,goldforwealth,blueforpeace.ButIranoutofcolors,soIstartedusingnewspaper.Headlinesofwarfoldedintopeacebirds.Theironyisn'tlostonme,butthecranedoesn'tcarewhatit'smadeof,onlythatitcanfly.Ifonlyforamoment,inthedraftofanopenwindow.",
+imageUrl:"https://picsum.photos/seed/papercranes/400/400",
+featured:true
+},
+{
+id:'f3',
+title:"UrbanMoss",
+author:"SarahK.,16",
+snippet:"Greenvelvetreclaimingtheconcrete.Nature'sslow,softconquestoverthehardedgesofourcity.",
+fullText:"Greenvelvetreclaimingtheconcrete.Nature'sslow,softconquestoverthehardedgesofourcity.Itstartsinthecracks,theforgottencornerswhereraingathers.Itdoesn'taskforpermission.\n\nTheyscrubitaway,powerwashthehistory,butitalwayscomesback.Softer,quieter,persistent.Iwanttobelikethemoss.Nottheskyscraperthatscrapesthecloudsanddemandsattention,butthequietgreenthatoutlaststhestone.",
+imageUrl:"https://picsum.photos/seed/moss/400/400",
+featured:true
+},
+{
+id:'f4',
+title:"TheGlassHouse",
+author:"TariqS.,18",
+snippet:"Transparentwalls,butnobodylooksinside.Weliveinclearview,yetunseen.",
+fullText:"Transparentwalls,butnobodylooksinside.Weliveinclearview,yetunseen.Ipressmyhandagainsttheglass,leavingaghostofaprint.Theworldoutsideisdistortedbythethicknessofthebarrier.Theysayhonestyistransparency,butIfeellikeI'mjustondisplayinamuseumwherethevisitorsareblind.",
+imageUrl:"https://picsum.photos/seed/glass/400/400",
+featured:true
+},
+{
+id:'f5',
+title:"RootsinConcrete",
+author:"ElenaR.,16",
+snippet:"Howdowegrowwherenothingismeanttothrive?Astudyinstubbornsurvival.",
+fullText:"Howdowegrowwherenothingismeanttothrive?Astudyinstubbornsurvival.Mycityisgray,butmydreamsareaviolentshadeofgreen.Ifoundadandelioncrackingthesidewalktoday.Itdidn'taskforwater.Itdidn'taskforpermission.Itjustpushed.That'swhatI'mdoing.JustpushingagainsttheweightofitalluntilIbreakthrough.",
+imageUrl:"https://picsum.photos/seed/roots/400/400",
+featured:true
+}
+];
+
+constALL_SUBMISSIONS=[
+...FEATURED_SUBMISSIONS,
+{
+id:'a1',
+title:"MidnightTrain",
+author:"LeoP.,18",
+snippet:"Rhythmontherails,cuttingthroughthedarklikeaneedlethroughvelvet.",
+fullText:"Rhythmontherails,cuttingthroughthedarklikeaneedlethroughvelvet.Theconductorchecksticketswitheyesthathaveseentoomanygoodbyes.Iamgoingnowhereinparticular,justaway.Thelightsofpassingtownsblurintostreaksofamberandwhite,likestarsstretchingintohyperspace.\n\nWhoarethepeopleinthosehouses?Dotheylookatthetrainandwonderwhoisleaving?Iamnotrunningaway,Itellmyself.Iamsimplymovingatthespeedofthought.",
+},
+{
+id:'a2',
+title:"CoffeeStain",
+author:"MiaT.,15",
+snippet:"Abrownringonthetable,amemoryofaconversationthatwentcold.",
+fullText:"Abrownringonthetable,amemoryofaconversationthatwentcold.Wesatthereforhours,dissectingtheuniverseuntilthewaiterturnedthechairsupsidedown.Yousaidtheuniverseisexpanding.Isaidmypatienceisshrinking.\n\nThecoffeestainlookslikeamoon.Aperfectcircleofimperfection.Ihaven'twipeditawayyet.Itprovesyouwerehere.Itproveswespoke.Itprovesthatsomething,howeversmall,wasleftbehind.",
+},
+{
+id:'a3',
+title:"TheOldLibrary",
+author:"SamR.,17",
+snippet:"Dustmotesdancinginshaftsofgoldenlight,smellingofvanillaanddecay.",
+fullText:"Dustmotesdancinginshaftsofgoldenlight,smellingofvanillaanddecay.EveryspineisadoorwaytoaplaceIhaven'tbeen.Irunmyfingersalongtheleather,feelingthetextureofstorieswaitingtobeexhaled.Silencehereisn'tempty;it'sfullofpotentialnoise,heldbackbyacollectivebreath.",
+},
+{
+id:'a4',
+title:"StaticNoise",
+author:"PriyaM.,16",
+snippet:"Thetelevisionturnedtosnow,ablackandwhitewarofantsfightingfordominance.",
+fullText:"Thetelevisionturnedtosnow,ablackandwhitewarofantsfightingfordominance.Inthebackgroundnoise,Ihearpatterns.Mythoughtsfeellikethatsometimes—uncalibrated,searchingforasignal.Itwistthedial,hopingforclarity,butfindingonlythehissoftheuniverseexpanding.",
+},
+{
+id:'a5',
+title:"Winter'sBreath",
+author:"KaelenD.,18",
+snippet:"Frostpatterningthewindowpaneinfractalsofinfinitecomplexity.",
+fullText:"Frostpatterningthewindowpaneinfractalsofinfinitecomplexity.Ibreatheontheglass,meltingasmallcircleofclarityintothecoldart.Throughthehole,theworldisgrayandsharp.Thecoldisn'tmalicious;it'sjusthonest.Itstripsawaythepretenseofwarmthandshowstheskeletonofthetrees.",
+}
+];
+
+constCAROUSEL_QUOTES=[
+{text:"Themountainsdon'tspeak,theyonlylisten.",author:"ElaraV.,17",id:"f1"},
+{text:"Foldingfragilewishesintowings.",author:"JonasM.,19",id:"f2"},
+{text:"Nature'sslow,softconquestoverthehardedges.",author:"SarahK.,16",id:"f3"},
+{text:"Rhythmontherails,cuttingthroughthedark.",author:"LeoP.,18",id:"a1"},
+{text:"Aperfectcircleofimperfection.",author:"MiaT.,15",id:"a2"}
+];
+
+constGALLERY_ITEMS=[
+{id:'g1',imageUrl:"https://picsum.photos/seed/art1/600/400",caption:"StructureinChaos",credit:"PhotobyA.Larsen"},
+{id:'g2',imageUrl:"https://picsum.photos/seed/art2/600/600",caption:"MorningFog",credit:"ArtbyK.Jensen"},
+{id:'g3',imageUrl:"https://picsum.photos/seed/art3/400/600",caption:"Solitude",credit:"PhotobyM.Nielsen"},
+{id:'g4',imageUrl:"https://picsum.photos/seed/art4/600/400",caption:"VibrantYouth",credit:"IllustrationbyS.Berg"},
+{id:'g5',imageUrl:"https://picsum.photos/seed/art5/600/400",caption:"UrbanCanvas",credit:"PhotobyJ.Doe"},
+{id:'g6',imageUrl:"https://picsum.photos/seed/art6/400/600",caption:"Reflections",credit:"ArtbyL.Smith"},
+];
+
+constTEAM_MEMBERS=[
+{
+id:'t1',
+name:"AstridLindholm",
+role:"Editor-in-Chief",
+bio:"Astridspent15yearsinpublishingbeforerealizingthemosthonestwritingwasn'tcomingfromestablishedauthors.Shehelpsyoufindthestoryyou'reactuallytryingtotell,nottheoneyouthinkyoushouldwrite.",
+imageUrl:"https://picsum.photos/seed/astrid/200/200"
+},
+{
+id:'t2',
+name:"BjornIversen",
+role:"SeniorMentor",
+bio:"Bjornisaneducatorwhotreatswriter'sblocklikeapuzzle,notafailure.Hebelieveseverymistakeisjustadraftwaitingforasecondchance.",
+imageUrl:"https://picsum.photos/seed/bjorn/200/200"
+},
+{
+id:'t3',
+name:"AdityaBanerjee",
+role:"ConsultingEditor",
+bio:"Adityareadseverythingwithanopenheart.Hemanagesourfeedbackloop,ensuringeveryyoungwriterfeelsheardandvalidated.",
+imageUrl:"https://picsum.photos/seed/clara/200/200"
+}
+];
+
+//NewCreativePromptsData-UpdatedSeason
+constCURRENT_PROMPT={
+season:"WinterChallenge2025",
+theme:"TheSpaceBetween",
+description:"Weoftenwriteaboutbeginningsandendings.Thefirsthello,thelastgoodbye.Butlifemostlyhappensinthemiddle.Thewaitingroom.Thesilenceafteraquestion.Thetrainridebetweentwocities.",
+challenge:"Writeapiece(under500words)orcreateartthatexploresamomentoftransition.Whathappensinthegap?",
+note:"Selectedresponseswillbefeaturedinournext'FeaturedSubmissions'rotation."
+};
+
+//Updatedhumantone
+constABOUT_TEXT=`YoungInkexistsbecausewerememberwhatit'sliketohavealottosayandnowheretoputit.Wearen'tlookingforperfection;we'relookingforhonesty.Ourgoalistocreateadigitalmuseumofgrowingup—curatedwithkindness,readwithempathy,andtreatedwithrespect.`;
+
+//UpdatedPrivacy&SafetyText
+constPRIVACY_POLICY="Wetreatyourdatalikewetreatourown.Namesandemailsareusedonlytotalktoyouaboutyourwork.Wedon'tselldata,andwedon'tshareit.";
+constGDPR_NOTICE="Youownyourdata.UnderGDPR,youcanasktoseewhatwehave,fixit,ordeleteitwheneveryouwant.Justemailus.";
+constCOOKIE_NOTICE="Weuseafewsmallcookiestomakesurethesitedoesn'tcrash.Wedon'tusecreepytrackingcookieswithoutaskingyoufirst.";
+constCOPYRIGHT_NOTICE="It'syourwork.Period.YoungInkclaimszeroownershipoveryoursubmissions.Youretainallrights.";
+constDISCLAIMER_TEXT="Bysubmitting,youpromisetheworkisyours.Wecan'tcatcheverycopycat,sowerelyonyourintegrity.YoungInkisn'tliableifsomeoneelsemisusescontentfoundhere,thoughwedoourbesttostopit.";
+
+/**
+*COMPONENTS
+*/
+
+//SectionWrapper
+constSection=({id,className="",children})=>{
+return(
+<sectionid={id}className={`py-16md:py-24px-4sm:px-8md:px-12lg:px-24max-w-7xlmx-auto${className}`}>
+{children}
+</section>
+);
+};
+
+//ScrollRevealAnimationComponent
+constScrollReveal=({children,className=""})=>{
+const[isVisible,setIsVisible]=React.useState(false);
+constref=React.useRef(null);
+
+React.useEffect(()=>{
+constobserver=newIntersectionObserver(
+([entry])=>{
+if(entry.isIntersecting){
+setIsVisible(true);
+observer.unobserve(entry.target);
+}
+},
+{
+threshold:0.1,
+rootMargin:"0px0px-50px0px",
+}
+);
+
+if(ref.current){
+observer.observe(ref.current);
+}
+
+return()=>{
+if(ref.current){
+observer.unobserve(ref.current);
+}
+};
+},[]);
+
+return(
+<div
+ref={ref}
+className={`transition-allduration-1000ease-outtransform${
+isVisible?"opacity-100translate-y-0":"opacity-0translate-y-16"
+}${className}`}
+>
+{children}
+</div>
+);
+};
+
+//Navbar
+constNavbar=()=>{
+const[isOpen,setIsOpen]=React.useState(false);
+const[scrolled,setScrolled]=React.useState(false);
+
+React.useEffect(()=>{
+consthandleScroll=()=>{
+setScrolled(window.scrollY>50);
+};
+window.addEventListener('scroll',handleScroll);
+return()=>window.removeEventListener('scroll',handleScroll);
+},[]);
+
+constnavLinks=[
+{name:'Home',href:'#home'},
+{name:'Submissions',href:'#submissions'},
+{name:'TheSpark',href:'#spark'},
+{name:'Gallery',href:'#gallery'},
+{name:'Team',href:'#team'},
+{name:'Submit',href:'#submit'},
+{name:'About',href:'#about'},
+{name:'Privacy&Safety',href:'#legal'},
+];
+
+return(
+<header
+className={`fixedtop-0left-0right-0z-50transition-allduration-300${
+scrolled?'bg-white/95backdrop-blur-smshadow-smpy-3':'bg-transparentpy-5'
+}`}
+>
+<divclassName="max-w-7xlmx-autopx-4sm:px-8flexjustify-betweenitems-center">
+<ahref="#home"className="flexitems-centergap-2group">
+<FeatherIconclassName="text-verdigrisw-6h-6group-hover:rotate-12transition-transform"/>
+<spanclassName="font-seriffont-boldtext-2xltracking-tighttext-charcoal">{SITE_NAME}</span>
+</a>
+
+<navclassName="hiddenmd:flexgap-8items-center">
+{navLinks.map((link)=>{
+constisSpark=link.name==='TheSpark';
+return(
+<a
+key={link.name}
+href={link.href}
+className={isSpark
+?"text-smpx-4py-2bg-tuscantext-charcoalfont-boldrounded-fullhover:bg-tuscan/80shadow-smtransformhover:-translate-y-0.5transition-allduration-300"
+:"text-smfont-mediumtext-charcoal/80hover:text-verdigrishover:underlinedecoration-2underline-offset-4transition-all"
+}
+>
+{link.name}
+</a>
+);
+})}
+</nav>
+
+<button
+className="md:hiddentext-charcoalfocus:outline-none"
+onClick={()=>setIsOpen(!isOpen)}
+aria-label="Togglemenu"
+>
+{isOpen?<XIconsize={24}/>:<MenuIconsize={24}/>}
+</button>
+</div>
+
+{isOpen&&(
+<navclassName="md:hiddenbg-whiteborder-tborder-gray-100absolutew-fullshadow-lg">
+<divclassName="flexflex-colpy-4px-6gap-4">
+{navLinks.map((link)=>(
+<a
+key={link.name}
+href={link.href}
+className={`text-basefont-mediumpy-2border-bborder-gray-50last:border-0${
+link.name==='TheSpark'
+?'text-charcoalbg-tuscan/20pl-2rounded-r-lgborder-l-4border-tuscan'
+:'text-charcoalhover:text-verdigris'
+}`}
+onClick={()=>setIsOpen(false)}
+>
+{link.name}
+</a>
+))}
+</div>
+</nav>
+)}
+</header>
+);
+};
+
+//Hero
+constHero=()=>{
+return(
+<Sectionid="home"className="min-h-[80vh]flexflex-colmd:flex-rowitems-centerjustify-centerpt-32pb-16">
+<divclassName="md:w-1/2space-y-6animate-fade-in-up">
+<h1className="font-seriftext-5xlmd:text-6xllg:text-7xlfont-boldtext-charcoalleading-tight">
+{HERO_TAGLINE}
+</h1>
+<pclassName="text-lgmd:text-xltext-charcoal/70leading-relaxedmax-w-lg">
+{HERO_SUBTEXT}
+</p>
+<divclassName="pt-4">
+<a
+href="#submit"
+className="inline-blockpx-8py-3bg-charcoaltext-whitefont-mediumrounded-fullhover:bg-verdigristransition-colorsduration-300shadow-mdhover:shadow-lg"
+>
+SubmitPoetry,Prose&Art
+</a>
+</div>
+</div>
+
+<divclassName="md:w-1/2mt-12md:mt-0relativeflexjustify-centermd:justify-end">
+<divclassName="relativew-72h-72md:w-96md:h-96">
+<divclassName="absolutetop-0right-0w-fullh-fullbg-tuscan/20rounded-fullblur-3xltransformtranslate-x-4-translate-y-4"></div>
+<divclassName="absolutebottom-0left-0w-3/4h-3/4bg-verdigris/20rounded-fullblur-3xltransform-translate-x-4translate-y-4"></div>
+<img
+src="https://picsum.photos/seed/nordic/600/600"
+alt="Abstractcreativity"
+className="relativez-10w-fullh-fullobject-coverrounded-2xlshadow-xlrotate-3hover:rotate-0transition-allduration-700ease-out"
+/>
+</div>
+</div>
+</Section>
+);
+};
+
+//FeaturedSubmissionswithLoadMore
+constFeaturedSubmissions=()=>{
+const[expandedId,setExpandedId]=React.useState(null);
+const[visibleCount,setVisibleCount]=React.useState(3);
+
+consttoggleExpand=(id)=>{
+setExpandedId(expandedId===id?null:id);
+};
+
+consthandleLoadMore=()=>{
+if(visibleCount>=FEATURED_SUBMISSIONS.length){
+setVisibleCount(3);
+}else{
+setVisibleCount(prev=>prev+3);
+}
+};
+
+return(
+<Sectionid="submissions"className="bg-white">
+<divclassName="mb-12">
+<h2className="font-seriftext-3xlmd:text-4xltext-charcoalmb-4">FeaturedSubmissions</h2>
+<divclassName="h-1w-20bg-sandyrounded-full"></div>
+</div>
+
+<divclassName="space-y-12">
+{FEATURED_SUBMISSIONS.slice(0,visibleCount).map((sub,index)=>(
+<article
+key={sub.id}
+className={`flexflex-colmd:flex-rowgap-8items-startgroupp-6rounded-2xltransition-allduration-300hover:bg-offwhite${index%2!==0?'md:flex-row-reverse':''}`}
+>
+{sub.imageUrl&&(
+<divclassName="w-fullmd:w-1/3shrink-0">
+<img
+src={sub.imageUrl}
+alt={`Illustrationfor${sub.title}`}
+className="w-fullh-64object-coverrounded-xlshadow-smgroup-hover:shadow-mdtransition-shadow"
+/>
+</div>
+)}
+<divclassName="w-fullmd:w-2/3space-y-4">
+<h3className="font-seriftext-2xlfont-semiboldtext-charcoalgroup-hover:text-verdigristransition-colors">
+{sub.title}
+</h3>
+<pclassName="text-smfont-boldtext-sandyuppercasetracking-wide">{sub.author}</p>
+
+<divclassName="proseprose-charcoalmax-w-none">
+{expandedId===sub.id?(
+<divclassName="whitespace-pre-linetext-charcoal/80leading-relaxedanimate-fade-inborder-l-4border-tuscanpl-4">
+{sub.fullText||sub.snippet}
+</div>
+):(
+<pclassName="text-charcoal/80leading-relaxeditalicborder-l-4border-tuscanpl-4">
+"{sub.snippet}"
+</p>
+)}
+</div>
+
+<button
+onClick={()=>toggleExpand(sub.id)}
+className="flexitems-centergap-1text-smfont-semiboldtext-verdigrishover:text-charcoaltransition-colorsmt-2"
+>
+{expandedId===sub.id?(
+<>ReadLess<ChevronUpIconsize={16}/></>
+):(
+<>ReadMore<ChevronDownIconsize={16}/></>
+)}
+</button>
+</div>
+</article>
+))}
+</div>
+
+{FEATURED_SUBMISSIONS.length>3&&(
+<divclassName="text-centermt-12">
+<button
+onClick={handleLoadMore}
+className="px-6py-3border-2border-charcoaltext-charcoalfont-boldrounded-fullhover:bg-charcoalhover:text-whitetransition-allduration-300"
+>
+{visibleCount>=FEATURED_SUBMISSIONS.length?'ShowLess':'LoadMore'}
+</button>
+</div>
+)}
+</Section>
+);
+};
+
+//CreativeSpark(WritingPrompts)-LabelUpdate
+constCreativeSpark=()=>{
+return(
+<Sectionid="spark"className="max-w-5xlmx-auto">
+<divclassName="bg-offwhiteborder-2border-tuscan/30rounded-3xlp-8md:p-12relativeoverflow-hidden">
+{/*Decorativebackgroundelements*/}
+<divclassName="absolutetop-0right-0w-40h-40bg-tuscan/10rounded-fullblur-3xl-translate-y-1/2translate-x-1/2"></div>
+<divclassName="absolutebottom-0left-0w-40h-40bg-verdigris/10rounded-fullblur-3xltranslate-y-1/2-translate-x-1/2"></div>
+
+<divclassName="relativez-10flexflex-colmd:flex-rowgap-8items-start">
+<divclassName="md:w-1/3space-y-4">
+<divclassName="inline-flexitems-centergap-2px-4py-1.5bg-tuscantext-charcoaltext-xsfont-bolduppercasetracking-widestrounded-full">
+<SparklesIconsize={14}/>
+<span>TheSpark</span>
+</div>
+<h2className="font-seriftext-3xlfont-boldtext-charcoal">
+{CURRENT_PROMPT.season}
+</h2>
+<divclassName="w-12h-1bg-charcoalrounded-full"></div>
+</div>
+
+<divclassName="md:w-2/3space-y-6">
+<div>
+<h3className="text-xlfont-boldtext-charcoalmb-2">Theme:"{CURRENT_PROMPT.theme}"</h3>
+<pclassName="text-charcoal/80leading-relaxeditalic">
+{CURRENT_PROMPT.description}
+</p>
+</div>
+
+<divclassName="bg-whitep-6rounded-xlborderborder-dashedborder-charcoal/20shadow-sm">
+<h4className="flexitems-centergap-2font-boldtext-verdigrismb-2">
+<PenToolIconsize={18}/>
+TheChallenge
+</h4>
+<pclassName="text-charcoalleading-relaxed">
+{CURRENT_PROMPT.challenge}
+</p>
+<pclassName="text-xstext-charcoal/50mt-4">
+*{CURRENT_PROMPT.note}
+</p>
+</div>
+
+<ahref="#submit"className="inline-blocktext-smfont-boldtext-charcoalborder-b-2border-tuscanhover:bg-tuscan/20transition-colorspt-2">
+AcceptChallenge&Submit&rarr;
+</a>
+</div>
+</div>
+</div>
+</Section>
+);
+};
+
+//FullSubmissions-IncludesCarouselandGridwithLoadMore
+constTextCarousel=({onQuoteClick})=>{
+const[currentIndex,setCurrentIndex]=React.useState(0);
+const[isPaused,setIsPaused]=React.useState(false);
+
+React.useEffect(()=>{
+if(isPaused)return;
+constinterval=setInterval(()=>{
+setCurrentIndex((prev)=>(prev+1)%CAROUSEL_QUOTES.length);
+},5000);
+return()=>clearInterval(interval);
+},[isPaused]);
+
+constnextSlide=()=>setCurrentIndex((prev)=>(prev+1)%CAROUSEL_QUOTES.length);
+constprevSlide=()=>setCurrentIndex((prev)=>(prev-1+CAROUSEL_QUOTES.length)%CAROUSEL_QUOTES.length);
+constcurrentQuote=CAROUSEL_QUOTES[currentIndex];
+
+return(
+<div
+className="bg-charcoaltext-whiterounded-2xlp-8md:p-12mb-16relativeoverflow-hiddenshadow-lg"
+onMouseEnter={()=>setIsPaused(true)}
+onMouseLeave={()=>setIsPaused(false)}
+>
+<divclassName="absolutetop-0right-0w-64h-64bg-tuscan/10rounded-fullblur-3xltransformtranslate-x-1/2-translate-y-1/2"></div>
+
+<div
+className="relativez-10text-centermax-w-3xlmx-automin-h-[150px]flexflex-coljustify-centercursor-pointergroup"
+onClick={()=>onQuoteClick(currentQuote.id)}
+title="Clicktoreadfullpiece"
+>
+<pclassName="font-seriftext-xlmd:text-3xlitalicleading-relaxedtransition-opacityduration-500group-hover:text-tuscan">
+"{currentQuote.text}"
+</p>
+<pclassName="mt-4text-smmd:text-basefont-bolduppercasetracking-widesttext-white/70group-hover:text-whitetransition-colors">
+—{currentQuote.author}
+</p>
+</div>
+
+<divclassName="flexjustify-centergap-2mt-8z-10relative">
+<buttononClick={prevSlide}className="p-2hover:text-tuscantransition-colors"aria-label="Previousquote"><ChevronLeftIcon/></button>
+{CAROUSEL_QUOTES.map((_,idx)=>(
+<button
+key={idx}
+onClick={()=>setCurrentIndex(idx)}
+className={`w-2h-2rounded-fulltransition-all${idx===currentIndex?'bg-tuscanw-6':'bg-white/30'}`}
+aria-label={`Gotoquote${idx+1}`}
+/>
+))}
+<buttononClick={nextSlide}className="p-2hover:text-tuscantransition-colors"aria-label="Nextquote"><ChevronRightIcon/></button>
+</div>
+</div>
+);
+}
+
+constFullSubmissions=()=>{
+const[expandedId,setExpandedId]=React.useState(null);
+const[visibleCount,setVisibleCount]=React.useState(3);
+
+consttoggleExpand=(id)=>{
+setExpandedId(expandedId===id?null:id);
+};
+
+consthandleLoadMore=()=>{
+if(visibleCount>=ALL_SUBMISSIONS.length){
+setVisibleCount(3);//Collapsebacktoinitial
+}else{
+setVisibleCount(prev=>prev+3);
+}
+};
+
+consthandleQuoteClick=(id)=>{
+//1.Expandtheitem
+setExpandedId(id);
+
+//2.Ensureit'svisiblebyfindingitsindexandupdatingvisibleCountifneeded
+constindex=ALL_SUBMISSIONS.findIndex(s=>s.id===id);
+if(index!==-1&&index>=visibleCount){
+//Ensureweshowenoughitemstoincludethisone
+setVisibleCount(Math.ceil((index+1)/3)*3);
+}
+
+//3.Scrolltotheelementafterabriefdelaytoallowrendering
+setTimeout(()=>{
+constelement=document.getElementById(`submission-${id}`);
+if(element){
+element.scrollIntoView({behavior:'smooth',block:'center'});
+}
+},100);
+};
+
+return(
+<Sectionid="all-submissions"className="">
+<divclassName="mb-10">
+<h3className="font-seriftext-2xlmd:text-3xltext-charcoalmb-2">AllSubmissions</h3>
+<pclassName="text-charcoal/60mb-8">Acollectionofvoicesfromourcommunity.</p>
+
+<TextCarouselonQuoteClick={handleQuoteClick}/>
+</div>
+
+<divid="all-submissions-grid"className="gridgrid-cols-1md:grid-cols-2gap-6">
+{ALL_SUBMISSIONS.slice(0,visibleCount).map((sub)=>(
+<article
+key={sub.id}
+id={`submission-${sub.id}`}
+className={`bg-whitep-6rounded-xlshadow-smborderborder-gray-100hover:border-verdigris/30transition-allduration-300animate-fade-in${expandedId===sub.id?'row-span-2':''}`}
+>
+<divclassName="flexjustify-betweenitems-startmb-3">
+<div>
+<h4className="font-seriftext-xlfont-mediumtext-charcoal">{sub.title}</h4>
+<pclassName="text-smtext-sandyfont-mediummt-1">{sub.author}</p>
+</div>
+</div>
+
+<divclassName="text-charcoal/80leading-relaxedmb-4">
+{expandedId===sub.id?(
+<divclassName="whitespace-pre-lineanimate-fade-in">
+{sub.fullText||sub.snippet}
+</div>
+):(
+<pclassName="line-clamp-3opacity-80">{sub.snippet}</p>
+)}
+</div>
+
+<button
+onClick={()=>toggleExpand(sub.id)}
+className="flexitems-centergap-1text-smfont-semiboldtext-verdigrishover:text-charcoaltransition-colors"
+>
+{expandedId===sub.id?(
+<>ReadLess<ChevronUpIconsize={16}/></>
+):(
+<>ReadMore<ChevronDownIconsize={16}/></>
+)}
+</button>
+</article>
+))}
+</div>
+
+{ALL_SUBMISSIONS.length>3&&(
+<divclassName="text-centermt-12">
+<button
+onClick={handleLoadMore}
+className="px-6py-3border-2border-charcoaltext-charcoalfont-boldrounded-fullhover:bg-charcoalhover:text-whitetransition-allduration-300"
+>
+{visibleCount>=ALL_SUBMISSIONS.length?'ShowLess':'LoadMore'}
+</button>
+</div>
+)}
+</Section>
+);
+};
+
+//GallerywithLoadMore
+constGallery=()=>{
+const[visibleCount,setVisibleCount]=React.useState(4);
+
+consthandleLoadMore=()=>{
+if(visibleCount>=GALLERY_ITEMS.length){
+setVisibleCount(4);
+}else{
+setVisibleCount(prev=>prev+4);
+}
+};
+
+return(
+<Sectionid="gallery"className="bg-white">
+<divclassName="mb-12text-centermd:text-left">
+<h2className="font-seriftext-3xlmd:text-4xltext-charcoalmb-4">VisualVoices</h2>
+<divclassName="h-1w-20bg-burntrounded-fullmx-automd:mx-0"></div>
+</div>
+
+<divclassName="columns-1md:columns-2gap-6space-y-6">
+{GALLERY_ITEMS.slice(0,visibleCount).map((item)=>(
+<divkey={item.id}className="break-inside-avoidgrouprelativeoverflow-hiddenrounded-2xlanimate-fade-in">
+<img
+src={item.imageUrl}
+alt={item.caption}
+className="w-fullh-autoobject-covertransition-transformduration-700group-hover:scale-105"
+/>
+<divclassName="absoluteinset-0bg-gradient-to-tfrom-charcoal/80via-transparentto-transparentopacity-0group-hover:opacity-100transition-opacityduration-300flexflex-coljustify-endp-6">
+<pclassName="text-whitefont-seriftext-lg">{item.caption}</p>
+{item.credit&&<pclassName="text-white/80text-xsmt-1uppercasetracking-wider">{item.credit}</p>}
+</div>
+</div>
+))}
+</div>
+
+{GALLERY_ITEMS.length>4&&(
+<divclassName="text-centermt-12">
+<button
+onClick={handleLoadMore}
+className="px-6py-3border-2border-charcoaltext-charcoalfont-boldrounded-fullhover:bg-charcoalhover:text-whitetransition-allduration-300"
+>
+{visibleCount>=GALLERY_ITEMS.length?'ShowLess':'LoadMoreArt'}
+</button>
+</div>
+)}
+</Section>
+);
+};
+
+//Team
+constTeam=()=>{
+return(
+<Sectionid="team">
+<divclassName="mb-12text-center">
+<h2className="font-seriftext-3xlmd:text-4xltext-charcoalmb-4">OurCurators</h2>
+<pclassName="max-w-2xlmx-autotext-charcoal/70">
+Dedicatedtonurturingthenextgenerationofstorytellers.
+</p>
+</div>
+
+<divclassName="gridgrid-cols-1md:grid-cols-3gap-8">
+{TEAM_MEMBERS.map((member)=>(
+<articlekey={member.id}className="bg-whitep-8rounded-2xlshadow-smborderborder-gray-100text-centerhover:-translate-y-1transition-transformduration-300">
+<divclassName="w-32h-32mx-automb-6relative">
+<divclassName="absoluteinset-0bg-sandyrounded-fulltransformrotate-6opacity-20"></div>
+<img
+src={member.imageUrl}
+alt={member.name}
+className="w-fullh-fullobject-coverrounded-fullrelativez-10"
+/>
+</div>
+<h3className="font-seriftext-xlfont-boldtext-charcoalmb-1">{member.name}</h3>
+<pclassName="text-verdigrisfont-mediumtext-smuppercasetracking-widemb-4">{member.role}</p>
+<pclassName="text-charcoal/70text-smleading-relaxed">{member.bio}</p>
+</article>
+))}
+</div>
+</Section>
+);
+};
+
+//SubmissionForm
+constMAX_WORDS=2000;
+constSubmissionForm=()=>{
+const[formData,setFormData]=React.useState({
+name:'',
+address:'',
+school:'',
+age:'',
+gender:'prefer-not-to-say',
+parentName:'',
+email:'',
+phone:'',
+textSubmission:'',
+confirmed:false
+});
+
+const[wordCount,setWordCount]=React.useState(0);
+const[charCount,setCharCount]=React.useState(0);
+const[isSubmitting,setIsSubmitting]=React.useState(false);
+const[submitStatus,setSubmitStatus]=React.useState('idle');
+
+consthandleTextChange=(e)=>{
+consttext=e.target.value;
+constwords=text.trim().split(/\s+/).filter(w=>w.length>0).length;
+
+setWordCount(words);
+setCharCount(text.length);
+setFormData(prev=>({...prev,textSubmission:text}));
+};
+
+consthandleChange=(e)=>{
+const{name,value}=e.target;
+setFormData(prev=>({...prev,[name]:value}));
+};
+
+consthandleCheckbox=(e)=>{
+setFormData(prev=>({...prev,confirmed:e.target.checked}));
+};
+
+consthandleSubmit=async(e)=>{
+e.preventDefault();
+if(wordCount>MAX_WORDS)return;
+
+setIsSubmitting(true);
+
+//Note:Inarealhostedstaticsite,we'duseFormspreeorsimilarhere.
+//Sincewearesimulating,wejustshowsuccess.
+setTimeout(()=>{
+setIsSubmitting(false);
+setSubmitStatus('success');
+setFormData({
+name:'',address:'',school:'',age:'',gender:'prefer-not-to-say',
+parentName:'',email:'',phone:'',textSubmission:'',confirmed:false
+});
+setWordCount(0);
+setCharCount(0);
+},1500);
+};
+
+return(
+<Sectionid="submit"className="bg-white">
+<divclassName="max-w-3xlmx-auto">
+<divclassName="mb-10text-center">
+<h2className="font-seriftext-3xlmd:text-4xltext-charcoalmb-4">SubmitProse,Poetry&VisualArt</h2>
+<pclassName="text-charcoal/70">
+Shareyourstoryorvisionwiththeworld.Wewelcomeauthenticvoicesandhand-craftedart.
+PleasenotethatwedonotacceptAI-generatedcontent.
+</p>
+</div>
+
+{submitStatus==='success'?(
+<divclassName="bg-verdigris/10borderborder-verdigristext-charcoalp-8rounded-2xltext-centerspace-y-4animate-fade-in">
+<CheckCircleIconclassName="w-16h-16text-verdigrismx-auto"/>
+<h3className="font-seriftext-2xlfont-bold">ThankYou!</h3>
+<p>Yoursubmissionhasbeenreceived.Aconfirmationemailhasbeensenttoyourinbox.</p>
+<button
+onClick={()=>setSubmitStatus('idle')}
+className="mt-4text-smfont-boldtext-verdigrishover:underline"
+>
+Submitanotherwork
+</button>
+</div>
+):(
+<form
+onSubmit={handleSubmit}
+className="space-y-6"
+name="youngink-submit"
+data-netlify="true"
+method="POST"
+encType="multipart/form-data"
+>
+<inputtype="hidden"name="form-name"value="youngink-submit"/>
+
+<divclassName="gridgrid-cols-1md:grid-cols-2gap-6">
+<divclassName="space-y-2">
+<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">FullName</label>
+<inputrequiredtype="text"name="name"value={formData.name}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="JaneDoe"/>
+</div>
+<divclassName="space-y-2">
+<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Age</label>
+<inputrequiredtype="number"min="0"name="age"value={formData.age}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="17"/>
+</div>
+</div>
+
+<divclassName="space-y-2">
+<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Address</label>
+<textareaname="address"rows={2}value={formData.address}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="Street,City,PostalCode"/>
+</div>
+
+<divclassName="gridgrid-cols-1md:grid-cols-2gap-6">
+<divclassName="space-y-2">
+<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">School</label>
+<inputtype="text"name="school"value={formData.school}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="HighSchoolName"/>
+</div>
+<divclassName="space-y-2">
+<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Gender</label>
+<selectname="gender"value={formData.gender}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all">
+<optionvalue="female">Female</option>
+<optionvalue="male">Male</option>
+<optionvalue="other">Other</option>
+<optionvalue="prefer-not-to-say">Prefernottosay</option>
+</select>
+</div>
+</div>
+
+<divclassName="space-y-2">
+<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Parent/GuardianName</label>
+<inputtype="text"name="parentName"value={formData.parentName}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="Ifunder18"/>
+</div>
+
+<divclassName="gridgrid-cols-1md:grid-cols-2gap-6">
+<divclassName="space-y-2">
+<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Email</label>
+<inputrequiredtype="email"name="email"value={formData.email}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="you@example.com"/>
+<pclassName="text-xstext-charcoal/50">Wewillsendaconfirmationtothisemail.</p>
+</div>
+<divclassName="space-y-2">
+<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Phone</label>
+<inputtype="tel"name="phone"value={formData.phone}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="+1234567890"/>
+</div>
+</div>
+
+<divclassName="space-y-2bg-gray-50p-4rounded-lgborderborder-dashedborder-gray-300">
+<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wideflexitems-centergap-2">
+<UploadIconsize={16}/>AttachVisualArtorPhotography
+</label>
+<inputtype="file"name="attachment"accept="image/*,.pdf"className="w-fullp-2bg-whiteborderborder-gray-200rounded-lgtext-sm"/>
+<pclassName="text-xstext-charcoal/50">Ifsubmittingart,pleaseattachhigh-qualityfileshere(JPG,PNG,PDF).Maxfilesize:10MB.Pleaseensureimagesareclearandunpixelated.</p>
+</div>
+
+<divclassName="space-y-2">
+<divclassName="flexjustify-betweenitems-baseline">
+<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">YourTextSubmission(Prose/Poetry)</label>
+<spanclassName={`text-xsfont-bold${wordCount>MAX_WORDS?'text-red-500':'text-charcoal/50'}`}>
+{wordCount}/{MAX_WORDS}words|{charCount}chars
+</span>
+</div>
+<textarea
+name="textSubmission"
+rows={12}
+value={formData.textSubmission}
+onChange={handleTextChange}
+className={`w-fullp-4bg-offwhiteborderrounded-lgfocus:ring-1outline-nonetransition-allresize-y${wordCount>MAX_WORDS?'border-red-500focus:border-red-500focus:ring-red-500':'border-gray-200focus:border-verdigrisfocus:ring-verdigris'}`}
+placeholder="Pasteyourpoetryorprosehere..."
+/>
+{wordCount>MAX_WORDS&&(
+<pclassName="text-smtext-red-500flexitems-centergap-1">
+<AlertCircleIconsize={16}/>Contentexceedsthe2000wordlimit.Pleaseshortenyourtext.
+</p>
+)}
+</div>
+
+<divclassName="pt-4bg-offwhite/50p-4rounded-lgborderborder-gray-100">
+<labelclassName="flexitems-startgap-3cursor-pointergroup">
+<input
+type="checkbox"
+required
+checked={formData.confirmed}
+onChange={handleCheckbox}
+className="mt-1w-5h-5shrink-0accent-verdigriscursor-pointer"
+/>
+<spanclassName="text-smtext-charcoal/80group-hover:text-charcoaltransition-colors">
+Iconfirmthisworkisoriginaland<strong>hasnotbeencreatedusingAI</strong>.Iunderstandthatthedecisiontoaddthesubmittedcontentdependssolelyontheeditorialcommitteeandisfinalandbinding.
+</span>
+</label>
+</div>
+
+<divclassName="pt-4text-center">
+<button
+type="submit"
+disabled={!formData.confirmed||wordCount>MAX_WORDS||isSubmitting}
+className="inline-flexitems-centergap-2px-8py-4bg-charcoaltext-whitefont-boldrounded-fullhover:bg-verdigrisdisabled:bg-gray-300disabled:cursor-not-allowedtransition-allduration-300shadow-lghover:shadow-xltransformhover:-translate-y-1"
+>
+{isSubmitting?'Sending...':(
+<>SubmitWork<SendIconsize={18}/></>
+)}
+</button>
+<pclassName="mt-4text-xstext-charcoal/40">
+Submissionsaresentto{CONTACT_EMAIL}.
+</p>
+</div>
+</form>
+)}
+</div>
+</Section>
+);
+};
+
+//CTA-Redesignedforcleaneraesthetic
+constCTA=()=>{
+return(
+<Sectionid="cta"className="my-12">
+<divclassName="bg-tuscan/10rounded-3xloverflow-hiddenrelativeborderborder-tuscan/20px-6py-16md:px-12md:py-20text-center">
+{/*Subtledecorativecircles*/}
+<divclassName="absolutetop-0left-0w-64h-64bg-white/40rounded-fullblur-3xltransform-translate-x-1/2-translate-y-1/2"></div>
+<divclassName="absolutebottom-0right-0w-64h-64bg-tuscan/20rounded-fullblur-3xltransformtranslate-x-1/2translate-y-1/2"></div>
+
+<divclassName="relativez-10max-w-2xlmx-autospace-y-6">
+<h2className="font-seriftext-3xlmd:text-5xlfont-boldtext-charcoal">YourVoiceMatters.</h2>
+<divclassName="h-1w-16bg-tuscanmx-autorounded-full"></div>
+<pclassName="text-charcoal/80text-lgleading-relaxed">
+Joinacommunityofyoungcreators.Whetherit'sawhisperorashout,yourstorydeservestobeheardinasafe,supportivespace.
+</p>
+<divclassName="pt-8">
+<a
+href="#submit"
+className="inline-blockpx-10py-4bg-charcoaltext-whitefont-boldrounded-fullhover:bg-verdigristransition-allduration-300shadow-lghover:shadow-xltransformhover:-translate-y-1"
+>
+SubmitNow
+</a>
+</div>
+</div>
+</div>
+</Section>
+);
+};
+
+//About
+constAbout=()=>{
+return(
+<Sectionid="about"className="max-w-4xlmx-auto">
+<divclassName="text-centermb-10">
+<h2className="font-seriftext-3xlmd:text-4xltext-charcoalmb-4">AboutYoungInk</h2>
+<divclassName="h-pxw-32bg-gray-200mx-auto"></div>
+</div>
+
+<divclassName="proseprose-lgprose-charcoalmx-autotext-charcoal/80leading-loosetext-centermd:text-left">
+<p>{ABOUT_TEXT}</p>
+</div>
+</Section>
+);
+};
+
+//UpdatedLegalSection(Privacy&Safety)
+constLegal=()=>{
+return(
+<Sectionid="legal"className="bg-gray-50border-tborder-gray-100">
+<divclassName="gridgrid-cols-1md:grid-cols-2gap-12">
+<div>
+<h3className="font-seriftext-xlfont-boldtext-charcoalmb-4">Privacy&Safety</h3>
+<divclassName="space-y-4text-smtext-charcoal/70">
+<div>
+<strongclassName="blocktext-charcoalmb-1">PrivacyPolicy</strong>
+<p>{PRIVACY_POLICY}</p>
+</div>
+<div>
+<strongclassName="blocktext-charcoalmb-1">GDPRCompliance</strong>
+<p>{GDPR_NOTICE}</p>
+</div>
+<div>
+<strongclassName="blocktext-charcoalmb-1">CookieNotice</strong>
+<p>{COOKIE_NOTICE}</p>
+</div>
+</div>
+</div>
+
+<div>
+<h3className="font-seriftext-xlfont-boldtext-charcoalmb-4">Rights&Disclaimers</h3>
+<divclassName="space-y-4text-smtext-charcoal/70">
+<div>
+<strongclassName="blocktext-charcoalmb-1">Copyright</strong>
+<p>{COPYRIGHT_NOTICE}</p>
+</div>
+
+<divclassName="p-4borderborder-burnt/30bg-burnt/5rounded-lg">
+<strongclassName="blocktext-burntmb-1">ImportantDisclaimer</strong>
+<pclassName="italic">{DISCLAIMER_TEXT}</p>
+</div>
+
+<divclassName="pt-4border-tborder-gray-200mt-4">
+<pclassName="text-xs">
+<strong>NoteonContentProtection:</strong>Weusetechnicaldeterrents(blockingright-click,copy-paste)todiscourageunauthorizedcopying.However,pleasebeawarethatitistechnicallyimpossibletofullypreventcopyingorscreenshotsontheopenweb.
+</p>
+</div>
+</div>
+</div>
+</div>
+</Section>
+);
+};
+
+//CookieConsentComponent
+constCookieConsent=()=>{
+const[show,setShow]=React.useState(false);
+
+React.useEffect(()=>{
+constconsent=localStorage.getItem('youngink-cookie-consent');
+if(!consent){
+setTimeout(()=>setShow(true),1000);//Smalldelayforfade-ineffect
+}
+},[]);
+
+consthandleAccept=()=>{
+localStorage.setItem('youngink-cookie-consent','true');
+setShow(false);
+};
+
+consthandleDecline=()=>{
+localStorage.setItem('youngink-cookie-consent','false');
+setShow(false);
+};
+
+if(!show)returnnull;
+
+return(
+<divclassName="fixedbottom-0left-0right-0z-50p-4md:p-6animate-fade-in-up">
+<divclassName="max-w-4xlmx-autobg-charcoaltext-whiterounded-2xlp-6shadow-2xlflexflex-colmd:flex-rowitems-centerjustify-betweengap-6borderborder-white/10">
+<divclassName="space-y-2text-centermd:text-left">
+<h4className="font-seriftext-lgfont-boldtext-tuscan">Werespectyourdigitalspace.</h4>
+<pclassName="text-smtext-white/80max-w-xlleading-relaxed">
+Weusecookiestoensurethesitefunctionscorrectlyandtounderstandhowourcommunitygrows.
+Wedon'tsellyourdataoruseintrusivetracking.
+</p>
+</div>
+<divclassName="flexgap-4shrink-0">
+<button
+onClick={handleDecline}
+className="px-5py-2text-smfont-mediumtext-whiteborderborder-white/30rounded-fullhover:bg-white/10transition-colors"
+>
+Decline
+</button>
+<button
+onClick={handleAccept}
+className="px-6py-2text-smfont-boldtext-charcoalbg-tuscanrounded-fullhover:bg-whitetransition-colorsshadow-md"
+>
+AcceptCookies
+</button>
+</div>
+</div>
+</div>
+);
+};
+
+//Footer
+constFooter=()=>{
+return(
+<footerclassName="bg-charcoaltext-whitept-16pb-8border-tborder-white/10">
+<divclassName="max-w-7xlmx-autopx-4sm:px-8">
+<divclassName="flexflex-colmd:flex-rowjustify-betweenitems-startgap-12mb-12">
+
+<divclassName="text-centermd:text-leftmd:w-1/2">
+<h4className="font-seriftext-3xlfont-boldmb-4">{SITE_NAME}</h4>
+<pclassName="text-white/70leading-relaxedmax-w-smmx-automd:mx-0">
+Westandfirminthebeliefthatyouthcreativityisnotjustahobby,butavitalculturalforce.Everywordwrittenandeverylinedrawnisanactofcouragethatshapesourcollectivefuture.
+</p>
+</div>
+
+<divclassName="flexflex-colitems-centermd:items-endgap-6md:w-1/2">
+<divclassName="text-centermd:text-rightspace-y-1">
+<divclassName="flexitems-centerjustify-centermd:justify-endgap-2text-tuscan/90font-medium">
+<MapPinIconsize={16}/>
+<span>OperatingHubs</span>
+</div>
+<pclassName="text-white/60text-sm">Bergen,Norway•Obidos,Portugal•Thessaloniki,Greece</p>
+</div>
+
+<divclassName="flexgap-4">
+<spanclassName="text-white/40hover:text-whitetransition-colorscursor-pointer"title="ComingSoon">
+<InstagramIconsize={24}/>
+</span>
+<ahref={`mailto:${CONTACT_EMAIL}`}className="text-white/40hover:text-whitetransition-colors">
+<MailIconsize={24}/>
+</a>
+</div>
+</div>
+</div>
+
+<divclassName="border-tborder-white/10pt-8flexflex-colmd:flex-rowjustify-betweenitems-centergap-4">
+<pclassName="text-white/40text-xs">©{newDate().getFullYear()}YoungInk.Allrightsreserved.</p>
+<pclassName="text-white/40text-xs">
+Contact:<ahref={`mailto:${CONTACT_EMAIL}`}className="underlinehover:text-white">{CONTACT_EMAIL}</a>
+</p>
+</div>
+</div>
+</footer>
+);
+};
+
+//MainApp
+constApp=()=>{
+//Non-copyabledeterrents
+React.useEffect(()=>{
+consthandleContextMenu=(e)=>e.preventDefault();
+consthandleKeyDown=(e)=>{
+if((e.ctrlKey||e.metaKey)&&(e.key==='c'||e.key==='x'||e.key==='u'||e.key==='s')){
+e.preventDefault();
+}
+};
+consthandleDragStart=(e)=>e.preventDefault();
+
+document.addEventListener('contextmenu',handleContextMenu);
+document.addEventListener('keydown',handleKeyDown);
+document.addEventListener('dragstart',handleDragStart);
+
+return()=>{
+document.removeEventListener('contextmenu',handleContextMenu);
+document.removeEventListener('keydown',handleKeyDown);
+document.removeEventListener('dragstart',handleDragStart);
+};
+},[]);
+
+return(
+<divclassName="min-h-screenflexflex-colfont-sanstext-charcoalbg-offwhite">
+<Navbar/>
+
+<mainclassName="flex-grow">
+<Hero/>
+
+<ScrollReveal>
+<FeaturedSubmissions/>
+</ScrollReveal>
+
+<ScrollReveal>
+<FullSubmissions/>
+</ScrollReveal>
+
+<ScrollReveal>
+<CreativeSpark/>
+</ScrollReveal>
+
+<ScrollReveal>
+<Gallery/>
+</ScrollReveal>
+
+<ScrollReveal>
+<Team/>
+</ScrollReveal>
+
+<ScrollReveal>
+<SubmissionForm/>
+</ScrollReveal>
+
+<ScrollReveal>
+<CTA/>
+</ScrollReveal>
+
+<ScrollReveal>
+<About/>
+</ScrollReveal>
+
+<ScrollReveal>
+<Legal/>
+</ScrollReveal>
+</main>
+
+<Footer/>
+<CookieConsent/>
+</div>
+);
+};
+
+constroot=ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+<React.StrictMode>
+<App/>
+</React.StrictMode>
+);
+</script>
+</body>
 </html>
