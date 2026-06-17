@@ -6,12 +6,15 @@
     <title>YoungInk | Curated Youth Creativity</title>
     <meta name="description" content="YoungInk is a safe, curated space for young adult writers to showcase poetry and prose." />
     
+    <!-- Google Fonts: Lora (Serif) and Roboto (Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Tailwind Config -->
     <script>
       tailwind.config = {
         theme: {
@@ -47,9 +50,10 @@
       }
     </script>
     
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Swapped to CDNJS for maximum reliability (avoids UNPKG network blocks) -->
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.6/babel.min.js"></script>
 
     <style>
       html { scroll-behavior: smooth; }
@@ -66,13 +70,55 @@
 </head>
   <body class="bg-offwhite text-charcoal font-sans antialiased selection:bg-tuscan selection:text-charcoal">
     
+    <!-- THIS IS THE ROOT DIV -->
     <div id="root">
-        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; font-weight: bold;">
-            Loading YoungInk...
+        <div id="loading-indicator" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; font-weight: bold;">
+            <p>Loading YoungInk...</p>
         </div>
     </div>
 
+    <!-- Fallback Script: If React gets blocked by a network, tell the user instead of freezing -->
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var loader = document.getElementById('loading-indicator');
+                if (loader) {
+                    loader.innerHTML = '<div style="color: #e76f51; text-align: center; max-width: 600px; padding: 20px;">' +
+                        '<h2>Connection Error</h2>' +
+                        '<p>The core application scripts (React/Babel) were blocked from downloading.</p>' +
+                        '<p>If you are on a school or work network, they may be blocking CDNJS. Try disabling ad-blockers or using a different network.</p>' +
+                        '</div>';
+                }
+            }, 5000); // Trigger after 5 seconds
+        });
+    </script>
+
+    <!-- MAIN APPLICATION SCRIPT -->
     <script type="text/babel">
+
+      // 1. Diagnostics: React Error Boundary to catch rendering bugs
+      class ErrorBoundary extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { hasError: false, error: null };
+        }
+        static getDerivedStateFromError(error) {
+          return { hasError: true, error };
+        }
+        render() {
+          if (this.state.hasError) {
+            return (
+              <div style={{ padding: '2rem', color: '#e76f51', fontFamily: 'sans-serif', maxWidth: '800px', margin: '0 auto' }}>
+                <h2>Something broke inside the React code:</h2>
+                <pre style={{ background: '#f0f0f0', padding: '1rem', color: '#333', overflow: 'auto' }}>
+                  {this.state.error.toString()}
+                </pre>
+              </div>
+            );
+          }
+          return this.props.children;
+        }
+      }
 
       /**
        * ICONS
@@ -114,7 +160,6 @@
       /**
        * DATA & CONFIGURATION
        */
-      
       const SITE_NAME = "YoungInk";
       const CONTACT_EMAIL = "editor@youngink.eu";
 
@@ -1257,12 +1302,26 @@
         );
       };
 
-      const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      );
+      // 2. Diagnostics: Extremely robust rendering logic
+      const rootElement = document.getElementById('root');
+      
+      if (window.ReactDOM && window.ReactDOM.createRoot) {
+          const root = window.ReactDOM.createRoot(rootElement);
+          root.render(
+            <ErrorBoundary>
+              <App />
+            </ErrorBoundary>
+          );
+      } else if (window.ReactDOM) {
+          window.ReactDOM.render(
+            <ErrorBoundary>
+              <App />
+            </ErrorBoundary>, 
+            rootElement
+          );
+      } else {
+          rootElement.innerHTML = '<div style="color: red; text-align: center; padding: 2rem;"><h2>Error</h2><p>React could not be found. Please check your network connection.</p></div>';
+      }
     </script>
   </body>
 </html>
