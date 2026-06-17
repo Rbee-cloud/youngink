@@ -1,1317 +1,155 @@
-<body class="bg-offwhite text-charcoal font-sans antialiased selection:bg-tuscan selection:text-charcoal">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YoungInk | Curated Youth Creativity</title>
+    <meta name="description" content="YoungInk is a safe, curated space for young adult writers to showcase poetry and prose." />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              charcoal: '#264653',
+              verdigris: '#2a9d8f',
+              tuscan: '#e9c46a',
+              sandy: '#f4a261',
+              burnt: '#e76f51',
+              offwhite: '#f9f9f9',
+            },
+            fontFamily: {
+              serif: ['Lora', 'serif'],
+              sans: ['Roboto', 'sans-serif'],
+            },
+            animation: {
+              'fade-in': 'fadeIn 1s ease-out',
+              'fade-in-up': 'fadeInUp 1s ease-out',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      html { scroll-behavior: smooth; }
+      body {
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      input, textarea {
+        -webkit-user-select: text;
+        user-select: text;
+      }
+    </style>
+</head>
+  <body class="bg-offwhite text-charcoal font-sans antialiased selection:bg-tuscan selection:text-charcoal">
+    
     <div id="root">
-        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif;">
+        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; font-weight: bold;">
             Loading YoungInk...
         </div>
     </div>
-    ```
-Once React successfully compiles and mounts, it will automatically overwrite this loading text. If the text stays on the screen forever, you know Babel crashed.
 
-### 4. GitHub Pages File Structure Requirements
-Ensure your repository is structured correctly for GitHub Pages to serve it:
-* The file **must** be named exactly `index.html` (all lowercase). If you named it `App.html` or `youngink.html`, GitHub will return a 404 or a blank directory list.
-* The `index.html` file must be in the root directory of your repository, not tucked inside a `/src` or `/public` folder (unless you specifically configured GitHub Pages to deploy from a specific folder).
-
-### 💡 A Note on Your Form
-I noticed you are using `<form data-netlify="true">`. Keep in mind that **GitHub Pages does not support Netlify forms**. GitHub only hosts static files and has no backend to process that form data. If you are hosting this strictly on GitHub Pages, you will need to change your form's `action` attribute to point to a third-party form handler like Formspree, Web3Forms, or Getform.
-
-### How to debug if it's STILL blank:
-If you make these fixes and push to GitHub, and it's *still* blank, **press F12** (or right-click -> Inspect) on the live GitHub Page and click the **Console** tab. Any red text in that console will tell you exactly which line of code Babel is choking on.<!DOCTYPEhtml>
-<htmllang="en">
-<head>
-<metacharset="UTF-8"/>
-<metaname="viewport"content="width=device-width,initial-scale=1.0"/>
-<title>YoungInk|CuratedYouthCreativity</title>
-<metaname="description"content="YoungInkisasafe,curatedspaceforyoungadultwriterstoshowcasepoetryandprose."/>
-
-<!--GoogleFonts:Lora(Serif)andRoboto(Sans)-->
-<linkrel="preconnect"href="https://fonts.googleapis.com">
-<linkrel="preconnect"href="https://fonts.gstatic.com"crossorigin>
-<linkhref="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap"rel="stylesheet">
-
-<!--TailwindCSS-->
-<scriptsrc="https://cdn.tailwindcss.com"></script>
-
-<!--TailwindConfig-->
-<script>
-tailwind.config={
-theme:{
-extend:{
-colors:{
-charcoal:'#264653',
-verdigris:'#2a9d8f',
-tuscan:'#e9c46a',
-sandy:'#f4a261',
-burnt:'#e76f51',
-offwhite:'#f9f9f9',
-},
-fontFamily:{
-serif:['Lora','serif'],
-sans:['Roboto','sans-serif'],
-},
-animation:{
-'fade-in':'fadeIn1sease-out',
-'fade-in-up':'fadeInUp1sease-out',
-},
-keyframes:{
-fadeIn:{
-'0%':{opacity:'0'},
-'100%':{opacity:'1'},
-},
-fadeInUp:{
-'0%':{opacity:'0',transform:'translateY(20px)'},
-'100%':{opacity:'1',transform:'translateY(0)'},
-}
-}
-}
-}
-}
-</script>
-
-<!--React&BabelforIn-BrowserRendering-->
-<scriptcrossoriginsrc="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<scriptcrossoriginsrc="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<scriptsrc="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-<style>
-html{scroll-behavior:smooth;}
-body{
--webkit-user-select:none;
--ms-user-select:none;
-user-select:none;
-}
-input,textarea{
--webkit-user-select:text;
-user-select:text;
-}
-</style>
-</head>
-<bodyclass="bg-offwhitetext-charcoalfont-sansantialiasedselection:bg-tuscanselection:text-charcoal">
-<divid="root"></div>
-
-<!--MAINAPPLICATIONSCRIPT-->
-<scripttype="text/babel">
-
-/**
-*ICONS(ReplacesLucide-Reactforsingle-fileportability)
-*/
-constIcon=({path,size=24,className=""})=>(
-<svg
-xmlns="http://www.w3.org/2000/svg"
-width={size}
-height={size}
-viewBox="002424"
-fill="none"
-stroke="currentColor"
-strokeWidth="2"
-strokeLinecap="round"
-strokeLinejoin="round"
-className={className}
->
-{path}
-</svg>
-);
-
-constMenuIcon=(props)=><Icon{...props}path={<><linex1="4"x2="20"y1="12"y2="12"/><linex1="4"x2="20"y1="6"y2="6"/><linex1="4"x2="20"y1="18"y2="18"/></>}/>;
-constXIcon=(props)=><Icon{...props}path={<><pathd="M186618"/><pathd="m661212"/></>}/>;
-constFeatherIcon=(props)=><Icon{...props}path={<><pathd="M20.2412.24a66000-8.49-8.49L510.5V19h8.5z"/><linex1="16"x2="2"y1="8"y2="22"/><linex1="17.5"x2="9"y1="15"y2="15"/></>}/>;
-constChevronDownIcon=(props)=><Icon{...props}path={<pathd="m69666-6"/>}/>;
-constChevronUpIcon=(props)=><Icon{...props}path={<pathd="m1815-6-6-66"/>}/>;
-constChevronLeftIcon=(props)=><Icon{...props}path={<pathd="m1518-6-66-6"/>}/>;
-constChevronRightIcon=(props)=><Icon{...props}path={<pathd="m9186-6-6-6"/>}/>;
-constSendIcon=(props)=><Icon{...props}path={<><pathd="m222-720-4-9-9-4Z"/><pathd="M2221113"/></>}/>;
-constAlertCircleIcon=(props)=><Icon{...props}path={<><circlecx="12"cy="12"r="10"/><linex1="12"x2="12"y1="8"y2="12"/><linex1="12"x2="12.01"y1="16"y2="16"/></>}/>;
-constCheckCircleIcon=(props)=><Icon{...props}path={<><pathd="M2211.08V12a1010011-5.93-9.14"/><polylinepoints="2241214.01911.01"/></>}/>;
-constUploadIcon=(props)=><Icon{...props}path={<><pathd="M2115v4a22001-22H5a22001-2-2v-4"/><polylinepoints="17812378"/><linex1="12"x2="12"y1="3"y2="15"/></>}/>;
-constInstagramIcon=(props)=><Icon{...props}path={<><rectwidth="20"height="20"x="2"y="2"rx="5"ry="5"/><pathd="M1611.37A4401112.638440011611.37z"/><linex1="17.5"x2="17.51"y1="6.5"y2="6.5"/></>}/>;
-constMailIcon=(props)=><Icon{...props}path={<><rectwidth="20"height="16"x="2"y="4"rx="2"/><pathd="m227-8.975.7a1.941.94001-2.060L27"/></>}/>;
-constMapPinIcon=(props)=><Icon{...props}path={<><pathd="M2010c06-812-812s-8-6-8-12a88001160Z"/><circlecx="12"cy="10"r="3"/></>}/>;
-constSparklesIcon=(props)=><Icon{...props}path={<><pathd="m123-1.9125.813a22001-1.2751.275L312l5.8131.912a220011.2751.275L1221l1.912-5.813a220011.275-1.275L2112l-5.813-1.912a22001-1.275-1.275L123Z"/><pathd="M53v4"/><pathd="M93v4"/><pathd="M39h4"/></>}/>;
-constPenToolIcon=(props)=><Icon{...props}path={<><pathd="m12197-733-77-3-3z"/><pathd="m1813-1.5-7.5L22l3.514.5L1318l5-5z"/><pathd="m227.5867.586"/><circlecx="11"cy="11"r="2"/></>}/>;
-
-/**
-*DATA&CONFIGURATION
-*/
-
-constSITE_NAME="YoungInk";
-constCONTACT_EMAIL="editor@youngink.eu";
-
-//Updatedtagline
-constHERO_TAGLINE="Theworldisloud.Yourvoicefindsitsquiethere.";
-constHERO_SUBTEXT="Aquietcorneroftheinternetforthenextgenerationofwritersandartists.Wedon'tjusthostcontent;wegiveyourthoughtsaplacetolandsoftly.";
-
-constFEATURED_SUBMISSIONS=[
-{
-id:'f1',
-title:"TheSilentEcho",
-author:"ElaraV.,17",
-snippet:"Themountainsdon'tspeak,theyonlylisten.Inthevalleysofmymind,Ihearthereverbofyesterday'swhispers...",
-fullText:"Themountainsdon'tspeak,theyonlylisten.Inthevalleysofmymind,Ihearthereverbofyesterday'swhispers.Itwasn'tloud,justahumbeneaththefloorboardsofthesky.Wewalkeduntilthesolesofourshoesworethin,tracingthelifelinesoftheearth.\n\nIaskedthewindwhyitcarriesleavesawayfromhome.Itdidn'tanswer,justbrushedmycheeklikeaforgetfulghost.Perhapsleavingisn'tabandonment,butaformofspreadingout,ofbecomingmorethanjustasinglepointonamap.Wearealljustechoeswaitingtohitacanyonwall.",
-imageUrl:"https://picsum.photos/seed/echo/400/400",
-featured:true
-},
-{
-id:'f2',
-title:"PaperCranes",
-author:"JonasM.,19",
-snippet:"Foldingfragilewishesintowings.Onethousandprayerssuspendedonfishingline,waitingforabreathofair.",
-fullText:"Foldingfragilewishesintowings.Onethousandprayerssuspendedonfishingline,waitingforabreathofair.Myfingersachewiththerepetition,thesharpcreasesofpotentialenergy.\n\nRedpaperforlove,goldforwealth,blueforpeace.ButIranoutofcolors,soIstartedusingnewspaper.Headlinesofwarfoldedintopeacebirds.Theironyisn'tlostonme,butthecranedoesn'tcarewhatit'smadeof,onlythatitcanfly.Ifonlyforamoment,inthedraftofanopenwindow.",
-imageUrl:"https://picsum.photos/seed/papercranes/400/400",
-featured:true
-},
-{
-id:'f3',
-title:"UrbanMoss",
-author:"SarahK.,16",
-snippet:"Greenvelvetreclaimingtheconcrete.Nature'sslow,softconquestoverthehardedgesofourcity.",
-fullText:"Greenvelvetreclaimingtheconcrete.Nature'sslow,softconquestoverthehardedgesofourcity.Itstartsinthecracks,theforgottencornerswhereraingathers.Itdoesn'taskforpermission.\n\nTheyscrubitaway,powerwashthehistory,butitalwayscomesback.Softer,quieter,persistent.Iwanttobelikethemoss.Nottheskyscraperthatscrapesthecloudsanddemandsattention,butthequietgreenthatoutlaststhestone.",
-imageUrl:"https://picsum.photos/seed/moss/400/400",
-featured:true
-},
-{
-id:'f4',
-title:"TheGlassHouse",
-author:"TariqS.,18",
-snippet:"Transparentwalls,butnobodylooksinside.Weliveinclearview,yetunseen.",
-fullText:"Transparentwalls,butnobodylooksinside.Weliveinclearview,yetunseen.Ipressmyhandagainsttheglass,leavingaghostofaprint.Theworldoutsideisdistortedbythethicknessofthebarrier.Theysayhonestyistransparency,butIfeellikeI'mjustondisplayinamuseumwherethevisitorsareblind.",
-imageUrl:"https://picsum.photos/seed/glass/400/400",
-featured:true
-},
-{
-id:'f5',
-title:"RootsinConcrete",
-author:"ElenaR.,16",
-snippet:"Howdowegrowwherenothingismeanttothrive?Astudyinstubbornsurvival.",
-fullText:"Howdowegrowwherenothingismeanttothrive?Astudyinstubbornsurvival.Mycityisgray,butmydreamsareaviolentshadeofgreen.Ifoundadandelioncrackingthesidewalktoday.Itdidn'taskforwater.Itdidn'taskforpermission.Itjustpushed.That'swhatI'mdoing.JustpushingagainsttheweightofitalluntilIbreakthrough.",
-imageUrl:"https://picsum.photos/seed/roots/400/400",
-featured:true
-}
-];
-
-constALL_SUBMISSIONS=[
-...FEATURED_SUBMISSIONS,
-{
-id:'a1',
-title:"MidnightTrain",
-author:"LeoP.,18",
-snippet:"Rhythmontherails,cuttingthroughthedarklikeaneedlethroughvelvet.",
-fullText:"Rhythmontherails,cuttingthroughthedarklikeaneedlethroughvelvet.Theconductorchecksticketswitheyesthathaveseentoomanygoodbyes.Iamgoingnowhereinparticular,justaway.Thelightsofpassingtownsblurintostreaksofamberandwhite,likestarsstretchingintohyperspace.\n\nWhoarethepeopleinthosehouses?Dotheylookatthetrainandwonderwhoisleaving?Iamnotrunningaway,Itellmyself.Iamsimplymovingatthespeedofthought.",
-},
-{
-id:'a2',
-title:"CoffeeStain",
-author:"MiaT.,15",
-snippet:"Abrownringonthetable,amemoryofaconversationthatwentcold.",
-fullText:"Abrownringonthetable,amemoryofaconversationthatwentcold.Wesatthereforhours,dissectingtheuniverseuntilthewaiterturnedthechairsupsidedown.Yousaidtheuniverseisexpanding.Isaidmypatienceisshrinking.\n\nThecoffeestainlookslikeamoon.Aperfectcircleofimperfection.Ihaven'twipeditawayyet.Itprovesyouwerehere.Itproveswespoke.Itprovesthatsomething,howeversmall,wasleftbehind.",
-},
-{
-id:'a3',
-title:"TheOldLibrary",
-author:"SamR.,17",
-snippet:"Dustmotesdancinginshaftsofgoldenlight,smellingofvanillaanddecay.",
-fullText:"Dustmotesdancinginshaftsofgoldenlight,smellingofvanillaanddecay.EveryspineisadoorwaytoaplaceIhaven'tbeen.Irunmyfingersalongtheleather,feelingthetextureofstorieswaitingtobeexhaled.Silencehereisn'tempty;it'sfullofpotentialnoise,heldbackbyacollectivebreath.",
-},
-{
-id:'a4',
-title:"StaticNoise",
-author:"PriyaM.,16",
-snippet:"Thetelevisionturnedtosnow,ablackandwhitewarofantsfightingfordominance.",
-fullText:"Thetelevisionturnedtosnow,ablackandwhitewarofantsfightingfordominance.Inthebackgroundnoise,Ihearpatterns.Mythoughtsfeellikethatsometimes—uncalibrated,searchingforasignal.Itwistthedial,hopingforclarity,butfindingonlythehissoftheuniverseexpanding.",
-},
-{
-id:'a5',
-title:"Winter'sBreath",
-author:"KaelenD.,18",
-snippet:"Frostpatterningthewindowpaneinfractalsofinfinitecomplexity.",
-fullText:"Frostpatterningthewindowpaneinfractalsofinfinitecomplexity.Ibreatheontheglass,meltingasmallcircleofclarityintothecoldart.Throughthehole,theworldisgrayandsharp.Thecoldisn'tmalicious;it'sjusthonest.Itstripsawaythepretenseofwarmthandshowstheskeletonofthetrees.",
-}
-];
-
-constCAROUSEL_QUOTES=[
-{text:"Themountainsdon'tspeak,theyonlylisten.",author:"ElaraV.,17",id:"f1"},
-{text:"Foldingfragilewishesintowings.",author:"JonasM.,19",id:"f2"},
-{text:"Nature'sslow,softconquestoverthehardedges.",author:"SarahK.,16",id:"f3"},
-{text:"Rhythmontherails,cuttingthroughthedark.",author:"LeoP.,18",id:"a1"},
-{text:"Aperfectcircleofimperfection.",author:"MiaT.,15",id:"a2"}
-];
-
-constGALLERY_ITEMS=[
-{id:'g1',imageUrl:"https://picsum.photos/seed/art1/600/400",caption:"StructureinChaos",credit:"PhotobyA.Larsen"},
-{id:'g2',imageUrl:"https://picsum.photos/seed/art2/600/600",caption:"MorningFog",credit:"ArtbyK.Jensen"},
-{id:'g3',imageUrl:"https://picsum.photos/seed/art3/400/600",caption:"Solitude",credit:"PhotobyM.Nielsen"},
-{id:'g4',imageUrl:"https://picsum.photos/seed/art4/600/400",caption:"VibrantYouth",credit:"IllustrationbyS.Berg"},
-{id:'g5',imageUrl:"https://picsum.photos/seed/art5/600/400",caption:"UrbanCanvas",credit:"PhotobyJ.Doe"},
-{id:'g6',imageUrl:"https://picsum.photos/seed/art6/400/600",caption:"Reflections",credit:"ArtbyL.Smith"},
-];
-
-constTEAM_MEMBERS=[
-{
-id:'t1',
-name:"AstridLindholm",
-role:"Editor-in-Chief",
-bio:"Astridspent15yearsinpublishingbeforerealizingthemosthonestwritingwasn'tcomingfromestablishedauthors.Shehelpsyoufindthestoryyou'reactuallytryingtotell,nottheoneyouthinkyoushouldwrite.",
-imageUrl:"https://picsum.photos/seed/astrid/200/200"
-},
-{
-id:'t2',
-name:"BjornIversen",
-role:"SeniorMentor",
-bio:"Bjornisaneducatorwhotreatswriter'sblocklikeapuzzle,notafailure.Hebelieveseverymistakeisjustadraftwaitingforasecondchance.",
-imageUrl:"https://picsum.photos/seed/bjorn/200/200"
-},
-{
-id:'t3',
-name:"AdityaBanerjee",
-role:"ConsultingEditor",
-bio:"Adityareadseverythingwithanopenheart.Hemanagesourfeedbackloop,ensuringeveryyoungwriterfeelsheardandvalidated.",
-imageUrl:"https://picsum.photos/seed/clara/200/200"
-}
-];
-
-//NewCreativePromptsData-UpdatedSeason
-constCURRENT_PROMPT={
-season:"WinterChallenge2025",
-theme:"TheSpaceBetween",
-description:"Weoftenwriteaboutbeginningsandendings.Thefirsthello,thelastgoodbye.Butlifemostlyhappensinthemiddle.Thewaitingroom.Thesilenceafteraquestion.Thetrainridebetweentwocities.",
-challenge:"Writeapiece(under500words)orcreateartthatexploresamomentoftransition.Whathappensinthegap?",
-note:"Selectedresponseswillbefeaturedinournext'FeaturedSubmissions'rotation."
-};
-
-//Updatedhumantone
-constABOUT_TEXT=`YoungInkexistsbecausewerememberwhatit'sliketohavealottosayandnowheretoputit.Wearen'tlookingforperfection;we'relookingforhonesty.Ourgoalistocreateadigitalmuseumofgrowingup—curatedwithkindness,readwithempathy,andtreatedwithrespect.`;
-
-//UpdatedPrivacy&SafetyText
-constPRIVACY_POLICY="Wetreatyourdatalikewetreatourown.Namesandemailsareusedonlytotalktoyouaboutyourwork.Wedon'tselldata,andwedon'tshareit.";
-constGDPR_NOTICE="Youownyourdata.UnderGDPR,youcanasktoseewhatwehave,fixit,ordeleteitwheneveryouwant.Justemailus.";
-constCOOKIE_NOTICE="Weuseafewsmallcookiestomakesurethesitedoesn'tcrash.Wedon'tusecreepytrackingcookieswithoutaskingyoufirst.";
-constCOPYRIGHT_NOTICE="It'syourwork.Period.YoungInkclaimszeroownershipoveryoursubmissions.Youretainallrights.";
-constDISCLAIMER_TEXT="Bysubmitting,youpromisetheworkisyours.Wecan'tcatcheverycopycat,sowerelyonyourintegrity.YoungInkisn'tliableifsomeoneelsemisusescontentfoundhere,thoughwedoourbesttostopit.";
-
-/**
-*COMPONENTS
-*/
-
-//SectionWrapper
-constSection=({id,className="",children})=>{
-return(
-<sectionid={id}className={`py-16md:py-24px-4sm:px-8md:px-12lg:px-24max-w-7xlmx-auto${className}`}>
-{children}
-</section>
-);
-};
-
-//ScrollRevealAnimationComponent
-constScrollReveal=({children,className=""})=>{
-const[isVisible,setIsVisible]=React.useState(false);
-constref=React.useRef(null);
-
-React.useEffect(()=>{
-constobserver=newIntersectionObserver(
-([entry])=>{
-if(entry.isIntersecting){
-setIsVisible(true);
-observer.unobserve(entry.target);
-}
-},
-{
-threshold:0.1,
-rootMargin:"0px0px-50px0px",
-}
-);
-
-if(ref.current){
-observer.observe(ref.current);
-}
-
-return()=>{
-if(ref.current){
-observer.unobserve(ref.current);
-}
-};
-},[]);
-
-return(
-<div
-ref={ref}
-className={`transition-allduration-1000ease-outtransform${
-isVisible?"opacity-100translate-y-0":"opacity-0translate-y-16"
-}${className}`}
->
-{children}
-</div>
-);
-};
-
-//Navbar
-constNavbar=()=>{
-const[isOpen,setIsOpen]=React.useState(false);
-const[scrolled,setScrolled]=React.useState(false);
-
-React.useEffect(()=>{
-consthandleScroll=()=>{
-setScrolled(window.scrollY>50);
-};
-window.addEventListener('scroll',handleScroll);
-return()=>window.removeEventListener('scroll',handleScroll);
-},[]);
-
-constnavLinks=[
-{name:'Home',href:'#home'},
-{name:'Submissions',href:'#submissions'},
-{name:'TheSpark',href:'#spark'},
-{name:'Gallery',href:'#gallery'},
-{name:'Team',href:'#team'},
-{name:'Submit',href:'#submit'},
-{name:'About',href:'#about'},
-{name:'Privacy&Safety',href:'#legal'},
-];
-
-return(
-<header
-className={`fixedtop-0left-0right-0z-50transition-allduration-300${
-scrolled?'bg-white/95backdrop-blur-smshadow-smpy-3':'bg-transparentpy-5'
-}`}
->
-<divclassName="max-w-7xlmx-autopx-4sm:px-8flexjustify-betweenitems-center">
-<ahref="#home"className="flexitems-centergap-2group">
-<FeatherIconclassName="text-verdigrisw-6h-6group-hover:rotate-12transition-transform"/>
-<spanclassName="font-seriffont-boldtext-2xltracking-tighttext-charcoal">{SITE_NAME}</span>
-</a>
-
-<navclassName="hiddenmd:flexgap-8items-center">
-{navLinks.map((link)=>{
-constisSpark=link.name==='TheSpark';
-return(
-<a
-key={link.name}
-href={link.href}
-className={isSpark
-?"text-smpx-4py-2bg-tuscantext-charcoalfont-boldrounded-fullhover:bg-tuscan/80shadow-smtransformhover:-translate-y-0.5transition-allduration-300"
-:"text-smfont-mediumtext-charcoal/80hover:text-verdigrishover:underlinedecoration-2underline-offset-4transition-all"
-}
->
-{link.name}
-</a>
-);
-})}
-</nav>
-
-<button
-className="md:hiddentext-charcoalfocus:outline-none"
-onClick={()=>setIsOpen(!isOpen)}
-aria-label="Togglemenu"
->
-{isOpen?<XIconsize={24}/>:<MenuIconsize={24}/>}
-</button>
-</div>
-
-{isOpen&&(
-<navclassName="md:hiddenbg-whiteborder-tborder-gray-100absolutew-fullshadow-lg">
-<divclassName="flexflex-colpy-4px-6gap-4">
-{navLinks.map((link)=>(
-<a
-key={link.name}
-href={link.href}
-className={`text-basefont-mediumpy-2border-bborder-gray-50last:border-0${
-link.name==='TheSpark'
-?'text-charcoalbg-tuscan/20pl-2rounded-r-lgborder-l-4border-tuscan'
-:'text-charcoalhover:text-verdigris'
-}`}
-onClick={()=>setIsOpen(false)}
->
-{link.name}
-</a>
-))}
-</div>
-</nav>
-)}
-</header>
-);
-};
-
-//Hero
-constHero=()=>{
-return(
-<Sectionid="home"className="min-h-[80vh]flexflex-colmd:flex-rowitems-centerjustify-centerpt-32pb-16">
-<divclassName="md:w-1/2space-y-6animate-fade-in-up">
-<h1className="font-seriftext-5xlmd:text-6xllg:text-7xlfont-boldtext-charcoalleading-tight">
-{HERO_TAGLINE}
-</h1>
-<pclassName="text-lgmd:text-xltext-charcoal/70leading-relaxedmax-w-lg">
-{HERO_SUBTEXT}
-</p>
-<divclassName="pt-4">
-<a
-href="#submit"
-className="inline-blockpx-8py-3bg-charcoaltext-whitefont-mediumrounded-fullhover:bg-verdigristransition-colorsduration-300shadow-mdhover:shadow-lg"
->
-SubmitPoetry,Prose&Art
-</a>
-</div>
-</div>
-
-<divclassName="md:w-1/2mt-12md:mt-0relativeflexjustify-centermd:justify-end">
-<divclassName="relativew-72h-72md:w-96md:h-96">
-<divclassName="absolutetop-0right-0w-fullh-fullbg-tuscan/20rounded-fullblur-3xltransformtranslate-x-4-translate-y-4"></div>
-<divclassName="absolutebottom-0left-0w-3/4h-3/4bg-verdigris/20rounded-fullblur-3xltransform-translate-x-4translate-y-4"></div>
-<img
-src="https://picsum.photos/seed/nordic/600/600"
-alt="Abstractcreativity"
-className="relativez-10w-fullh-fullobject-coverrounded-2xlshadow-xlrotate-3hover:rotate-0transition-allduration-700ease-out"
-/>
-</div>
-</div>
-</Section>
-);
-};
-
-//FeaturedSubmissionswithLoadMore
-constFeaturedSubmissions=()=>{
-const[expandedId,setExpandedId]=React.useState(null);
-const[visibleCount,setVisibleCount]=React.useState(3);
-
-consttoggleExpand=(id)=>{
-setExpandedId(expandedId===id?null:id);
-};
-
-consthandleLoadMore=()=>{
-if(visibleCount>=FEATURED_SUBMISSIONS.length){
-setVisibleCount(3);
-}else{
-setVisibleCount(prev=>prev+3);
-}
-};
-
-return(
-<Sectionid="submissions"className="bg-white">
-<divclassName="mb-12">
-<h2className="font-seriftext-3xlmd:text-4xltext-charcoalmb-4">FeaturedSubmissions</h2>
-<divclassName="h-1w-20bg-sandyrounded-full"></div>
-</div>
-
-<divclassName="space-y-12">
-{FEATURED_SUBMISSIONS.slice(0,visibleCount).map((sub,index)=>(
-<article
-key={sub.id}
-className={`flexflex-colmd:flex-rowgap-8items-startgroupp-6rounded-2xltransition-allduration-300hover:bg-offwhite${index%2!==0?'md:flex-row-reverse':''}`}
->
-{sub.imageUrl&&(
-<divclassName="w-fullmd:w-1/3shrink-0">
-<img
-src={sub.imageUrl}
-alt={`Illustrationfor${sub.title}`}
-className="w-fullh-64object-coverrounded-xlshadow-smgroup-hover:shadow-mdtransition-shadow"
-/>
-</div>
-)}
-<divclassName="w-fullmd:w-2/3space-y-4">
-<h3className="font-seriftext-2xlfont-semiboldtext-charcoalgroup-hover:text-verdigristransition-colors">
-{sub.title}
-</h3>
-<pclassName="text-smfont-boldtext-sandyuppercasetracking-wide">{sub.author}</p>
-
-<divclassName="proseprose-charcoalmax-w-none">
-{expandedId===sub.id?(
-<divclassName="whitespace-pre-linetext-charcoal/80leading-relaxedanimate-fade-inborder-l-4border-tuscanpl-4">
-{sub.fullText||sub.snippet}
-</div>
-):(
-<pclassName="text-charcoal/80leading-relaxeditalicborder-l-4border-tuscanpl-4">
-"{sub.snippet}"
-</p>
-)}
-</div>
-
-<button
-onClick={()=>toggleExpand(sub.id)}
-className="flexitems-centergap-1text-smfont-semiboldtext-verdigrishover:text-charcoaltransition-colorsmt-2"
->
-{expandedId===sub.id?(
-<>ReadLess<ChevronUpIconsize={16}/></>
-):(
-<>ReadMore<ChevronDownIconsize={16}/></>
-)}
-</button>
-</div>
-</article>
-))}
-</div>
-
-{FEATURED_SUBMISSIONS.length>3&&(
-<divclassName="text-centermt-12">
-<button
-onClick={handleLoadMore}
-className="px-6py-3border-2border-charcoaltext-charcoalfont-boldrounded-fullhover:bg-charcoalhover:text-whitetransition-allduration-300"
->
-{visibleCount>=FEATURED_SUBMISSIONS.length?'ShowLess':'LoadMore'}
-</button>
-</div>
-)}
-</Section>
-);
-};
-
-//CreativeSpark(WritingPrompts)-LabelUpdate
-constCreativeSpark=()=>{
-return(
-<Sectionid="spark"className="max-w-5xlmx-auto">
-<divclassName="bg-offwhiteborder-2border-tuscan/30rounded-3xlp-8md:p-12relativeoverflow-hidden">
-{/*Decorativebackgroundelements*/}
-<divclassName="absolutetop-0right-0w-40h-40bg-tuscan/10rounded-fullblur-3xl-translate-y-1/2translate-x-1/2"></div>
-<divclassName="absolutebottom-0left-0w-40h-40bg-verdigris/10rounded-fullblur-3xltranslate-y-1/2-translate-x-1/2"></div>
-
-<divclassName="relativez-10flexflex-colmd:flex-rowgap-8items-start">
-<divclassName="md:w-1/3space-y-4">
-<divclassName="inline-flexitems-centergap-2px-4py-1.5bg-tuscantext-charcoaltext-xsfont-bolduppercasetracking-widestrounded-full">
-<SparklesIconsize={14}/>
-<span>TheSpark</span>
-</div>
-<h2className="font-seriftext-3xlfont-boldtext-charcoal">
-{CURRENT_PROMPT.season}
-</h2>
-<divclassName="w-12h-1bg-charcoalrounded-full"></div>
-</div>
-
-<divclassName="md:w-2/3space-y-6">
-<div>
-<h3className="text-xlfont-boldtext-charcoalmb-2">Theme:"{CURRENT_PROMPT.theme}"</h3>
-<pclassName="text-charcoal/80leading-relaxeditalic">
-{CURRENT_PROMPT.description}
-</p>
-</div>
-
-<divclassName="bg-whitep-6rounded-xlborderborder-dashedborder-charcoal/20shadow-sm">
-<h4className="flexitems-centergap-2font-boldtext-verdigrismb-2">
-<PenToolIconsize={18}/>
-TheChallenge
-</h4>
-<pclassName="text-charcoalleading-relaxed">
-{CURRENT_PROMPT.challenge}
-</p>
-<pclassName="text-xstext-charcoal/50mt-4">
-*{CURRENT_PROMPT.note}
-</p>
-</div>
-
-<ahref="#submit"className="inline-blocktext-smfont-boldtext-charcoalborder-b-2border-tuscanhover:bg-tuscan/20transition-colorspt-2">
-AcceptChallenge&Submit&rarr;
-</a>
-</div>
-</div>
-</div>
-</Section>
-);
-};
-
-//FullSubmissions-IncludesCarouselandGridwithLoadMore
-constTextCarousel=({onQuoteClick})=>{
-const[currentIndex,setCurrentIndex]=React.useState(0);
-const[isPaused,setIsPaused]=React.useState(false);
-
-React.useEffect(()=>{
-if(isPaused)return;
-constinterval=setInterval(()=>{
-setCurrentIndex((prev)=>(prev+1)%CAROUSEL_QUOTES.length);
-},5000);
-return()=>clearInterval(interval);
-},[isPaused]);
-
-constnextSlide=()=>setCurrentIndex((prev)=>(prev+1)%CAROUSEL_QUOTES.length);
-constprevSlide=()=>setCurrentIndex((prev)=>(prev-1+CAROUSEL_QUOTES.length)%CAROUSEL_QUOTES.length);
-constcurrentQuote=CAROUSEL_QUOTES[currentIndex];
-
-return(
-<div
-className="bg-charcoaltext-whiterounded-2xlp-8md:p-12mb-16relativeoverflow-hiddenshadow-lg"
-onMouseEnter={()=>setIsPaused(true)}
-onMouseLeave={()=>setIsPaused(false)}
->
-<divclassName="absolutetop-0right-0w-64h-64bg-tuscan/10rounded-fullblur-3xltransformtranslate-x-1/2-translate-y-1/2"></div>
-
-<div
-className="relativez-10text-centermax-w-3xlmx-automin-h-[150px]flexflex-coljustify-centercursor-pointergroup"
-onClick={()=>onQuoteClick(currentQuote.id)}
-title="Clicktoreadfullpiece"
->
-<pclassName="font-seriftext-xlmd:text-3xlitalicleading-relaxedtransition-opacityduration-500group-hover:text-tuscan">
-"{currentQuote.text}"
-</p>
-<pclassName="mt-4text-smmd:text-basefont-bolduppercasetracking-widesttext-white/70group-hover:text-whitetransition-colors">
-—{currentQuote.author}
-</p>
-</div>
-
-<divclassName="flexjustify-centergap-2mt-8z-10relative">
-<buttononClick={prevSlide}className="p-2hover:text-tuscantransition-colors"aria-label="Previousquote"><ChevronLeftIcon/></button>
-{CAROUSEL_QUOTES.map((_,idx)=>(
-<button
-key={idx}
-onClick={()=>setCurrentIndex(idx)}
-className={`w-2h-2rounded-fulltransition-all${idx===currentIndex?'bg-tuscanw-6':'bg-white/30'}`}
-aria-label={`Gotoquote${idx+1}`}
-/>
-))}
-<buttononClick={nextSlide}className="p-2hover:text-tuscantransition-colors"aria-label="Nextquote"><ChevronRightIcon/></button>
-</div>
-</div>
-);
-}
-
-constFullSubmissions=()=>{
-const[expandedId,setExpandedId]=React.useState(null);
-const[visibleCount,setVisibleCount]=React.useState(3);
-
-consttoggleExpand=(id)=>{
-setExpandedId(expandedId===id?null:id);
-};
-
-consthandleLoadMore=()=>{
-if(visibleCount>=ALL_SUBMISSIONS.length){
-setVisibleCount(3);//Collapsebacktoinitial
-}else{
-setVisibleCount(prev=>prev+3);
-}
-};
-
-consthandleQuoteClick=(id)=>{
-//1.Expandtheitem
-setExpandedId(id);
-
-//2.Ensureit'svisiblebyfindingitsindexandupdatingvisibleCountifneeded
-constindex=ALL_SUBMISSIONS.findIndex(s=>s.id===id);
-if(index!==-1&&index>=visibleCount){
-//Ensureweshowenoughitemstoincludethisone
-setVisibleCount(Math.ceil((index+1)/3)*3);
-}
-
-//3.Scrolltotheelementafterabriefdelaytoallowrendering
-setTimeout(()=>{
-constelement=document.getElementById(`submission-${id}`);
-if(element){
-element.scrollIntoView({behavior:'smooth',block:'center'});
-}
-},100);
-};
-
-return(
-<Sectionid="all-submissions"className="">
-<divclassName="mb-10">
-<h3className="font-seriftext-2xlmd:text-3xltext-charcoalmb-2">AllSubmissions</h3>
-<pclassName="text-charcoal/60mb-8">Acollectionofvoicesfromourcommunity.</p>
-
-<TextCarouselonQuoteClick={handleQuoteClick}/>
-</div>
-
-<divid="all-submissions-grid"className="gridgrid-cols-1md:grid-cols-2gap-6">
-{ALL_SUBMISSIONS.slice(0,visibleCount).map((sub)=>(
-<article
-key={sub.id}
-id={`submission-${sub.id}`}
-className={`bg-whitep-6rounded-xlshadow-smborderborder-gray-100hover:border-verdigris/30transition-allduration-300animate-fade-in${expandedId===sub.id?'row-span-2':''}`}
->
-<divclassName="flexjustify-betweenitems-startmb-3">
-<div>
-<h4className="font-seriftext-xlfont-mediumtext-charcoal">{sub.title}</h4>
-<pclassName="text-smtext-sandyfont-mediummt-1">{sub.author}</p>
-</div>
-</div>
-
-<divclassName="text-charcoal/80leading-relaxedmb-4">
-{expandedId===sub.id?(
-<divclassName="whitespace-pre-lineanimate-fade-in">
-{sub.fullText||sub.snippet}
-</div>
-):(
-<pclassName="line-clamp-3opacity-80">{sub.snippet}</p>
-)}
-</div>
-
-<button
-onClick={()=>toggleExpand(sub.id)}
-className="flexitems-centergap-1text-smfont-semiboldtext-verdigrishover:text-charcoaltransition-colors"
->
-{expandedId===sub.id?(
-<>ReadLess<ChevronUpIconsize={16}/></>
-):(
-<>ReadMore<ChevronDownIconsize={16}/></>
-)}
-</button>
-</article>
-))}
-</div>
-
-{ALL_SUBMISSIONS.length>3&&(
-<divclassName="text-centermt-12">
-<button
-onClick={handleLoadMore}
-className="px-6py-3border-2border-charcoaltext-charcoalfont-boldrounded-fullhover:bg-charcoalhover:text-whitetransition-allduration-300"
->
-{visibleCount>=ALL_SUBMISSIONS.length?'ShowLess':'LoadMore'}
-</button>
-</div>
-)}
-</Section>
-);
-};
-
-//GallerywithLoadMore
-constGallery=()=>{
-const[visibleCount,setVisibleCount]=React.useState(4);
-
-consthandleLoadMore=()=>{
-if(visibleCount>=GALLERY_ITEMS.length){
-setVisibleCount(4);
-}else{
-setVisibleCount(prev=>prev+4);
-}
-};
-
-return(
-<Sectionid="gallery"className="bg-white">
-<divclassName="mb-12text-centermd:text-left">
-<h2className="font-seriftext-3xlmd:text-4xltext-charcoalmb-4">VisualVoices</h2>
-<divclassName="h-1w-20bg-burntrounded-fullmx-automd:mx-0"></div>
-</div>
-
-<divclassName="columns-1md:columns-2gap-6space-y-6">
-{GALLERY_ITEMS.slice(0,visibleCount).map((item)=>(
-<divkey={item.id}className="break-inside-avoidgrouprelativeoverflow-hiddenrounded-2xlanimate-fade-in">
-<img
-src={item.imageUrl}
-alt={item.caption}
-className="w-fullh-autoobject-covertransition-transformduration-700group-hover:scale-105"
-/>
-<divclassName="absoluteinset-0bg-gradient-to-tfrom-charcoal/80via-transparentto-transparentopacity-0group-hover:opacity-100transition-opacityduration-300flexflex-coljustify-endp-6">
-<pclassName="text-whitefont-seriftext-lg">{item.caption}</p>
-{item.credit&&<pclassName="text-white/80text-xsmt-1uppercasetracking-wider">{item.credit}</p>}
-</div>
-</div>
-))}
-</div>
-
-{GALLERY_ITEMS.length>4&&(
-<divclassName="text-centermt-12">
-<button
-onClick={handleLoadMore}
-className="px-6py-3border-2border-charcoaltext-charcoalfont-boldrounded-fullhover:bg-charcoalhover:text-whitetransition-allduration-300"
->
-{visibleCount>=GALLERY_ITEMS.length?'ShowLess':'LoadMoreArt'}
-</button>
-</div>
-)}
-</Section>
-);
-};
-
-//Team
-constTeam=()=>{
-return(
-<Sectionid="team">
-<divclassName="mb-12text-center">
-<h2className="font-seriftext-3xlmd:text-4xltext-charcoalmb-4">OurCurators</h2>
-<pclassName="max-w-2xlmx-autotext-charcoal/70">
-Dedicatedtonurturingthenextgenerationofstorytellers.
-</p>
-</div>
-
-<divclassName="gridgrid-cols-1md:grid-cols-3gap-8">
-{TEAM_MEMBERS.map((member)=>(
-<articlekey={member.id}className="bg-whitep-8rounded-2xlshadow-smborderborder-gray-100text-centerhover:-translate-y-1transition-transformduration-300">
-<divclassName="w-32h-32mx-automb-6relative">
-<divclassName="absoluteinset-0bg-sandyrounded-fulltransformrotate-6opacity-20"></div>
-<img
-src={member.imageUrl}
-alt={member.name}
-className="w-fullh-fullobject-coverrounded-fullrelativez-10"
-/>
-</div>
-<h3className="font-seriftext-xlfont-boldtext-charcoalmb-1">{member.name}</h3>
-<pclassName="text-verdigrisfont-mediumtext-smuppercasetracking-widemb-4">{member.role}</p>
-<pclassName="text-charcoal/70text-smleading-relaxed">{member.bio}</p>
-</article>
-))}
-</div>
-</Section>
-);
-};
-
-//SubmissionForm
-constMAX_WORDS=2000;
-constSubmissionForm=()=>{
-const[formData,setFormData]=React.useState({
-name:'',
-address:'',
-school:'',
-age:'',
-gender:'prefer-not-to-say',
-parentName:'',
-email:'',
-phone:'',
-textSubmission:'',
-confirmed:false
-});
-
-const[wordCount,setWordCount]=React.useState(0);
-const[charCount,setCharCount]=React.useState(0);
-const[isSubmitting,setIsSubmitting]=React.useState(false);
-const[submitStatus,setSubmitStatus]=React.useState('idle');
-
-consthandleTextChange=(e)=>{
-consttext=e.target.value;
-constwords=text.trim().split(/\s+/).filter(w=>w.length>0).length;
-
-setWordCount(words);
-setCharCount(text.length);
-setFormData(prev=>({...prev,textSubmission:text}));
-};
-
-consthandleChange=(e)=>{
-const{name,value}=e.target;
-setFormData(prev=>({...prev,[name]:value}));
-};
-
-consthandleCheckbox=(e)=>{
-setFormData(prev=>({...prev,confirmed:e.target.checked}));
-};
-
-consthandleSubmit=async(e)=>{
-e.preventDefault();
-if(wordCount>MAX_WORDS)return;
-
-setIsSubmitting(true);
-
-//Note:Inarealhostedstaticsite,we'duseFormspreeorsimilarhere.
-//Sincewearesimulating,wejustshowsuccess.
-setTimeout(()=>{
-setIsSubmitting(false);
-setSubmitStatus('success');
-setFormData({
-name:'',address:'',school:'',age:'',gender:'prefer-not-to-say',
-parentName:'',email:'',phone:'',textSubmission:'',confirmed:false
-});
-setWordCount(0);
-setCharCount(0);
-},1500);
-};
-
-return(
-<Sectionid="submit"className="bg-white">
-<divclassName="max-w-3xlmx-auto">
-<divclassName="mb-10text-center">
-<h2className="font-seriftext-3xlmd:text-4xltext-charcoalmb-4">SubmitProse,Poetry&VisualArt</h2>
-<pclassName="text-charcoal/70">
-Shareyourstoryorvisionwiththeworld.Wewelcomeauthenticvoicesandhand-craftedart.
-PleasenotethatwedonotacceptAI-generatedcontent.
-</p>
-</div>
-
-{submitStatus==='success'?(
-<divclassName="bg-verdigris/10borderborder-verdigristext-charcoalp-8rounded-2xltext-centerspace-y-4animate-fade-in">
-<CheckCircleIconclassName="w-16h-16text-verdigrismx-auto"/>
-<h3className="font-seriftext-2xlfont-bold">ThankYou!</h3>
-<p>Yoursubmissionhasbeenreceived.Aconfirmationemailhasbeensenttoyourinbox.</p>
-<button
-onClick={()=>setSubmitStatus('idle')}
-className="mt-4text-smfont-boldtext-verdigrishover:underline"
->
-Submitanotherwork
-</button>
-</div>
-):(
-<form
-onSubmit={handleSubmit}
-className="space-y-6"
-name="youngink-submit"
-data-netlify="true"
-method="POST"
-encType="multipart/form-data"
->
-<inputtype="hidden"name="form-name"value="youngink-submit"/>
-
-<divclassName="gridgrid-cols-1md:grid-cols-2gap-6">
-<divclassName="space-y-2">
-<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">FullName</label>
-<inputrequiredtype="text"name="name"value={formData.name}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="JaneDoe"/>
-</div>
-<divclassName="space-y-2">
-<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Age</label>
-<inputrequiredtype="number"min="0"name="age"value={formData.age}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="17"/>
-</div>
-</div>
-
-<divclassName="space-y-2">
-<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Address</label>
-<textareaname="address"rows={2}value={formData.address}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="Street,City,PostalCode"/>
-</div>
-
-<divclassName="gridgrid-cols-1md:grid-cols-2gap-6">
-<divclassName="space-y-2">
-<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">School</label>
-<inputtype="text"name="school"value={formData.school}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="HighSchoolName"/>
-</div>
-<divclassName="space-y-2">
-<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Gender</label>
-<selectname="gender"value={formData.gender}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all">
-<optionvalue="female">Female</option>
-<optionvalue="male">Male</option>
-<optionvalue="other">Other</option>
-<optionvalue="prefer-not-to-say">Prefernottosay</option>
-</select>
-</div>
-</div>
-
-<divclassName="space-y-2">
-<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Parent/GuardianName</label>
-<inputtype="text"name="parentName"value={formData.parentName}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="Ifunder18"/>
-</div>
-
-<divclassName="gridgrid-cols-1md:grid-cols-2gap-6">
-<divclassName="space-y-2">
-<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Email</label>
-<inputrequiredtype="email"name="email"value={formData.email}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="you@example.com"/>
-<pclassName="text-xstext-charcoal/50">Wewillsendaconfirmationtothisemail.</p>
-</div>
-<divclassName="space-y-2">
-<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">Phone</label>
-<inputtype="tel"name="phone"value={formData.phone}onChange={handleChange}className="w-fullp-3bg-offwhiteborderborder-gray-200rounded-lgfocus:border-verdigrisfocus:ring-1focus:ring-verdigrisoutline-nonetransition-all"placeholder="+1234567890"/>
-</div>
-</div>
-
-<divclassName="space-y-2bg-gray-50p-4rounded-lgborderborder-dashedborder-gray-300">
-<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wideflexitems-centergap-2">
-<UploadIconsize={16}/>AttachVisualArtorPhotography
-</label>
-<inputtype="file"name="attachment"accept="image/*,.pdf"className="w-fullp-2bg-whiteborderborder-gray-200rounded-lgtext-sm"/>
-<pclassName="text-xstext-charcoal/50">Ifsubmittingart,pleaseattachhigh-qualityfileshere(JPG,PNG,PDF).Maxfilesize:10MB.Pleaseensureimagesareclearandunpixelated.</p>
-</div>
-
-<divclassName="space-y-2">
-<divclassName="flexjustify-betweenitems-baseline">
-<labelclassName="text-smfont-boldtext-charcoal/80uppercasetracking-wide">YourTextSubmission(Prose/Poetry)</label>
-<spanclassName={`text-xsfont-bold${wordCount>MAX_WORDS?'text-red-500':'text-charcoal/50'}`}>
-{wordCount}/{MAX_WORDS}words|{charCount}chars
-</span>
-</div>
-<textarea
-name="textSubmission"
-rows={12}
-value={formData.textSubmission}
-onChange={handleTextChange}
-className={`w-fullp-4bg-offwhiteborderrounded-lgfocus:ring-1outline-nonetransition-allresize-y${wordCount>MAX_WORDS?'border-red-500focus:border-red-500focus:ring-red-500':'border-gray-200focus:border-verdigrisfocus:ring-verdigris'}`}
-placeholder="Pasteyourpoetryorprosehere..."
-/>
-{wordCount>MAX_WORDS&&(
-<pclassName="text-smtext-red-500flexitems-centergap-1">
-<AlertCircleIconsize={16}/>Contentexceedsthe2000wordlimit.Pleaseshortenyourtext.
-</p>
-)}
-</div>
-
-<divclassName="pt-4bg-offwhite/50p-4rounded-lgborderborder-gray-100">
-<labelclassName="flexitems-startgap-3cursor-pointergroup">
-<input
-type="checkbox"
-required
-checked={formData.confirmed}
-onChange={handleCheckbox}
-className="mt-1w-5h-5shrink-0accent-verdigriscursor-pointer"
-/>
-<spanclassName="text-smtext-charcoal/80group-hover:text-charcoaltransition-colors">
-Iconfirmthisworkisoriginaland<strong>hasnotbeencreatedusingAI</strong>.Iunderstandthatthedecisiontoaddthesubmittedcontentdependssolelyontheeditorialcommitteeandisfinalandbinding.
-</span>
-</label>
-</div>
-
-<divclassName="pt-4text-center">
-<button
-type="submit"
-disabled={!formData.confirmed||wordCount>MAX_WORDS||isSubmitting}
-className="inline-flexitems-centergap-2px-8py-4bg-charcoaltext-whitefont-boldrounded-fullhover:bg-verdigrisdisabled:bg-gray-300disabled:cursor-not-allowedtransition-allduration-300shadow-lghover:shadow-xltransformhover:-translate-y-1"
->
-{isSubmitting?'Sending...':(
-<>SubmitWork<SendIconsize={18}/></>
-)}
-</button>
-<pclassName="mt-4text-xstext-charcoal/40">
-Submissionsaresentto{CONTACT_EMAIL}.
-</p>
-</div>
-</form>
-)}
-</div>
-</Section>
-);
-};
-
-//CTA-Redesignedforcleaneraesthetic
-constCTA=()=>{
-return(
-<Sectionid="cta"className="my-12">
-<divclassName="bg-tuscan/10rounded-3xloverflow-hiddenrelativeborderborder-tuscan/20px-6py-16md:px-12md:py-20text-center">
-{/*Subtledecorativecircles*/}
-<divclassName="absolutetop-0left-0w-64h-64bg-white/40rounded-fullblur-3xltransform-translate-x-1/2-translate-y-1/2"></div>
-<divclassName="absolutebottom-0right-0w-64h-64bg-tuscan/20rounded-fullblur-3xltransformtranslate-x-1/2translate-y-1/2"></div>
-
-<divclassName="relativez-10max-w-2xlmx-autospace-y-6">
-<h2className="font-seriftext-3xlmd:text-5xlfont-boldtext-charcoal">YourVoiceMatters.</h2>
-<divclassName="h-1w-16bg-tuscanmx-autorounded-full"></div>
-<pclassName="text-charcoal/80text-lgleading-relaxed">
-Joinacommunityofyoungcreators.Whetherit'sawhisperorashout,yourstorydeservestobeheardinasafe,supportivespace.
-</p>
-<divclassName="pt-8">
-<a
-href="#submit"
-className="inline-blockpx-10py-4bg-charcoaltext-whitefont-boldrounded-fullhover:bg-verdigristransition-allduration-300shadow-lghover:shadow-xltransformhover:-translate-y-1"
->
-SubmitNow
-</a>
-</div>
-</div>
-</div>
-</Section>
-);
-};
-
-//About
-constAbout=()=>{
-return(
-<Sectionid="about"className="max-w-4xlmx-auto">
-<divclassName="text-centermb-10">
-<h2className="font-seriftext-3xlmd:text-4xltext-charcoalmb-4">AboutYoungInk</h2>
-<divclassName="h-pxw-32bg-gray-200mx-auto"></div>
-</div>
-
-<divclassName="proseprose-lgprose-charcoalmx-autotext-charcoal/80leading-loosetext-centermd:text-left">
-<p>{ABOUT_TEXT}</p>
-</div>
-</Section>
-);
-};
-
-//UpdatedLegalSection(Privacy&Safety)
-constLegal=()=>{
-return(
-<Sectionid="legal"className="bg-gray-50border-tborder-gray-100">
-<divclassName="gridgrid-cols-1md:grid-cols-2gap-12">
-<div>
-<h3className="font-seriftext-xlfont-boldtext-charcoalmb-4">Privacy&Safety</h3>
-<divclassName="space-y-4text-smtext-charcoal/70">
-<div>
-<strongclassName="blocktext-charcoalmb-1">PrivacyPolicy</strong>
-<p>{PRIVACY_POLICY}</p>
-</div>
-<div>
-<strongclassName="blocktext-charcoalmb-1">GDPRCompliance</strong>
-<p>{GDPR_NOTICE}</p>
-</div>
-<div>
-<strongclassName="blocktext-charcoalmb-1">CookieNotice</strong>
-<p>{COOKIE_NOTICE}</p>
-</div>
-</div>
-</div>
-
-<div>
-<h3className="font-seriftext-xlfont-boldtext-charcoalmb-4">Rights&Disclaimers</h3>
-<divclassName="space-y-4text-smtext-charcoal/70">
-<div>
-<strongclassName="blocktext-charcoalmb-1">Copyright</strong>
-<p>{COPYRIGHT_NOTICE}</p>
-</div>
-
-<divclassName="p-4borderborder-burnt/30bg-burnt/5rounded-lg">
-<strongclassName="blocktext-burntmb-1">ImportantDisclaimer</strong>
-<pclassName="italic">{DISCLAIMER_TEXT}</p>
-</div>
-
-<divclassName="pt-4border-tborder-gray-200mt-4">
-<pclassName="text-xs">
-<strong>NoteonContentProtection:</strong>Weusetechnicaldeterrents(blockingright-click,copy-paste)todiscourageunauthorizedcopying.However,pleasebeawarethatitistechnicallyimpossibletofullypreventcopyingorscreenshotsontheopenweb.
-</p>
-</div>
-</div>
-</div>
-</div>
-</Section>
-);
-};
-
-//CookieConsentComponent
-constCookieConsent=()=>{
-const[show,setShow]=React.useState(false);
-
-React.useEffect(()=>{
-constconsent=localStorage.getItem('youngink-cookie-consent');
-if(!consent){
-setTimeout(()=>setShow(true),1000);//Smalldelayforfade-ineffect
-}
-},[]);
-
-consthandleAccept=()=>{
-localStorage.setItem('youngink-cookie-consent','true');
-setShow(false);
-};
-
-consthandleDecline=()=>{
-localStorage.setItem('youngink-cookie-consent','false');
-setShow(false);
-};
-
-if(!show)returnnull;
-
-return(
-<divclassName="fixedbottom-0left-0right-0z-50p-4md:p-6animate-fade-in-up">
-<divclassName="max-w-4xlmx-autobg-charcoaltext-whiterounded-2xlp-6shadow-2xlflexflex-colmd:flex-rowitems-centerjustify-betweengap-6borderborder-white/10">
-<divclassName="space-y-2text-centermd:text-left">
-<h4className="font-seriftext-lgfont-boldtext-tuscan">Werespectyourdigitalspace.</h4>
-<pclassName="text-smtext-white/80max-w-xlleading-relaxed">
-Weusecookiestoensurethesitefunctionscorrectlyandtounderstandhowourcommunitygrows.
-Wedon'tsellyourdataoruseintrusivetracking.
-</p>
-</div>
-<divclassName="flexgap-4shrink-0">
-<button
-onClick={handleDecline}
-className="px-5py-2text-smfont-mediumtext-whiteborderborder-white/30rounded-fullhover:bg-white/10transition-colors"
->
-Decline
-</button>
-<button
-onClick={handleAccept}
-className="px-6py-2text-smfont-boldtext-charcoalbg-tuscanrounded-fullhover:bg-whitetransition-colorsshadow-md"
->
-AcceptCookies
-</button>
-</div>
-</div>
-</div>
-);
-};
-
-//Footer
-constFooter=()=>{
-return(
-<footerclassName="bg-charcoaltext-whitept-16pb-8border-tborder-white/10">
-<divclassName="max-w-7xlmx-autopx-4sm:px-8">
-<divclassName="flexflex-colmd:flex-rowjustify-betweenitems-startgap-12mb-12">
-
-<divclassName="text-centermd:text-leftmd:w-1/2">
-<h4className="font-seriftext-3xlfont-boldmb-4">{SITE_NAME}</h4>
-<pclassName="text-white/70leading-relaxedmax-w-smmx-automd:mx-0">
-Westandfirminthebeliefthatyouthcreativityisnotjustahobby,butavitalculturalforce.Everywordwrittenandeverylinedrawnisanactofcouragethatshapesourcollectivefuture.
-</p>
-</div>
-
-<divclassName="flexflex-colitems-centermd:items-endgap-6md:w-1/2">
-<divclassName="text-centermd:text-rightspace-y-1">
-<divclassName="flexitems-centerjustify-centermd:justify-endgap-2text-tuscan/90font-medium">
-<MapPinIconsize={16}/>
-<span>OperatingHubs</span>
-</div>
-<pclassName="text-white/60text-sm">Bergen,Norway•Obidos,Portugal•Thessaloniki,Greece</p>
-</div>
-
-<divclassName="flexgap-4">
-<spanclassName="text-white/40hover:text-whitetransition-colorscursor-pointer"title="ComingSoon">
-<InstagramIconsize={24}/>
-</span>
-<ahref={`mailto:${CONTACT_EMAIL}`}className="text-white/40hover:text-whitetransition-colors">
-<MailIconsize={24}/>
-</a>
-</div>
-</div>
-</div>
-
-<divclassName="border-tborder-white/10pt-8flexflex-colmd:flex-rowjustify-betweenitems-centergap-4">
-<pclassName="text-white/40text-xs">©{newDate().getFullYear()}YoungInk.Allrightsreserved.</p>
-<pclassName="text-white/40text-xs">
-Contact:<ahref={`mailto:${CONTACT_EMAIL}`}className="underlinehover:text-white">{CONTACT_EMAIL}</a>
-</p>
-</div>
-</div>
-</footer>
-);
-};
-
-//MainApp
-constApp=()=>{
-//Non-copyabledeterrents
-React.useEffect(()=>{
-consthandleContextMenu=(e)=>e.preventDefault();
-consthandleKeyDown=(e)=>{
-if((e.ctrlKey||e.metaKey)&&(e.key==='c'||e.key==='x'||e.key==='u'||e.key==='s')){
-e.preventDefault();
-}
-};
-consthandleDragStart=(e)=>e.preventDefault();
-
-document.addEventListener('contextmenu',handleContextMenu);
-document.addEventListener('keydown',handleKeyDown);
-document.addEventListener('dragstart',handleDragStart);
-
-return()=>{
-document.removeEventListener('contextmenu',handleContextMenu);
-document.removeEventListener('keydown',handleKeyDown);
-document.removeEventListener('dragstart',handleDragStart);
-};
-},[]);
-
-return(
-<divclassName="min-h-screenflexflex-colfont-sanstext-charcoalbg-offwhite">
-<Navbar/>
-
-<mainclassName="flex-grow">
-<Hero/>
-
-<ScrollReveal>
-<FeaturedSubmissions/>
-</ScrollReveal>
-
-<ScrollReveal>
-<FullSubmissions/>
-</ScrollReveal>
-
-<ScrollReveal>
-<CreativeSpark/>
-</ScrollReveal>
-
-<ScrollReveal>
-<Gallery/>
-</ScrollReveal>
-
-<ScrollReveal>
-<Team/>
-</ScrollReveal>
-
-<ScrollReveal>
-<SubmissionForm/>
-</ScrollReveal>
-
-<ScrollReveal>
-<CTA/>
-</ScrollReveal>
-
-<ScrollReveal>
-<About/>
-</ScrollReveal>
-
-<ScrollReveal>
-<Legal/>
-</ScrollReveal>
-</main>
-
-<Footer/>
-<CookieConsent/>
-</div>
-);
-};
-
-constroot=ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-<React.StrictMode>
-<App/>
-</React.StrictMode>
-);
-</script>
-</body>
-</html>
+    <script type="text/babel">
+
+      /**
+       * ICONS
+       */
+      const Icon = ({ path, size = 24, className = "" }) => (
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width={size} 
+          height={size} 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="2" 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          className={className}
+        >
+          {path}
+        </svg>
+      );
+
+      const MenuIcon = (props) => <Icon {...props} path={<><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></>} />;
+      const XIcon = (props) => <Icon {...props} path={<><path d="M18 6 6 18"/><path d="m6 6 12 12"/></>} />;
+      const FeatherIcon = (props) => <Icon {...props} path={<><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></>} />;
+      const ChevronDownIcon = (props) => <Icon {...props} path={<path d="m6 9 6 6 6-6"/>} />;
+      const ChevronUpIcon = (props) => <Icon {...props} path={<path d="m18 15-6-6-6 6"/>} />;
+      const ChevronLeftIcon = (props) => <Icon {...props} path={<path d="m15 18-6-6 6-6"/>} />;
+      const ChevronRightIcon = (props) => <Icon {...props} path={<path d="m9 18 6-6-6-6"/>} />;
+      const SendIcon = (props) => <Icon {...props} path={<><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></>} />;
+      const AlertCircleIcon = (props) => <Icon {...props} path={<><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></>} />;
+      const CheckCircleIcon = (props) => <Icon {...props} path={<><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></>} />;
+      const UploadIcon = (props) => <Icon {...props} path={<><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></>} />;
+      const InstagramIcon = (props) => <Icon {...props} path={<><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></>} />;
+      const MailIcon = (props) => <Icon {...props} path={<><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>} />;
+      const MapPinIcon = (props) => <Icon {...props} path={<><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></>} />;
+      const SparklesIcon = (props) => <Icon {...props} path={<><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M9 3v4"/><path d="M3 9h4"/></>} />;
+      const PenToolIcon = (props) => <Icon {...props} path={<><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></>} />;
+
+      /**
+       * DATA & CONFIGURATION
+       */
+      
+      const SITE_NAME = "YoungInk";
+      const CONTACT_EMAIL = "editor@youngink.eu";
+
+      const HERO_TAGLINE = "The world is loud. Your voice finds its quiet here.";
+      const HERO_SUBTEXT = "A quiet corner of the internet for the next generation of writers and artists. We don't just host content; we give your thoughts a place to land softly.";
+
+      const FEATURED_SUBMISSIONS = [
+        {
+          id: 'f1',
+          title: "The Silent Echo",
+          author: "Elara V., 17",
+          snippet: "The mountains don't speak, they only listen. In the valleys of my mind, I hear the reverb of yesterday's whispers...",
+          fullText: "The mountains don't speak, they only listen. In the valleys of my mind, I hear the reverb of yesterday's whispers. It wasn't loud, just a hum beneath the floorboards of the sky. We walked until the soles of our shoes wore thin, tracing the lifelines of the earth. \n\nI asked the wind why it carries leaves away from home. It didn't answer, just brushed my cheek like a forgetful ghost. Perhaps leaving isn't abandonment, but a form of spreading out, of becoming more than just a single point on a map. We are all just echoes waiting to hit a canyon wall.",
+          imageUrl: "https://picsum.photos/seed/echo/400/400",
+          featured: true
+        },
+        {
+          id: 'f2',
+          title: "Paper Cranes",
+          author: "Jonas M., 19",
+          snippet: "Folding fragile wishes into wings. One thousand prayers suspended on fishing line, waiting for a breath of air.",
+          fullText: "Folding fragile wishes into wings. One thousand prayers suspended on fishing line, waiting for a breath of air. My fingers ache with the repetition, the sharp creases of potential energy. \n\nRed paper for love, gold for wealth, blue for peace. But I ran out of colors, so I started using newspaper. Headlines of war folded into peace birds. The irony isn't lost on me, but the crane doesn't care what it's made of, only that it can fly. If only for a moment, in the draft of an open window.",
+          imageUrl: "https://picsum.photos/seed/papercranes/400/400", 
+          featured: true
+        },
+        {
+          id: 'f3',
+          title: "Urban Moss",
+          author: "Sarah K., 16",
+          snippet: "Green velvet reclaiming the concrete. Nature's slow, soft conquest over the hard edges of our city.",
+          fullText: "Green velvet reclaiming the concrete. Nature's slow, soft conquest over the hard edges of our city. It starts in the cracks, the forgotten corners where rain gathers. It doesn't ask for permission. \n\nThey scrub it away, power wash the history, but it always comes back. Softer, quieter, persistent. I want to be like the moss. Not the skyscraper that scrapes the clouds and demands attention, but the quiet green that outlasts the stone.",
+          imageUrl: "https://picsum.photos/seed/moss/400/400",
+          featured: true
+        },
+        {
+          id: 'f4',
+          title: "The Glass House",
+          author: "Tariq S.,
